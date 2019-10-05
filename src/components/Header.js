@@ -1,18 +1,18 @@
 import React from 'react';
-import styles from './Header.module.css';
+import styles from './Header.css.js';
 
 class Header extends React.Component{
 
     options = () =>{
         const {logged} = this.props;
         if(logged){
-            return <div className={styles.options}>
+            return <div style={styles.options}>
                 <h2>PirateUser</h2>
                 <a>Perfil</a>
                 <a>Sair</a>
             </div>
         }else{
-            return <div className={styles.options}>
+            return <div style={styles.options}>
                 <a>Entrar</a>
                 <a>Cadastre-se</a>
             </div>
@@ -27,12 +27,12 @@ class Header extends React.Component{
             let link;
             if(e == page){
                 link =
-                <li>
+                <li style={{...styles.li, ...styles.liPage}}>
                     <a>{e}</a>
                 </li>
             }else{
                 link =
-                <li>
+                <li style = {styles.li}>
                     <a>{e}</a>
                 </li>
             }
@@ -45,16 +45,14 @@ class Header extends React.Component{
     render(){
         const {options, navigation} = this;
         return(
-            <header className={styles.header}>
-                <div className={styles.div}>
+            <header style={styles.header}>
+                <div style={styles.div}>
                     <h1>Complexity</h1>
                     {options()}
                 </div>
-                <nav className={styles.nav}>
-                    <ul className={styles.ul}>
+                    <ul style={styles.ul}>
                         {navigation()}
                     </ul>
-                </nav>
             </header>
         )
     }
