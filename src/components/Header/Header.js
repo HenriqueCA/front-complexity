@@ -8,13 +8,13 @@ class Header extends React.Component{
         if(logged){
             return <div style={styles.options}>
                 <h2>PirateUser</h2>
-                <a>Perfil</a>
-                <a>Sair</a>
+                <a href="#">Perfil</a>
+                <a href="#">Sair</a>
             </div>
         }else{
             return <div style={styles.options}>
-                <a>Entrar</a>
-                <a>Cadastre-se</a>
+                <a href="#">Entrar</a>
+                <a href="#">Cadastre-se</a>
             </div>
         }
     }
@@ -27,14 +27,10 @@ class Header extends React.Component{
             let link;
             if(e == page){
                 link =
-                <li style={{...styles.li, ...styles.liPage}}>
-                    <a href="#">{e}</a>
-                </li>
+                    <a href="#" style={{...styles.li, ...styles.liPage}}>{e}</a>
             }else{
                 link =
-                <li style = {styles.li}>
-                    <a href="#">{e}</a>
-                </li>
+                    <a href="#" style={styles.li}>{e}</a>
             }
             elements.push(link)
         });
