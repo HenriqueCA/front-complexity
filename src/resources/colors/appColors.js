@@ -2,6 +2,12 @@ const headerColor = {
     background : 'lightblue',
     navColor : 'grey',
     pageColor: 'lightgrey',
-}
+};
 
-export default headerColor;
+const footerColor = {
+    background : 'lightblue',
+    mainPages: 'red',
+
+};
+
+export {headerColor, footerColor};

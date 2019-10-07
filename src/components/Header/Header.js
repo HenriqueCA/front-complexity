@@ -27,31 +27,30 @@ class Header extends React.Component{
             let link;
             if(e == page){
                 link =
-                    <a href="#" style={{...styles.li, ...styles.liPage}}>{e}</a>
+                    <a href="#" style={{...styles.li, ...styles.liPage}}>{e}</a>;
             }else{
                 link =
-                    <a href="#" style={styles.li}>{e}</a>
+                    <a href="#" style={styles.li}>{e}</a>;
             }
-            elements.push(link)
+            elements.push(link);
         });
 
         return elements;
     }
 
     render(){
-        const {options, navigation} = this;
         return(
             <header style={styles.header}>
                 <div style={styles.div}>
                     <h1>Complexity</h1>
-                    {options()}
+                    {this.options()}
                 </div>
                     <ul style={styles.ul}>
-                        {navigation()}
+                        {this.navigation()}
                     </ul>
             </header>
         )
     }
 };
 
-export default Header
+export default Header;

@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './components/Header/Header.js';
+import Footer from './components/Footer/Footer.js';
 import './App.css';
 
 function App() {
@@ -18,7 +19,13 @@ function App() {
         >
           Learn React
         </a>
+        
       </header>
+
+
+      <footer>
+        <Footer></Footer>
+      </footer>
     </div>
   );
 }
