@@ -28,12 +28,12 @@ class Header extends React.Component{
             if(e == page){
                 link =
                 <li style={{...styles.li, ...styles.liPage}}>
-                    <a>{e}</a>
+                    <a href="#">{e}</a>
                 </li>
             }else{
                 link =
                 <li style = {styles.li}>
-                    <a>{e}</a>
+                    <a href="#">{e}</a>
                 </li>
             }
             elements.push(link)

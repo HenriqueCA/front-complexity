@@ -1,10 +1,12 @@
+import headerColor from '../../resources/colors/appColors.js';
+
 const styles = {
 
     header : {
         width:'100%',
-        backgroundColor: 'lightblue',
+        backgroundColor: headerColor.background,
         display: 'grid',
-        gridTemplateRows: '3fr 1fr',
+        gridTemplateRows: '2fr 1fr',
         textAlign:'center',
     },
 
@@ -25,14 +27,17 @@ const styles = {
         listStyleType:'none',
         display:'grid',
         gridTemplateColumns: 'repeat(7,1fr)',
+
     },
 
     li :{
-        backgroundColor:'grey',
+        backgroundColor:headerColor.navColor,
+        display:'grid',
+        alignItems:'center'
     },
 
     liPage :{
-        backgroundColor:'darkgrey',
+        backgroundColor:headerColor.pageColor,
     }
 }
 
