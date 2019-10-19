@@ -8,7 +8,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 ReactDOM.render(
     <BrowserRouter>
         <Switch>
-            <Route path="/" exact={true} component={ stdScr.App } />
+            <Route path="/" exact={true} component={ stdScr.Home } />
             <Route path="/forgot-password" exact={true} component={ stdScr.Forgot } />
         </Switch>
     </BrowserRouter>, document.getElementById('root')
