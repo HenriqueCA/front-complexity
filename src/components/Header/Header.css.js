@@ -1,4 +1,4 @@
-import {headerColor} from '../../resources/colors/appColors.js';
+import {headerColor} from 'resources/colors/appColors.js';
 
 const styles = {
 

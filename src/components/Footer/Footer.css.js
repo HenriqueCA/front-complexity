@@ -1,4 +1,4 @@
-import {footerColor} from '../../resources/colors/appColors.js';
+import {footerColor} from 'resources/colors/appColors.js';
 
 const styles = {
     footer : {
