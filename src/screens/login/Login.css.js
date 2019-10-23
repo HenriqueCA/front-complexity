@@ -2,8 +2,11 @@ import {loginColor} from 'resources/colors/appColors.js'
 
 const styles = {
     main : {
-        textAlign:'center',
-        height:'80vh'
+        height:'80vh',
+        display: 'flex',
+        flexDirection:'column',
+        alignItems:'center',
+
     },
 
     input : {
@@ -15,6 +18,10 @@ const styles = {
         color:loginColor.text,
         width:'30%',
         margin:'10%',
+    },
+    
+    link : {
+        alignSelf:'flex-start',
     }
 }
 

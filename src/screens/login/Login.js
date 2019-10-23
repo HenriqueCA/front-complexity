@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import { TextField, Container, Button } from '@material-ui/core';
+import { TextField, Container, Button, Link } from '@material-ui/core';
 import styles from './Login.css.js';
 
 class Login extends React.Component {
@@ -42,7 +42,6 @@ class Login extends React.Component {
                           style={styles.input}
                           variant="filled"
                           margin="normal"
-                          required
                           fullWidth
                           label="Email/Nickname"
                           autoFocus
@@ -54,13 +53,14 @@ class Login extends React.Component {
                           style={styles.input}
                           variant="filled"
                           margin="normal"
-                          required
                           fullWidth
                           label="Senha"
                           onChange={this.handleChange}
                           value={this.state.password}
                           name='password'
+                          type='password'
                         />
+                        <Link style={styles.link} href="">Esqueceu sua senha?</Link>
                         <Button
                           style={styles.button}
                           variant='contained'
