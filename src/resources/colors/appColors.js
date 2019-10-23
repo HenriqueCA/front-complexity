@@ -10,4 +10,10 @@ const footerColor = {
 
 };
 
-export {headerColor, footerColor};
+const loginColor = {
+    input : 'grey',
+    button : 'blue',
+    text : 'white',
+}
+
+export {headerColor, footerColor, loginColor};

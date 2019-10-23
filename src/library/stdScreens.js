@@ -7,7 +7,8 @@ import Home from '../screens/home/Home';
 
 // authentication pages
 import Forgot from '../screens/forgot_password/Forgot';
+import Login from '../screens/login/Login';
 
 
 
-export default { Home, Forgot }; 
+export default { Home, Forgot, Login }; 
