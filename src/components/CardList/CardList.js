@@ -4,26 +4,31 @@ import FriendCard from '../FriendCard/FriendCard';
 import styles from './CardList.css.js';
 import Scroll from '../Scroll/Scroll';
 
+function initFriendsList(friendsList){
+    return friendsList.map((friend, i) => {
+        return  (
+            <FriendCard
+                key = {i}
+                nick = {friend.nick}
+                thumbnail = {friend.thumbnail}
+            />
+        );
+    });
+     
+}
+
 const CardList = ({friendsList}) => {
     return( 
         <div style={styles.div}>
             <h3>Amigos</h3>
             <Scroll>
             <div style={styles.card}>
-            {
-                friendsList.map((friend, i) => {
-                    return  (
-                        <FriendCard
-                            nick = {friendsList[i].nick}
-                            thumbnail = {friendsList[i].thumbnail}
-                        />
-                    );
-                })
-            }
+                { initFriendsList(friendsList) }
             </div>
             </Scroll>
         </div>
         );
 }
+
 
 export default CardList;
