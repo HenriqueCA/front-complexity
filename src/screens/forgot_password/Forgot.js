@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../../components/Header/Header.js';
 import Footer from '../../components/Footer/Footer.js';
 import styles from './Forgot.css.js';
+import { Container, TextField, Button } from '@material-ui/core';
 
 
 class Forgot extends React.Component {
@@ -18,11 +19,13 @@ class Forgot extends React.Component {
     }
 
     handleChange(event) {
-        this.setState({value: event.target.value});
+        const name = event.target.name;
+        this.setState({[name]: event.target.value});
     }
 
     handleSubmit(event) {
         this.setState({text:'Uma nova senha será enviada para seu email'});
+        //Todo
     }
 
     render() {
@@ -30,12 +33,31 @@ class Forgot extends React.Component {
         return (
             <>
                 <Header />
-                <div style={styles.div}>
+                <Container style={styles.main} maxWidth="xs">
                     <h1>Esqueci minha senha</h1>
-                    <input style={styles.input} type="text" placeholder="Email" value={this.state.value} onChange={this.handleChange} />
-                    <button onClick={this.handleSubmit} style={styles.button}>Enviar</button>
+                    <TextField
+                          style={styles.input}
+                          variant="filled"
+                          margin="normal"
+                          required
+                          fullWidth
+                          label="Email"
+                          autoFocus
+                          onChange={this.handleChange}
+                          value={this.state.email}
+                          name='email'
+                    />
+                    <Button
+                      style={styles.button}
+                      variant='contained'
+                      size='medium'
+                      onClick={this.handleSubmit}
+                    >
+                        Enviar
+                    </Button>
                     <p>{text}</p>
-                </div>
+
+                </Container>
                 <Footer />
             </>
         )
