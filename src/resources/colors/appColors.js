@@ -16,4 +16,10 @@ const loginColor = {
     text : 'white',
 }
 
-export {headerColor, footerColor, loginColor};
+const signupColor = {
+    input : 'grey',
+    button : 'blue',
+    text : 'white',
+}
+
+export {headerColor, footerColor, loginColor, signupColor};
