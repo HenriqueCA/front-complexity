@@ -6,22 +6,46 @@ import { Container, Grid, Link, Box, Typography } from '@material-ui/core';
 class Header extends React.Component {
 
     options = () => {
-        const logged = true;
+        const logged = localStorage.getItem('complexity_token');
         if (logged) {
             return (
                 <Grid container direction='column' xs={2} align='center'>
-                    <Grid item><Typography variant='h4'>PirateUser</Typography></Grid>
+                    <Grid item>
+                        <Typography variant='h4'>
+                            PirateUser
+                        </Typography>
+                    </Grid>
                     <Grid container spacing={0} justify='space-evenly'>
-                        <Grid item><Link underline='always'>Perfil</Link></Grid>
-                        <Grid item><Link underline='always'>Sair</Link></Grid>
+                        <Grid item>
+                            <Link underline='always'>
+                                Perfil
+                            </Link>
+                        </Grid>
+                        <Grid item>
+                            <Link underline='always'>
+                                Sair
+                            </Link>
+                        </Grid>
                     </Grid>
                 </Grid>
             )
         } else {
             return (
                 [
-                    <Grid item align='center' xs={1}><Link href="#">Entrar</Link></Grid>,
-                    <Grid item xs={1}><Link href="#">Cadastre-se</Link></Grid>
+                    (
+                        <Grid item align='center' xs={1}>
+                            <Link href="#">
+                                Entrar
+                        </Link>
+                        </Grid>
+                    ),
+                    (
+                        <Grid item xs={1}>
+                            <Link href="#">
+                                Cadastre-se
+                            </Link>
+                        </Grid>
+                    )
                 ]
             )
         }
@@ -34,12 +58,18 @@ class Header extends React.Component {
         let elements = [];
         pages.forEach(e => {
             let link;
-            if (e == page) {
-                link =
-                    <Link style={{ ...styles.link, ...styles.linkCurrent }} href="#" underline='none'>{e}</Link>;
+            if (e === page) {
+                link = (
+                    <Link style={{ ...styles.link, ...styles.linkCurrent }} href="#" underline='none'>
+                        {e}
+                    </Link>
+                );
             } else {
-                link =
-                    <Link style={styles.link} href="#" underline='none'>{e}</Link>;
+                link = (
+                    <Link style={styles.link} href="#" underline='none'>
+                        {e}
+                    </Link>
+                );
             }
             elements.push(link);
         });
@@ -52,7 +82,9 @@ class Header extends React.Component {
             <Container style={styles.header}>
                 <Grid container alignItems='center' spacing={0}>
                     <Grid item xs={10}>
-                        <Typography variant='h3'>Complexity</Typography>
+                        <Typography variant='h3'>
+                            Complexity
+                        </Typography>
                     </Grid>
                     {this.options()}
                 </Grid>

@@ -8,8 +8,7 @@ const headerColor = {
 };
 
 const footerColor = {
-    background: 'lightblue',
-    mainPages: 'red',
+    background: 'white',
 
 };
 
