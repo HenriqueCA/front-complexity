@@ -1,32 +1,35 @@
 const headerColor = {
-    background : 'lightblue',
-    navColor : 'grey',
-    pageColor: 'lightgrey',
+    background: 'white',
+    containerColor: 'grey',
+    containerCurrentColor: 'lightgrey',
+    linkColor: 'black',
+    linkCurrentColor: 'white',
+
 };
 
 const footerColor = {
-    background : 'lightblue',
+    background: 'lightblue',
     mainPages: 'red',
 
 };
 
 const loginColor = {
-    input : 'grey',
-    button : 'blue',
-    text : 'white',
+    input: 'grey',
+    button: 'blue',
+    text: 'white',
 }
 
 const signupColor = {
-    input : 'grey',
-    button : 'blue',
-    text : 'white',
+    input: 'grey',
+    button: 'blue',
+    text: 'white',
 }
 
 
 const forgotColor = {
-    input : 'grey',
-    button : 'blue',
-    text : 'white',
+    input: 'grey',
+    button: 'blue',
+    text: 'white',
 }
 
-export {headerColor, footerColor, loginColor, signupColor, forgotColor};
+export { headerColor, footerColor, loginColor, signupColor, forgotColor };

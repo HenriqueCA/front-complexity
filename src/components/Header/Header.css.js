@@ -1,43 +1,23 @@
-import {headerColor} from 'resources/colors/appColors.js';
+import { headerColor } from 'resources/colors/appColors.js';
 
 const styles = {
 
-    header : {
-        width:'100%',
-        backgroundColor: headerColor.background,
-        display: 'grid',
-        gridTemplateRows: '2fr 1fr',
-        textAlign:'center',
+    header: {
+        padding: 0,
+        backgroundColor: headerColor.background
     },
 
-    div : {
-        display: 'grid',
-        gridTemplateColumns: 'repeat(6,1fr)',
+    link: {
+        flex: '1',
+        textAlign: 'center',
+        padding:'1%',
+        color: headerColor.linkColor,
+        backgroundColor: headerColor.containerColor,
     },
 
-    options : {
-        gridColumn:6,
-        alignSelf: 'center',
-    },
-
-    ul : {
-        margin:0,
-        padding:0,
-        border:0,
-        listStyleType:'none',
-        display:'grid',
-        gridTemplateColumns: 'repeat(7,1fr)',
-
-    },
-
-    li :{
-        backgroundColor:headerColor.navColor,
-        display:'grid',
-        alignItems:'center'
-    },
-
-    liPage :{
-        backgroundColor:headerColor.pageColor,
+    linkCurrent: {
+        color: headerColor.linkCurrentColor,
+        backgroundColor: headerColor.containerCurrentColor,
     }
 }
 
