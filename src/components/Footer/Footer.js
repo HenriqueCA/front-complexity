@@ -1,21 +1,32 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { Container, Grid, Link, Typography, Box } from '@material-ui/core';
+import { Container, Grid, Typography, Box } from '@material-ui/core';
 import styles from './Footer.css.js';
-
+import {Link} from 'react-router-dom';
 
 class Footer extends React.Component {
 
     github = () => {
-        let people = ['henriqueca', 'henriqueca', 'henriqueca', 'henriqueca', 'henriqueca', 'henriqueca', 'henriqueca', 'henriqueca', 'henriqueca', 'henriqueca',];
+        let people = [
+            ['HenriqueCA', 'https://github.com/HenriqueCA'],
+            ['quirinoflavio', 'https://github.com/quirinoflavio'],
+            ['AthilaMatheusBorges', 'https://github.com/AthilaMatheusBorges'],
+            ['ANKerD', 'https://github.com/ANKerD'],
+            ['EduardoMCF', 'https://github.com/EduardoMCF'],
+            ['wesleymonte', 'https://github.com/wesleymonte'],
+            ['JonathanAllisson', 'https://github.com/JonathanAllisson'],
+            ['alexandrerf3', 'https://github.com/alexandrerf3'],
+            ['JoaoMLima', 'https://github.com/JoaoMLima'],
+            ['Gasparsa', 'https://github.com/Gasparsa']
+        ]
         let gitlist = []
         people.forEach(e => {
             let git =
-                <Link href="#">
+                <a style={styles.git} href={e[1]}>
                     <FontAwesomeIcon style={styles.github} icon={faGithub} />
-                    {e}
-                </Link>;
+                    {e[0]}
+                </a>;
             gitlist.push(git);
         });
 
@@ -25,13 +36,13 @@ class Footer extends React.Component {
     navigation = () => {
         let elements = []
         let pages = [
-            ['Home', []],
-            ['Blog', []],
-            ['Contests', []],
-            ['Loja', []],
-            ['Ranking', []],
-            ['Sobre', []],
-            ['Perfil', ['Geral', 'Submissões', 'Times', 'Estatísticas']]
+            [['Home', '/'], []],
+            [['Blog', '/blog'], []],
+            [['Contests', '/contests'], []],
+            [['Loja', '/loja'], []],
+            [['Ranking', '/ranking'], []],
+            [['Sobre', '/sobre'], []],
+            [['Perfil', '/profile'], [['Submissões', '/profile/submissoes'], ['Times', '/profile/times'], ['Contests', '/profile/contests'], ['Inventário', '/profile/inventario'], ['Editar Perfil', '/profile/edit']]],
         ];
         const mapPages = new Map(pages);
 
@@ -39,8 +50,8 @@ class Footer extends React.Component {
             let divPage = [];
             const mainPage = (
                 <Grid item>
-                    <Link href="#">
-                        {key}
+                    <Link style={styles.footerLinks} to={key[1]}>
+                        {key[0]}
                     </Link>
                 </Grid>
             );
@@ -48,8 +59,8 @@ class Footer extends React.Component {
             value.forEach(sub => {
                 const subpage = (
                     <Grid item>
-                        <Link href="#" >
-                            {sub}
+                        <Link style={styles.footerLinks} to={sub[1]} >
+                            {sub[0]}
                         </Link>
                     </Grid>
                 );
@@ -69,7 +80,7 @@ class Footer extends React.Component {
     render() {
         return (
             <Container style={styles.footer}>
-                <Grid container spacing={0} justify='space-evenly' align='center'>
+                <Grid container spacing={0} justify='space-evenly' align='center' style={styles.pagesContainer}>
                     {this.navigation()}
                     <Grid item>
                         <Typography>
