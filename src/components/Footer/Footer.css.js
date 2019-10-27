@@ -12,6 +12,16 @@ const styles = {
 
     github: {
         color: 'black',
+    },
+
+    git: {
+        color: footerColor.gitLinks,
+        textDecoration: 'none',
+    },
+
+    footerLinks: {
+        color: footerColor.footerLinks,
+        textDecoration: 'none',
     }
 }
 

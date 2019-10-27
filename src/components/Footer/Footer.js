@@ -1,8 +1,9 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { Container, Grid, Link, Typography, Box } from '@material-ui/core';
+import { Container, Grid, Typography, Box } from '@material-ui/core';
 import styles from './Footer.css.js';
+import {Link} from 'react-router-dom';
 
 class Footer extends React.Component {
 
@@ -22,10 +23,10 @@ class Footer extends React.Component {
         let gitlist = []
         people.forEach(e => {
             let git =
-                <Link href={e[1]}>
+                <a style={styles.git} href={e[1]}>
                     <FontAwesomeIcon style={styles.github} icon={faGithub} />
                     {e[0]}
-                </Link>;
+                </a>;
             gitlist.push(git);
         });
 
@@ -49,7 +50,7 @@ class Footer extends React.Component {
             let divPage = [];
             const mainPage = (
                 <Grid item>
-                    <Link href={key[1]}>
+                    <Link style={styles.footerLinks} to={key[1]}>
                         {key[0]}
                     </Link>
                 </Grid>
@@ -58,7 +59,7 @@ class Footer extends React.Component {
             value.forEach(sub => {
                 const subpage = (
                     <Grid item>
-                        <Link href={sub[1]} >
+                        <Link style={styles.footerLinks} to={sub[1]} >
                             {sub[0]}
                         </Link>
                     </Grid>

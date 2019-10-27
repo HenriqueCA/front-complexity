@@ -10,6 +10,8 @@ const headerColor = {
 
 const footerColor = {
     background: 'white',
+    gitLinks: 'blue',
+    footerLinks: 'blue',
 
 };
 
