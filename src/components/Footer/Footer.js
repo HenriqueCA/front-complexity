@@ -4,21 +4,20 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { Container, Grid, Link, Typography, Box } from '@material-ui/core';
 import styles from './Footer.css.js';
 
-
 class Footer extends React.Component {
 
     github = () => {
         let people = [
-            ['HenriqueCA','https://github.com/HenriqueCA'],
-            ['quirinoflavio','https://github.com/quirinoflavio'],
-            ['AthilaMatheusBorges','https://github.com/AthilaMatheusBorges'],
-            ['ANKerD','https://github.com/ANKerD'],
-            ['EduardoMCF','https://github.com/EduardoMCF'],
-            ['wesleymonte','https://github.com/wesleymonte'],
-            ['JonathanAllisson','https://github.com/JonathanAllisson'],
-            ['alexandrerf3','https://github.com/alexandrerf3'],
-            ['JoaoMLima','https://github.com/JoaoMLima'],
-            ['Gasparsa','https://github.com/Gasparsa']
+            ['HenriqueCA', 'https://github.com/HenriqueCA'],
+            ['quirinoflavio', 'https://github.com/quirinoflavio'],
+            ['AthilaMatheusBorges', 'https://github.com/AthilaMatheusBorges'],
+            ['ANKerD', 'https://github.com/ANKerD'],
+            ['EduardoMCF', 'https://github.com/EduardoMCF'],
+            ['wesleymonte', 'https://github.com/wesleymonte'],
+            ['JonathanAllisson', 'https://github.com/JonathanAllisson'],
+            ['alexandrerf3', 'https://github.com/alexandrerf3'],
+            ['JoaoMLima', 'https://github.com/JoaoMLima'],
+            ['Gasparsa', 'https://github.com/Gasparsa']
         ]
         let gitlist = []
         people.forEach(e => {
@@ -42,7 +41,7 @@ class Footer extends React.Component {
             [['Loja', '/loja'], []],
             [['Ranking', '/ranking'], []],
             [['Sobre', '/sobre'], []],
-            [['Perfil', '/profile'], [['Submissões', '/profile/submissoes'],['Times','/profile/times'],['Contests','/profile/contests'],['Inventário','/profile/inventario'],['Editar Perfil','/profile/edit']]],
+            [['Perfil', '/profile'], [['Submissões', '/profile/submissoes'], ['Times', '/profile/times'], ['Contests', '/profile/contests'], ['Inventário', '/profile/inventario'], ['Editar Perfil', '/profile/edit']]],
         ];
         const mapPages = new Map(pages);
 

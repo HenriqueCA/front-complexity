@@ -1,11 +1,10 @@
 import React from 'react';
 import styles from './Header.css.js';
-import { Container, Grid, Link, Box, Typography } from '@material-ui/core';
+import { Container, Grid, Box, Typography } from '@material-ui/core';
 import { TOKEN, NICKNAME } from 'library/util';
 import { userRoutes } from 'library/routes/backendRequest';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
-// TODO HREF.
 class Header extends React.Component {
 
     options = () => {
@@ -21,12 +20,12 @@ class Header extends React.Component {
                     </Grid>
                     <Grid container spacing={0} justify='space-evenly'>
                         <Grid item>
-                            <Link underline='always' href='/profile'>
+                            <Link style={styles.headerLinksLogged} to='/profile'>
                                 Perfil
                             </Link>
                         </Grid>
                         <Grid item>
-                            <Link underline='always' onPress={this.logout()}>
+                            <Link style={styles.headerLinksLogged} onPress={this.logout()}>
                                 Sair
                             </Link>
                         </Grid>
@@ -38,14 +37,14 @@ class Header extends React.Component {
                 [
                     (
                         <Grid item align='center' xs={1}>
-                            <Link href="/login">
+                            <Link style={styles.headerLinks} to="/login">
                                 Entrar
                             </Link>
                         </Grid>
                     ),
                     (
                         <Grid item xs={1}>
-                            <Link href="/signup">
+                            <Link style={styles.headerLinks} to="/signup">
                                 Cadastre-se
                             </Link>
                         </Grid>
@@ -71,13 +70,13 @@ class Header extends React.Component {
             let link;
             if (e === page) {
                 link = (
-                    <Link style={{ ...styles.link, ...styles.linkCurrent }} href={e[1]} underline='none'>
+                    <Link style={{ ...styles.link, ...styles.linkCurrent }} to={e[1]}>
                         {e[0]}
                     </Link>
                 );
             } else {
                 link = (
-                    <Link style={styles.link} href={e[1]} underline='none'>
+                    <Link style={styles.link} to={e[1]}>
                         {e[0]}
                     </Link>
                 );

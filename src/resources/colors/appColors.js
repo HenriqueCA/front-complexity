@@ -4,7 +4,8 @@ const headerColor = {
     containerCurrentColor: 'lightgrey',
     linkColor: 'black',
     linkCurrentColor: 'white',
-
+    headerLinksColor: 'blue',
+    headerLinksLoggedColor: 'blue',
 };
 
 const footerColor = {
