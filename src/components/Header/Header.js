@@ -1,36 +1,75 @@
 import React from 'react';
 import styles from './Header.css.js';
+import { Container, Grid, Link, Box, Typography } from '@material-ui/core';
 
-class Header extends React.Component{
+// TODO HREF.
+class Header extends React.Component {
 
-    options = () =>{
-        const {logged} = this.props;
-        if(logged){
-            return <div style={styles.options}>
-                <h2>PirateUser</h2>
-                <a href="#">Perfil</a>
-                <a href="#">Sair</a>
-            </div>
-        }else{
-            return <div style={styles.options}>
-                <a href="#">Entrar</a>
-                <a href="#">Cadastre-se</a>
-            </div>
+    options = () => {
+        const logged = localStorage.getItem('complexity_token');
+        if (logged) {
+            return (
+                <Grid container direction='column' xs={2} align='center'>
+                    <Grid item>
+                        <Typography variant='h4'>
+                            PirateUser
+                        </Typography>
+                    </Grid>
+                    <Grid container spacing={0} justify='space-evenly'>
+                        <Grid item>
+                            <Link underline='always'>
+                                Perfil
+                            </Link>
+                        </Grid>
+                        <Grid item>
+                            <Link underline='always'>
+                                Sair
+                            </Link>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            )
+        } else {
+            return (
+                [
+                    (
+                        <Grid item align='center' xs={1}>
+                            <Link href="#">
+                                Entrar
+                        </Link>
+                        </Grid>
+                    ),
+                    (
+                        <Grid item xs={1}>
+                            <Link href="#">
+                                Cadastre-se
+                            </Link>
+                        </Grid>
+                    )
+                ]
+            )
         }
     }
 
+
     navigation = () => {
-        const {page} = this.props;
-        let pages = ['Home','Blog','Contests','Questões','Loja','Ranking','Sobre'];
+        const { page } = this.props;
+        let pages = ['HOME', 'BLOG', 'CONTESTS', 'QUESTÕES', 'LOJA', 'RANKING', 'SOBRE'];
         let elements = [];
         pages.forEach(e => {
             let link;
-            if(e == page){
-                link =
-                    <a href="#" style={{...styles.li, ...styles.liPage}}>{e}</a>;
-            }else{
-                link =
-                    <a href="#" style={styles.li}>{e}</a>;
+            if (e === page) {
+                link = (
+                    <Link style={{ ...styles.link, ...styles.linkCurrent }} href="#" underline='none'>
+                        {e}
+                    </Link>
+                );
+            } else {
+                link = (
+                    <Link style={styles.link} href="#" underline='none'>
+                        {e}
+                    </Link>
+                );
             }
             elements.push(link);
         });
@@ -38,17 +77,21 @@ class Header extends React.Component{
         return elements;
     }
 
-    render(){
-        return(
-            <header style={styles.header}>
-                <div style={styles.div}>
-                    <h1>Complexity</h1>
+    render() {
+        return (
+            <Container style={styles.header}>
+                <Grid container alignItems='center' spacing={0}>
+                    <Grid item xs={10}>
+                        <Typography variant='h3'>
+                            Complexity
+                        </Typography>
+                    </Grid>
                     {this.options()}
-                </div>
-                    <ul style={styles.ul}>
-                        {this.navigation()}
-                    </ul>
-            </header>
+                </Grid>
+                <Box display='flex' flexDirection='row' justifyContent='center'>
+                    {this.navigation()}
+                </Box>
+            </Container>
         )
     }
 };
