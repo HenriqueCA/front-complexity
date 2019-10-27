@@ -1,6 +1,7 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { Container, Grid, Link, Typography, Box } from '@material-ui/core';
 import styles from './Footer.css.js';
 
 
@@ -11,7 +12,10 @@ class Footer extends React.Component {
         let gitlist = []
         people.forEach(e => {
             let git =
-                <div style={styles.github}> <FontAwesomeIcon icon={faGithub} /> <a href='#'>{e}</a> </div>;
+                <Link href="#">
+                    <FontAwesomeIcon style={styles.github} icon={faGithub} />
+                    {e}
+                </Link>;
             gitlist.push(git);
         });
 
@@ -19,49 +23,64 @@ class Footer extends React.Component {
     }
 
     navigation = () => {
-        let elements = [];
+        let elements = []
         let pages = [
-            ['Home',[]],
-            ['Blog',[]],
-            ['Contests',[]],
-            ['Loja',[]],
-            ['Ranking',[]],
-            ['Sobre',[]],
-            ['Perfil',['Geral','Submissões','Times','Estatísticas']]
+            ['Home', []],
+            ['Blog', []],
+            ['Contests', []],
+            ['Loja', []],
+            ['Ranking', []],
+            ['Sobre', []],
+            ['Perfil', ['Geral', 'Submissões', 'Times', 'Estatísticas']]
         ];
-        let mapPages = new Map(pages);
-        
-        for(let [key,value] of mapPages){
-            let divPage = []
-            let mainPage = <a href = "#" style={styles.mainpages}>{key}</a>
+        const mapPages = new Map(pages);
+
+        for (let [key, value] of mapPages) {
+            let divPage = [];
+            const mainPage = (
+                <Grid item>
+                    <Link href="#">
+                        {key}
+                    </Link>
+                </Grid>
+            );
             divPage.push(mainPage);
             value.forEach(sub => {
-                let subpage = <a href= "#" style={styles.subpages}>{sub}</a>
+                const subpage = (
+                    <Grid item>
+                        <Link href="#" >
+                            {sub}
+                        </Link>
+                    </Grid>
+                );
                 divPage.push(subpage);
             });
-            let div = React.createElement('div', {}, divPage);
-            elements.push(div);
-
+            const gridContainer = (
+                <Grid container xs={1} direction='column'>
+                    {divPage}
+                </Grid>
+            );
+            elements.push(gridContainer);
         }
-        
+
         return elements;
     }
 
     render() {
         return (
-            <footer style={styles.footer}>
-                <pages style={styles.pages}>
+            <Container style={styles.footer}>
+                <Grid container spacing={0} justify='space-evenly' align='center'>
                     {this.navigation()}
-                    <div>
-                        <p>©Complexity - Online Judge Gamificado</p>
-                    </div>
-                </pages>
-
-                <div style={styles.git}>
+                    <Grid item>
+                        <Typography>
+                            ©Complexity - Online Judge Gamificado
+                        </Typography>
+                    </Grid>
+                </Grid>
+                <Box display='flex' flexDirection='row' justifyContent='space-between'>
                     {this.github()}
-                </div>
-
-            </footer>
+                </Box>
+            </Container>
         )
     }
 };
