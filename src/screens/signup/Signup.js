@@ -3,6 +3,8 @@ import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import { TextField, Container, Button } from '@material-ui/core';
 import styles from './Signup.css.js';
+import {userRoutes} from 'library/routes/backendRequest';
+import {Redirect} from 'react-router-dom';
 
 class Signup extends React.Component {
 
@@ -13,6 +15,10 @@ class Signup extends React.Component {
             email : '',
             password: '',
             confirm: '',
+            validNickname: true,
+            validEmail: true,
+            validPassword: true,
+            validConfirm: true,
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -29,7 +35,51 @@ class Signup extends React.Component {
     }
 
     handleSubmit(event) {
-        //Todo
+        const {validNickname, validEmail,validPassword, validConfirm} = this.state;
+        if(validEmail && validPassword && validNickname && validConfirm){
+            this.signupUser();
+        }
+         
+    }
+
+    signupUser = async () => {
+        const {email, nickname, password} = this.state;
+        const user = {player : {email, nick: nickname, password}};
+        try {
+            const response = await userRoutes.signup(user);
+            //Handle Response.
+
+            return <Redirect to='/' />;
+
+        } catch (error) {
+            alert('Oops. Something went wrong.');
+        }
+
+    }
+
+    validateNickname = () => {
+        const {nickname} = this.state;
+        const validNickname = nickname !== "";
+        this.setState({validNickname});
+    }
+
+    validateEmail = () => {
+        const {email} = this.state;
+        const re = /\S+@\S+\.\S+/;
+        const validEmail = re.test(email);
+        this.setState({validEmail});
+    }
+
+    validatePassword = () => {
+        const {password} = this.state;
+        const validPassword = password !== "";
+        this.setState({validPassword});
+    }
+
+    validateConfirm = () => {
+        const {password, confirm} = this.state;
+        const validConfirm = password === confirm;
+        this.setState({validConfirm});
     }
 
     render () {
@@ -51,6 +101,9 @@ class Signup extends React.Component {
                           onChange={this.handleChange}
                           value={this.state.nickname}
                           name='nickname'
+                          onBlur={this.validateNickname}
+                          error={!this.state.validNickname}
+                          helperText={this.state.validNickname ? "" : "Nickname inválido."}
                         />
                         <TextField
                           style={styles.input}
@@ -62,6 +115,9 @@ class Signup extends React.Component {
                           onChange={this.handleChange}
                           value={this.state.email}
                           name='email'
+                          onBlur={this.validateEmail}
+                          error={!this.state.validEmail}
+                          helperText={this.state.validEmail ? "" : "Email inválido."}
                         />
                         <TextField
                           style={styles.input}
@@ -71,9 +127,11 @@ class Signup extends React.Component {
                           fullWidth
                           label="Senha"
                           onChange={this.handleChange}
-                          value={this.state.password}
                           name='password'
                           type='password'
+                          onBlur={this.validatePassword}
+                          error={!this.state.validPassword}
+                          helperText = {this.state.validPassword ? "" : "Senha inválida."}
                         />
                         <TextField
                           style={styles.input}
@@ -83,9 +141,11 @@ class Signup extends React.Component {
                           fullWidth
                           label="Confirme sua senha"
                           onChange={this.handleChange}
-                          value={this.state.confirm}
                           name='confirm'
                           type='password'
+                          onBlur={this.validateConfirm}
+                          error={!this.state.validConfirm}
+                          helperText = {this.state.validConfirm ? "" : "Sua senha está diferente!"}
                         />
                         <Button
                           style={styles.button}
