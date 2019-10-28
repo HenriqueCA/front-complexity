@@ -3,6 +3,7 @@ import Header from '../../components/Header/Header.js';
 import Footer from '../../components/Footer/Footer.js';
 import styles from './Forgot.css.js';
 import { Container, TextField, Button } from '@material-ui/core';
+import {userRoutes} from 'library/routes/backendRequest';
 
 
 class Forgot extends React.Component {
@@ -10,8 +11,8 @@ class Forgot extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            text : '',
-            email: ''
+            email: '',
+            validEmail: true,
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -24,12 +25,32 @@ class Forgot extends React.Component {
     }
 
     handleSubmit(event) {
-        this.setState({text:'Uma nova senha será enviada para seu email'});
-        //Todo
+        const {validEmail} = this.state;
+        if(validEmail){
+            this.requestPassword();
+        }
+    }
+
+    requestPassword = async () => {
+        const {email} = this.state;
+        const user = {player:{email}};
+        try {
+            const response = await userRoutes.forgetPassword(user);
+
+            // Handle Response.
+        } catch (error) {
+            alert('Oops. Something went wrong.');            
+        }
+    }
+
+    validateEmail = () => {
+        const {email} = this.state;
+        const re = /\S+@\S+\.\S+/;
+        const validEmail = re.test(email);
+        this.setState({validEmail});
     }
 
     render() {
-        const {text} = this.state;
         return (
             <>
                 <Header />
@@ -46,6 +67,9 @@ class Forgot extends React.Component {
                           onChange={this.handleChange}
                           value={this.state.email}
                           name='email'
+                          onBlur={this.validateEmail}
+                          error={!this.state.validEmail}
+                          helperText={this.state.validEmail ? "" : "Email inválido"}
                     />
                     <Button
                       style={styles.button}
@@ -55,8 +79,6 @@ class Forgot extends React.Component {
                     >
                         Enviar
                     </Button>
-                    <p>{text}</p>
-
                 </Container>
                 <Footer />
             </>
