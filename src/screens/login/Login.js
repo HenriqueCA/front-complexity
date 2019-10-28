@@ -3,6 +3,7 @@ import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import { TextField, Container, Button, Link } from '@material-ui/core';
 import styles from './Login.css.js';
+import {userRoutes} from 'library/routes/backendRequest';
 
 class Login extends React.Component {
 
@@ -27,7 +28,30 @@ class Login extends React.Component {
     }
 
     handleSubmit(event) {
-        //Todo
+        this.loginUser();
+    }
+
+    isEmail = (email) => {
+        const re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
+
+    loginUser = async () => {
+        const {email, password} = this.state;
+        let user;
+        if(this.isEmail(email)){
+            user = {player:{email,password}};
+        }else{
+            user = {player:{nick:email,password}};
+        }
+
+        try {
+            const response = await userRoutes.login(user);
+
+            // Handle Response.
+        } catch (error) {
+            alert('Oops. Something went wrong');            
+        }
     }
 
     render () {
