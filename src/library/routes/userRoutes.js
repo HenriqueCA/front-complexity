@@ -1,27 +1,27 @@
-import { baseURL } from './backendRequest';
 import axios from 'axios';
-import TOKEN from '../token';
+import {TOKEN, baseURL} from '../util';
 
 
 const headers = {
     'Authorization': localStorage.getItem(TOKEN),
 };
 
+/**
+ * Rotas relacionadas ao usuário.
+ */
 const userRoutes = {
-    /**
-     * Rotas relacionadas ao usuário.
-     */
+
     userRoute: baseURL + '/player',
-    loginRoute: this.userRoute + '/login',
-    signupRoute: this.userRoute + '/signup',
-    forgetPasswordRoute: this.userRoute + '/forgetpassword',
-    myProfileRoute: this.userRoute + '/me',
-    logoutRoute: this.myProfileRoute + '/logout',
-    logoutAllRoute: this.myProfileRoute + '/logoutall',
-    imageUploadRoute: this.myProfileRoute + '/image',
-    changePasswordRoute: this.myProfileRoute + '/password',
-    friendRoute: this.userRoute + '/friend',
-    searchPlayer: this.userRoute + '/search',
+    loginRoute: baseURL + '/player/login',
+    signupRoute: baseURL + '/player/signup',
+    forgetPasswordRoute: baseURL + '/player/forgetpassword',
+    myProfileRoute: baseURL + '/player/me',
+    logoutRoute: baseURL + '/player/me/logout',
+    logoutAllRoute: baseURL + '/player/me/logoutall',
+    imageUploadRoute: baseURL + '/player/me/image',
+    changePasswordRoute: baseURL + '/player/me/password',
+    friendRoute: baseURL + '/player/friend',
+    searchPlayerRoute: baseURL + '/player/search',
 
     /**
      * Rota para o login de um usuário.
@@ -152,7 +152,7 @@ const userRoutes = {
      * @returns {JSON} JSON conténdo message (quantidade de resultados encontrados) e results.
      */
     async searchPlayer(substring) {
-        const response = await axios.get(this.searchPlayer + '/', {
+        const response = await axios.get(this.searchPlayerRoute + '/', {
             params: {
                 substring
             }

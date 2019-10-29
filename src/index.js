@@ -10,6 +10,8 @@ ReactDOM.render(
         <Switch>
             <Route path="/" exact={true} component={ stdScr.Home } />
             <Route path="/forgot-password" exact={true} component={ stdScr.Forgot } />
+            <Route path="/login" exact={true} component={stdScr.Login} />
+            <Route path="/signup" exact={true} component={stdScr.Signup}/>
         </Switch>
     </BrowserRouter>, document.getElementById('root')
     );
