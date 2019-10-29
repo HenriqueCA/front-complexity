@@ -2,13 +2,21 @@
 
 const styles = {
     size : {
-        width : '10% vh'
     },
-    padding: {
-        padding: '1%',
-        paddingLeft: '2%',
-        paddingRight: '2%'
+
+    paddingTopBottom: {
+        paddingTop: '1%',
+        paddingBottom: '3%'
+    },
+
+    paddingRight: {
+        paddingRight: '3%'
+    },
+
+    paddingLeft: {
+        paddingLeft: '3%'
     }
+
 }
 
 export default styles;
