@@ -47,9 +47,17 @@ class Signup extends React.Component {
         const user = {player : {email, nick: nickname, password}};
         try {
             const response = await userRoutes.signup(user);
-            //Handle Response.
 
-            return <Redirect to='/' />;
+            if (response.status === 201){
+                // Registrado com sucesso
+                alert(`Seu cadastro foi realizado com sucesso, ${nickname}!`);
+                await setTimeout({}, 2000);
+                return <Redirect to='/' />;
+            }
+            else{
+                // Algo deu errado.
+                alert(response.data.error);
+            }
 
         } catch (error) {
             alert('Oops. Something went wrong.');
