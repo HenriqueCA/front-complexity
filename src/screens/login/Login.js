@@ -4,6 +4,8 @@ import Footer from '../../components/Footer/Footer';
 import { TextField, Container, Button, Link } from '@material-ui/core';
 import styles from './Login.css.js';
 import {userRoutes} from 'library/routes/backendRequest';
+import {TOKEN, NICKNAME} from 'library/util';
+import {Redirect} from 'react-router-dom';
 
 class Login extends React.Component {
 
@@ -47,8 +49,16 @@ class Login extends React.Component {
 
         try {
             const response = await userRoutes.login(user);
+            if(response.status === 200){
+                //Login bem sucedido.
+                localStorage.setItem(TOKEN,"Bearer " + response.data.token);
+                localStorage.setItem(NICKNAME,response.data.nick);
+                return <Redirect to="/"/>;
+            }
+            else{
+                alert(response.data.error);
+            }
 
-            // Handle Response.
         } catch (error) {
             alert('Oops. Something went wrong');            
         }
