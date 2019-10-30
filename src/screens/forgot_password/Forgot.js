@@ -4,6 +4,7 @@ import Footer from '../../components/Footer/Footer.js';
 import styles from './Forgot.css.js';
 import { Container, TextField, Button } from '@material-ui/core';
 import {userRoutes} from 'library/routes/backendRequest';
+import {Redirect} from 'react-router-dom';
 
 
 class Forgot extends React.Component {
@@ -36,8 +37,15 @@ class Forgot extends React.Component {
         const user = {player:{email}};
         try {
             const response = await userRoutes.forgetPassword(user);
-
-            // Handle Response.
+            if(response.status === 200){
+                // Mudança de senha.
+                alert("Sua senha nova foi enviada para o seu email!");
+                await setTimeout({}, 2000);
+                return <Redirect to='/'/>;
+            }
+            else{
+                alert("Não há nenhum usuário cadastrado com esse email.");
+            }
         } catch (error) {
             alert('Oops. Something went wrong.');            
         }
