@@ -20,18 +20,14 @@ class UserInfo extends React.Component {
 
     handleClick(event) {
         const id = event.target.getAttribute('id');
-        if(id === 'statistics') this.setState({display: 'statistics'});
-        else if(id === 'submissions') this.setState({display: 'submissions'});
-        else if(id === 'teams') this.setState({display: 'teams'});
-        else if(id === 'contests') this.setState({display: 'contests'});
-        else if(id === 'inventory') this.setState({display: 'inventory'});
-        else if(id === 'editProfile') this.setState({display: 'editProfile'});
+        this.setState({display: id});
     }
 
 
-    renderInner() {
+    //otimizar nao renderizando o que ja esta sendo mostrado
+    renderInner = () => {
         let { display } = this.state;
-        if ((display) === 'statistics'){
+        if (display === 'statistics'){
             return <UserStatistics/>;
         } else if (display === 'submissions'){
             return <UserSubmissions/>;
@@ -61,20 +57,5 @@ class UserInfo extends React.Component {
           );
     }
 }
-
-// const UserInfo = () => {
-//     return(
-//         <Container>
-//             <Box display='flex'>
-//                 <Button>
-//                     Estatísticas
-//                 </Button>
-//                 <Button>
-//                     Submissões
-//                 </Button>
-//             </Box>
-//         </Container>
-//     );
-// }
 
 export default UserInfo;
