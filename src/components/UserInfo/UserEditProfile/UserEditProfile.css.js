@@ -1,3 +1,4 @@
+import {forgotColor} from 'resources/colors/appColors.js';
 const styles = {
     size : {
         minWidth: '100%',
@@ -7,6 +8,10 @@ const styles = {
     card : {
         minWidth: '100%',
         height: '100%'
+    },
+
+    input : {
+        backgroundColor:forgotColor.input,
     }
 }
 
