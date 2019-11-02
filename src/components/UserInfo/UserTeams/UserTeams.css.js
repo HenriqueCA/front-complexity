@@ -7,6 +7,11 @@ const styles = {
     card : {
         minWidth: '100%',
         height: '100%'
+    },
+
+    margin : {
+        margingRight: '2%',
+        marginLeft: '2%'
     }
 }
 

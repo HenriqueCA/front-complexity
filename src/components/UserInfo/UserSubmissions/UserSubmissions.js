@@ -34,7 +34,7 @@ const UserSubmissions = ({ submissions }) => {
                         PID
                     </Typography>
                     <Typography  style={styles.margin}>
-                        NAME
+                        NOME
                     </Typography>
                     <Typography  style={styles.margin}>
                         LINGUAGEM
