@@ -39,7 +39,7 @@ class UserInfo extends React.Component {
         } else if (display === 'inventory'){
             return <UserInventory/>;
         } else if (display === 'editProfile'){
-            return <UserEditProfile/>;
+            return <UserEditProfile uData={this.props.userData}/>;
         } 
     }
 

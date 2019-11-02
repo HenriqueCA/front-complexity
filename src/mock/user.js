@@ -1,7 +1,7 @@
 const user = {
     picture: 'https://www.midlands4cities.ac.uk/wp-content/uploads/2019/04/student-profile-default.png',
     nick: "PirateUser",
-    instituition: "Universidade Federal de Campina Grande",
+    institution: "Universidade Federal de Campina Grande",
     country: "Brasil",
     level: 23,
     currentXp: 1320,

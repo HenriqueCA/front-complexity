@@ -10,8 +10,15 @@ const styles = {
         height: '100%'
     },
 
-    input : {
-        backgroundColor:forgotColor.input,
+    margin : {
+        marginLeft: '5%'
+    },
+
+    button : {
+        backgroundColor:forgotColor.button,
+        color:forgotColor.text,
+        width:'50%',
+        margin:'3%',
     }
 }
 
