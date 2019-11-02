@@ -16,12 +16,12 @@ const ProfileHeader = ({uData}) => {
                         </Grid>
                         <Grid item>
                             <Typography>
-                                {uData.university}
+                                {uData.instituition}
                             </Typography>
                         </Grid>
                         <Grid item>
                             <Typography>
-                                {uData.city}, {uData.state}, {uData.country}
+                                {uData.country}
                             </Typography>
                         </Grid>
                         <Grid item>

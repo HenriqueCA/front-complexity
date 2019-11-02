@@ -1,5 +1,4 @@
 import React from 'react';
-import mock from './mock.js';
 import FriendCard from '../FriendCard/FriendCard';
 import styles from './CardList.css.js';
 import Scroll from '../Scroll/Scroll';

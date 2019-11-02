@@ -30,7 +30,8 @@ class UserInfo extends React.Component {
         if (display === 'statistics'){
             return <UserStatistics/>;
         } else if (display === 'submissions'){
-            return <UserSubmissions/>;
+            let ms = this.props.userData.submissions;
+            return <UserSubmissions submissions={ms.concat(ms.concat(ms.concat(ms)))}/>;
         } else if (display === 'teams'){
             return <UserTeams/>;
         } else if (display === 'contests'){
