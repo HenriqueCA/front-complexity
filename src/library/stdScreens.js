@@ -12,5 +12,8 @@ import Login from '../screens/login/Login';
 import Signup from '../screens/signup/Signup';
 
 
+import Question from '../screens/question/Question';
 
-export default { Home, Forgot, Login, Signup, Profile }; 
+
+
+export default { Home, Forgot, Login, Signup, Profile, Question }; 
