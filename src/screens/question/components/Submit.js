@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, TextField, MenuItem } from '@material-ui/core';
+import { Container, TextField, MenuItem, Button } from '@material-ui/core';
 
 class Submit extends React.Component {
 
@@ -16,6 +16,11 @@ class Submit extends React.Component {
         const value = target.value;
         const name = target.name
         this.setState({ [name] : value });
+    }
+
+    handleClick = (event) =>{
+        //Todo: Submit Question
+
     }
 
     render() {
@@ -56,6 +61,13 @@ class Submit extends React.Component {
                     name='code'
                     
                 />
+                <Button
+                    variant='contained'
+                    fullWidth
+                    onClick={this.handleClick}
+                >
+                    Submeter
+                </Button>
             </Container>
         )
     }
