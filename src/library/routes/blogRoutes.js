@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {TOKEN, baseURL} from '../util';
+import { TOKEN, baseURL } from '../util';
 
 
 const headers = {
@@ -22,7 +22,11 @@ const blogRoutes = {
     dislikeBlogRoute: '/dislike/',
     commentBlogRoute: '/comment/',
 
-    async getBlog(blogId){
+    /**
+     * Faz uma requisição retornando um blog.
+     * @param {string} blogId o id do blog.
+     */
+    async getBlog(blogId) {
         const response = await axios.get(this.blogRoute, {
             params: {
                 blogId
@@ -30,8 +34,13 @@ const blogRoutes = {
         }, headers);
         return response;
     },
-    
-    async createBlog(title,body){
+
+    /**
+     * Faz uma requisição para criação de um blog.
+     * @param {string} title titulo do blog.
+     * @param {string} body corpo do blog.
+     */
+    async createBlog(title, body) {
         const blog = {
             title,
             body
@@ -40,8 +49,84 @@ const blogRoutes = {
         return response;
     },
 
-    async likeBlog(blogId){
-        const response = await axios.post(this.blogRoute + blogId + '/')
+    /**
+     * Faz uma requisição para dar um like em algum blog.
+     * @param {string} blogId o id do blog.
+     */
+    async likeBlog(blogId) {
+        const response = await axios.post(this.blogRoute + blogId + this.likeBlogRoute, headers);
+        return response;
+    },
+
+    /**
+     * Faz uma requisição para dar um deslike em algum blog.
+     * @param {string} blogId o id do blog.
+     */
+    async dislikeBlog(blogId) {
+        const response = await axios.post(this.blogRoute + blogId + this.dislikeBlogRoute, headers);
+        return response;
+    },
+
+    /**
+     * Faz uma requisição para realizar um comentário em algum blog.
+     * @param {string} blogId o id do blog.
+     */
+    async commentBlog(blogId) {
+        const response = await axios.post(this.blogRoute + blogId + this.commentBlogRoute, headers);
+        return response;
+    },
+
+    /**
+     * Faz uma requisição para remover o comentário de algum blog.
+     * @param {string} blogId o id do blog.
+     * @param {string} commentId o id do comentário
+     */
+    async removeComment(blogId, commentId) {
+        const response = await axios.delete(this.blogRoute + blogId + this.commentBlogRoute + commentId, headers);
+        return response;
+    },
+
+    /**
+     * Faz uma requisição para retornar uma lista de blogs ordenada por tempo. O mais antigo vem primeiro.
+     */
+    async listByTime() {
+        const response = await axios.get(this.listByTimeRoute, headers);
+        return response;
+    },
+
+    /**
+     * Faz uma requisição para retornar uma lista de blogs ordenada por likes. O que possui mais likes vem primeiro.
+     */
+    async listByLike() {
+        const response = await axios.get(this.listByLikeRoute, headers);
+        return response;
+    },
+
+    /**
+     * Faz uma requisição para retornar um blog a partir de uma substring do titulo do blog.
+     * @param {string} pattern padrão a ser procurado.
+     */
+    async searchByTitle(pattern) {
+        const response = await axios.get(this.searchByTitleRoute, { params: { pattern } }, headers);
+        return response;
+    },
+
+    /**
+     * Faz uma requisição para retornar um blog a partir de uma substring do autor do blog.
+     * @param {string} pattern padrão a ser procurado.
+     */
+    async searchByAuthor(pattern) {
+        const response = await axios.get(this.searchByAuthorRoute, { params: { pattern } }, headers);
+        return response;
+    },
+
+    /**
+     * Faz uma requisição para retornar um blog a partir de uma substring do corpo do blog.
+     * @param {string} pattern padrão a ser procurado.
+     */
+    async searchByBody(pattern) {
+        const response = await axios.get(this.searchByBodyRoute, { params: { pattern } }, headers);
+        return response;
     }
 }
 

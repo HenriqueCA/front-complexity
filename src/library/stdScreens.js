@@ -11,8 +11,9 @@ import Forgot from '../screens/forgot_password/Forgot';
 import Login from '../screens/login/Login';
 import Signup from '../screens/signup/Signup';
 
-import Blog from '../screens/blog/Blog';
+import Blogs from '../screens/blog-init/Blogs';
+import SearchBlog from '../screens/blog-search/SearchBlog';
 
 
 
-export default { Home, Forgot, Login, Signup, Profile, Blog }; 
+export default { Home, Forgot, Login, Signup, Profile, Blogs, SearchBlog}; 
