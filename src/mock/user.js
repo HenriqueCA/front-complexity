@@ -8,7 +8,7 @@ const user = {
     nextLvlXP: 2000,
     gold: 130,
     problemsSolved: 12,
-    problemasTried: 14,
+    problemsTried: 14,
     totalOfSubmissions: 35,
     submissions: [
         {

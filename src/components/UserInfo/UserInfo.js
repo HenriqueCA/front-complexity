@@ -28,20 +28,38 @@ class UserInfo extends React.Component {
     renderInner = () => {
         let { display } = this.state;
         if (display === 'statistics'){
-            return <UserStatistics/>;
-        } else if (display === 'submissions'){
+            let mud = this.props.userData;
+            return <UserStatistics 
+                        problemsSolved={mud.problemsSolved} 
+                        problemsTried={mud.problemsTried} 
+                        totalOfSubmissions={mud.totalOfSubmissions}
+                    />;
+        } 
+        else if (display === 'submissions'){
             let ms = this.props.userData.submissions;
-            return <UserSubmissions submissions={ms.concat(ms.concat(ms.concat(ms)))}/>;
-        } else if (display === 'teams'){
+            return <UserSubmissions 
+                        submissions={ms.concat(ms.concat(ms.concat(ms)))}
+                    />;
+        } 
+        else if (display === 'teams'){
             let mt = this.props.userData.teams;
-            return <UserTeams teams={mt.concat(mt.concat(mt.concat(mt)))}/>;
-        } else if (display === 'contests'){
+            return <UserTeams 
+                        teams={mt.concat(mt.concat(mt.concat(mt)))}
+                    />;
+        } 
+        else if (display === 'contests'){
             let mc = this.props.userData.contests;
-            return <UserContests contests={mc.concat(mc.concat(mc.concat(mc)))}/>;
-        } else if (display === 'inventory'){
+            return <UserContests 
+                        contests={mc.concat(mc.concat(mc.concat(mc)))}
+                    />;
+        } 
+        else if (display === 'inventory'){
             return <UserInventory/>;
-        } else if (display === 'editProfile'){
-            return <UserEditProfile uData={this.props.userData}/>;
+        } 
+        else if (display === 'editProfile'){
+            return <UserEditProfile 
+                        uData={this.props.userData}
+                    />;
         } 
     }
 
