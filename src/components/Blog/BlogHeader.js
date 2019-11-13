@@ -2,7 +2,8 @@ import React from 'react';
 import { Container, Paper, Typography, TextField, MenuItem, Grid, Input, InputAdornment, IconButton } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { Redirect } from 'react-router-dom';
+import { Redirect} from 'react-router-dom';
+import styles from './BlogHeader.css.js';
 
 class BlogHeader extends React.Component {
 
@@ -12,36 +13,45 @@ class BlogHeader extends React.Component {
             order: 'Recentes',
             searchBy: 'Titulo',
             search: '',
+            redirect: false,
         }
     }
 
     handleChange = (event) => {
         const name = event.target.name;
         this.setState({ [name]: event.target.value })
-        if(name === 'order'){
-            const {changeOrder} = this.props;
+        if (name === 'order') {
+            const { changeOrder } = this.props;
             changeOrder(event.target.value);
         }
     }
 
-    handleSearch = (event) => {
-        const {search, searchBy} = this.state;
-        let goToSearch;
-        if(searchBy === 'Titulo'){
-            goToSearch = <Redirect to={`/blog/search/?title=${search}`} />;
-        }else if (searchBy === 'Author'){
-            goToSearch = <Redirect to={`/blog/search/?author=${search}`} />;
-        }else{
-            goToSearch = <Redirect to={`/blog/search/?body=${search}`} />;
+    handleSearch = () => {
+        this.setState({ redirect: true });
+    }
+
+    redirectSearch = () => {
+        const { search, searchBy } = this.state;
+        this.setState({ redirect: false });
+        if (searchBy === 'Titulo') {
+            return <Redirect to={`/blog/search/?title=${search}`} />;
+        } else if (searchBy === 'Autor') {
+            return <Redirect to={`/blog/search/?author=${search}`} />;
+        } else {
+            return <Redirect to={`/blog/search/?body=${search}`} />;
         }
-        return goToSearch;
+
     }
 
     render() {
+        const { redirect } = this.state
+        if (redirect) {
+            return this.redirectSearch();
+        }
         return (
-            <Container>
-                <Paper square={true} style={{ height: '15%', padding: '0.5%', marginBottom: '3%' }}>
-                    <Grid container style={{ textAlign: 'center' }} alignItems='center' spacing={0}>
+            <Container style={{ padding: 0 }}>
+                <Paper square={true} style={styles.blogHeader}>
+                    <Grid container style={styles.grid} alignItems='center' spacing={0}>
                         {this.props.orderBar ?
                             (
                                 <>
@@ -74,13 +84,13 @@ class BlogHeader extends React.Component {
                                 <MenuItem value='Autor' key='Autor'>Autor</MenuItem>
                                 <MenuItem value='Corpo' key='Corpo'>Corpo</MenuItem>
                             </TextField>
-                            <Input onChange={this.handleChange} name='search' endAdornment={
+                            <Input value={this.state.search} onChange={this.handleChange} name='search' endAdornment={
                                 <InputAdornment position='end'>
                                     <IconButton
                                         edge='end'
                                         onClick={this.handleSearch}
                                     >
-                                        <FontAwesomeIcon icon={faSearch} />
+                                        <FontAwesomeIcon style ={styles.searchIcon} icon={faSearch} />
                                     </IconButton>
                                 </InputAdornment>
                             } />

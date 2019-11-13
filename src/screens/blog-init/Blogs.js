@@ -1,10 +1,11 @@
 import React from 'react';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import { Container, Paper, Box} from '@material-ui/core';
+import { Container, Box} from '@material-ui/core';
 import { blogRoutes } from 'library/routes/backendRequest';
-import { BlogHeader } from '../../components/Blog/BlogHeader';
-import {BlogList} from '../../components/Blog/BlogList';
+import BlogHeader from '../../components/Blog/BlogHeader';
+import BlogList from '../../components/Blog/BlogList';
+import styles from './Blogs.css.js';
 
 class Blogs extends React.Component {
 
@@ -44,7 +45,8 @@ class Blogs extends React.Component {
         } else {
             list = blogsByLikes;
         }
-        let content = [];
+        let content = []
+
         if (list) {
 
             list.forEach(element => {
@@ -61,9 +63,9 @@ class Blogs extends React.Component {
         return (
             <>
                 <Header />
-                <Container style={{}}>
                     <BlogHeader orderBar changeOrder={(ord) => {this.setState({order: ord})}} />
-                    <Box display='flex' flexDirection='column'>
+                <Container style={styles.listBlogs}>
+                    <Box display='flex' flexDirection='column' style={styles.listBlogs}>
                         {this.listBlogs()}
                     </Box>
                 </Container>

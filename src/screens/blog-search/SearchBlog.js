@@ -1,10 +1,11 @@
 import React from 'react';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import { Container, Paper, Box} from '@material-ui/core';
+import { Container, Box} from '@material-ui/core';
 import { blogRoutes } from 'library/routes/backendRequest';
 import BlogHeader from '../../components/Blog/BlogHeader';
 import BlogList from '../../components/Blog/BlogList';
+import styles from './SearchBlog.css.js';
 
 class SearchBlog extends React.Component {
 
@@ -43,8 +44,64 @@ class SearchBlog extends React.Component {
     }
 
     listBlogs = () => {
-        const { blogs } = this.state;
+        let { blogs } = this.state;
         let content = [];
+        blogs = [{
+            author: {
+                profile:{
+                    name:'Henrique'
+                }
+            },
+            numlikes:30,
+            numdislikes:30,
+            comments:['a','a','a'],
+            title:'Questão feia',
+            id:'42a'
+        },{
+            author: {
+                profile:{
+                    name:'Henrique'
+                }
+            },
+            numlikes:30,
+            numdislikes:30,
+            comments:['a','a','a'],
+            title:'Questão feia',
+            id:'42a'
+        },{
+            author: {
+                profile:{
+                    name:'Henrique'
+                }
+            },
+            numlikes:30,
+            numdislikes:30,
+            comments:['a','a','a'],
+            title:'Questão feia',
+            id:'42a'
+        },{
+            author: {
+                profile:{
+                    name:'Henrique'
+                }
+            },
+            numlikes:30,
+            numdislikes:30,
+            comments:['a','a','a'],
+            title:'Questão feia',
+            id:'42a'
+        },{
+            author: {
+                profile:{
+                    name:'Henrique'
+                }
+            },
+            numlikes:30,
+            numdislikes:30,
+            comments:['a','a','a'],
+            title:'Questão feia',
+            id:'42a'
+        }];
         if (blogs) {
 
             blogs.forEach(element => {
@@ -61,8 +118,8 @@ class SearchBlog extends React.Component {
         return (
             <>
                 <Header />
-                <Container style={{}}>
                     <BlogHeader/>
+                <Container style={styles.listBlogs}>
                     <Box display='flex' flexDirection='column'>
                         {this.listBlogs()}
                     </Box>
