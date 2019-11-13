@@ -14,7 +14,7 @@ const BlogList = ({ blog }) => {
     const title = blog.title;
     const id = blog.id;
     return (
-        <Link style={styles.linkStyle} to={`/blog/id/${id}`}>
+        <Link style={styles.linkStyle} to={`/blog/?id=${id}`}>
             <Paper style={styles.blogList}>
                 <Box display='flex'>
                     <Box display='flex' alignItems='center' style={styles.aval}>

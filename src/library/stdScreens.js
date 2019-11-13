@@ -13,7 +13,8 @@ import Signup from '../screens/signup/Signup';
 
 import Blogs from '../screens/blog-init/Blogs';
 import SearchBlog from '../screens/blog-search/SearchBlog';
+import Blog from '../screens/blog-page/Blog';
 
 
 
-export default { Home, Forgot, Login, Signup, Profile, Blogs, SearchBlog}; 
+export default { Home, Forgot, Login, Signup, Profile, Blogs, SearchBlog, Blog}; 
