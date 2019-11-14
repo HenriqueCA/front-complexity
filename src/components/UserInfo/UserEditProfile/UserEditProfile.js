@@ -21,6 +21,13 @@ class UserEditProfile extends React.Component {
         this.setState({[name]: event.target.value});
     }
 
+    changeInfo(){
+
+    }
+    changePassword(){
+
+    }
+
 
      render(){
          return(
@@ -67,7 +74,7 @@ class UserEditProfile extends React.Component {
                         style={styles.button}
                         variant='contained'
                         size='small'
-                        onClick={this.handleSubmit}
+                        onClick={this.changeInfo}
                         >
                             Salvar alterações!
                         </Button>
@@ -85,17 +92,7 @@ class UserEditProfile extends React.Component {
                                 </Typography>
                             </Grid>
                             <Grid item>
-                                <TextField/>
-                            </Grid>
-                        </Grid>
-                        <Grid container direction="row" alignItems="center" style={styles.margin}>
-                            <Grid item>
-                                <Typography>
-                                    Nova senha:
-                                </Typography>
-                            </Grid>
-                            <Grid item>
-                                <TextField/>
+                                <TextField type="password" name="password"/>
                             </Grid>
                         </Grid>
                         <Grid container direction="row" alignItems="center" style={styles.margin}>
@@ -105,9 +102,30 @@ class UserEditProfile extends React.Component {
                                 </Typography>
                             </Grid>
                             <Grid item>
-                                <TextField/>
+                                <TextField type="password" name="confirmPassword"/>
                             </Grid>
                         </Grid>
+                        <Grid container direction="row" alignItems="center" style={styles.margin}>
+                            <Grid item>
+                                <Typography>
+                                    Nova senha:
+                                </Typography>
+                            </Grid>
+                            <Grid item>
+                                <TextField  name="newPassword"/>
+                            </Grid>
+                        </Grid>
+                        <Grid container justify="center">
+                        <Button
+                        style={styles.button}
+                        variant='contained'
+                        size='small'
+                        onClick={this.changePassword}
+                        >
+                            Mudar Senha
+                        </Button>
+                    </Grid>
+                        
                     </Grid>
                 </Paper>
             </Card>
