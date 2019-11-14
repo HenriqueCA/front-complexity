@@ -1,19 +1,19 @@
 import React from 'react';
 import styles from './UserContests.css';
-import { Card, Typography, Container, Box } from '@material-ui/core';
-import Scroll from '../../../components/Scroll/Scroll';
+import { Typography, Container, Box } from '@material-ui/core';
+import Scroll from 'components/Scroll/Scroll';
 
 function mountContests(contests) {
     return contests.map((contest, i) => {
         return  (
             <Box flexDirection='row' display='flex' key={i}>
-                <Typography  style={styles.margin}>
+                <Typography  style={styles.contest}>
                     { contest.id }
                 </Typography>
-                <Typography  style={styles.margin}>
+                <Typography  style={styles.solved}>
                     { contest.problemsSolved }
                 </Typography>
-                <Typography  style={styles.margin}>
+                <Typography  style={styles.date}>
                     { contest.date }
                 </Typography>
             </Box>
@@ -24,23 +24,21 @@ function mountContests(contests) {
 
 const UserContests = ({ contests }) => {
     return (
-        <Container style={styles.size}>
-            <Card style={styles.card}>
-            <Box flexDirection='row' display='flex' >
-                    <Typography  style={styles.margin}>
+        <Container style={{padding:0}}>
+            <Box flexDirection='row' display='flex' style={styles.infoContainer} >
+                    <Typography  style={styles.contestInfo}>
                         ID
                     </Typography>
-                    <Typography  style={styles.margin}>
+                    <Typography  style={styles.solvedInfo}>
                         RESOLVIDOS
                     </Typography>
-                    <Typography  style={styles.margin}>
+                    <Typography  style={styles.dateInfo}>
                         DATA
                     </Typography>
                 </Box>
                 <Scroll>
                     { mountContests(contests) }
                 </Scroll>
-            </Card>
         </Container>
     );
 }

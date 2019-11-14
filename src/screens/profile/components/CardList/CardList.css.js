@@ -1,7 +1,7 @@
 const styles = {
     div : {
         border: '2px solid red',
-        width: '165px',
+        width: '100%',
         textAlign: 'center'
     },
 

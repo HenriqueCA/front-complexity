@@ -1,19 +1,19 @@
 import React from 'react';
 import styles from './UserTeams.css';
 import { Card, Typography, Container, Box } from '@material-ui/core';
-import Scroll from '../../../components/Scroll/Scroll';
+import Scroll from 'components/Scroll/Scroll';
 
 function mountTeams(teams) {
     return teams.map((team, i) => {
         return  (
-            <Box flexDirection='row' display='flex' key={i}>
-                <Typography  style={styles.margin}>
+            <Box display='flex' key={i}>
+                <Typography  style={styles.contest}>
                     { team.contest }
                 </Typography>
-                <Typography  style={styles.margin}>
+                <Typography  style={styles.name}>
                     { team.name }
                 </Typography>
-                <Typography  style={styles.margin}>
+                <Typography  style={styles.members}>
                     { `(${team.members[0]}, ${team.members[1]}, ${team.members[2]})` }
                 </Typography>
             </Box>
@@ -23,23 +23,21 @@ function mountTeams(teams) {
 
 const UserTeams = ({ teams }) => {
     return (
-        <Container style={styles.size}>
-            <Card style={styles.card}>
-            <Box flexDirection='row' display='flex' >
-                    <Typography  style={styles.margin}>
+        <Container style={{padding:0}}>
+            <Box display='flex' style={styles.teamInfo} >
+                    <Typography  style={styles.infoContest}>
                         CONTEST
                     </Typography>
-                    <Typography  style={styles.margin}>
+                    <Typography  style={styles.infoName}>
                         TIME
                     </Typography>
-                    <Typography  style={styles.margin}>
+                    <Typography  style={styles.infoMembers}>
                         MEMBROS
                     </Typography>
                 </Box>
                 <Scroll>
                     { mountTeams(teams) }
                 </Scroll>
-            </Card>
         </Container>
     );
 }

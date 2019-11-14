@@ -1,7 +1,7 @@
 import React from 'react';
 import FriendCard from '../FriendCard/FriendCard';
 import styles from './CardList.css.js';
-import Scroll from '../Scroll/Scroll';
+import Scroll from 'components/Scroll/Scroll';
 
 function initFriendsList(friendsList){
     return friendsList.map((friend, i) => {

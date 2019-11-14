@@ -1,12 +1,11 @@
 import React from 'react';
 import styles from './UserStatistics.css';
-import { Card, Typography, Container } from '@material-ui/core';
+import {Typography, Container } from '@material-ui/core';
 
 
 const UserStatistics = ({ problemsSolved, problemsTried, totalOfSubmissions }) => {
     return (
-        <Container style={styles.size}>
-            <Card style={styles.card}>
+        <Container style={{padding:0}}>
                 <Typography>
                     Questões Resolvidas: { problemsSolved }
                 </Typography>
@@ -16,7 +15,6 @@ const UserStatistics = ({ problemsSolved, problemsTried, totalOfSubmissions }) =
                 <Typography>
                     Submissões: { totalOfSubmissions }
                 </Typography>
-            </Card>
         </Container>
     );
 }

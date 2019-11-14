@@ -1,21 +1,16 @@
 
 
 const styles = {
-    size : {
+
+    profileContainer: {
+        paddingTop:'1%',
+        paddingBottom:'3%'
     },
 
-    paddingTopBottom: {
-        paddingTop: '1%',
-        paddingBottom: '3%'
+    infoContainer: {
+        flex:4,
+        paddingLeft:'5%'
     },
-
-    paddingRight: {
-        paddingRight: '3%'
-    },
-
-    paddingLeft: {
-        paddingLeft: '3%'
-    }
 
 }
 

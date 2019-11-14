@@ -1,23 +1,23 @@
 import React from 'react';
 import { Container, Card, Typography, Box } from '@material-ui/core';
 import styles from './UserSubmissions.css';
-import Scroll from '../../../components/Scroll/Scroll';
+import Scroll from 'components/Scroll/Scroll';
 
 
 function mountSubmissions(submissions) {
     return submissions.map((submission, i) => {
         return  (
-            <Box flexDirection='row' display='flex' key={i}>
-                <Typography  style={styles.margin}>
+            <Box flexDirection='row' display='flex' key={i} style={styles.submissionContainer}>
+                <Typography  style={styles.submission}>
                     { submission.pid }
                 </Typography>
-                <Typography  style={styles.margin}>
+                <Typography  style={styles.submission}>
                     { submission.name }
                 </Typography>
-                <Typography  style={styles.margin}>
+                <Typography  style={styles.submission}>
                     { submission.language }
                 </Typography>
-                <Typography  style={styles.margin}>
+                <Typography  style={styles.submission}>
                     { submission.date }
                 </Typography>
             </Box>
@@ -27,26 +27,24 @@ function mountSubmissions(submissions) {
 
 const UserSubmissions = ({ submissions }) => {
     return (
-        <Container style={styles.size}>
-            <Card style={styles.card}>
-                <Box flexDirection='row' display='flex' >
-                    <Typography  style={styles.margin}>
+        <Container style={{padding:0}}>
+                <Box flexDirection='row' display='flex' style={styles.submissionInfo}>
+                    <Typography  style={styles.info}>
                         PID
                     </Typography>
-                    <Typography  style={styles.margin}>
+                    <Typography  style={styles.info}>
                         NOME
                     </Typography>
-                    <Typography  style={styles.margin}>
+                    <Typography  style={styles.info}>
                         LINGUAGEM
                     </Typography>
-                    <Typography  style={styles.margin}>
+                    <Typography  style={styles.info}>
                         DATA DE SUBMISSÃO
                     </Typography>
                 </Box>
                 <Scroll>
                     { mountSubmissions(submissions) }
                 </Scroll>
-           </Card>
         </Container>
     );
 }

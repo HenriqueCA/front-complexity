@@ -1,7 +1,11 @@
 const user = {
     picture: 'https://www.midlands4cities.ac.uk/wp-content/uploads/2019/04/student-profile-default.png',
+    name:'Pires Quirino Flávio Roberto',
     nick: "PirateUser",
     institution: "Universidade Federal de Campina Grande",
+    city:'Campina Grande',
+    state:'Paraíba',
+    email:'flavin@gmail.com',
     country: "Brasil",
     level: 23,
     currentXp: 1320,
