@@ -1,8 +1,8 @@
 import React from 'react';
-import { Container, Paper, Typography, TextField, MenuItem, Grid, Input, InputAdornment, IconButton } from '@material-ui/core';
+import { Container, Paper, Typography, TextField, MenuItem, Grid, Input, InputAdornment, IconButton, Button } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { Redirect} from 'react-router-dom';
+import { Redirect, Link} from 'react-router-dom';
 import styles from './BlogHeader.css.js';
 
 class BlogHeader extends React.Component {
@@ -94,6 +94,14 @@ class BlogHeader extends React.Component {
                                     </IconButton>
                                 </InputAdornment>
                             } />
+                        </Grid>
+
+                        <Grid item xs={4}>
+                            <Link to='/blog/create'>
+                                <Button variant='contained'>
+                                    Crie um post
+                                </Button>
+                            </Link>
                         </Grid>
                     </Grid>
                 </Paper>

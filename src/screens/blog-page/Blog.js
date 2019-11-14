@@ -1,11 +1,14 @@
 import React from 'react';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import { Container, Box, Typography, Paper, IconButton, Divider } from '@material-ui/core';
+import { Container, Box, Typography, Paper, IconButton, Divider, TextField, Button } from '@material-ui/core';
 import { blogRoutes } from 'library/routes/backendRequest';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown, faTrash } from '@fortawesome/free-solid-svg-icons';
 import BlogHeader from '../../components/Blog/BlogHeader';
+import styles from './Blog.css.js';
+import { Link } from 'react-router-dom';
+import { NICKNAME } from 'library/util';
 
 class Blog extends React.Component {
 
@@ -13,6 +16,9 @@ class Blog extends React.Component {
         super(props);
         this.state = {
             blog: undefined,
+            liked: false,
+            disliked: false,
+            comment: '',
         }
     }
 
@@ -24,53 +30,25 @@ class Blog extends React.Component {
             const response = await blogRoutes.getBlog(id);
             if (response.status === 200) {
                 this.setState({ blog: response.data.blog });
+                this.defineLikeAndDislike(response.data.blog);
             }
         } catch (error) {
             //alert("Oops. Something went wrong.");            
         }
+    }
 
-        let blog = {
-            id: "5dac822716e85b15c0fc5aca",
-            author: {
-                profile: {
-                    name: "sheesh",
-                    age: 19,
-                    nationality: "japanese",
-                    institution: "UFCG",
-                    nick: "jooj",
-                    level: 0,
-                    problemsSubmitted: [],
-                    problemsSolved: [],
-                    submissions: 0,
-                    teams: [],
-                    contests: [],
-                    friends: []
-                }
-            },
-            title: "bota tua carainha na janela pra tu ver",
-            content: "seu fusquinha vai voltar pra casa cheio de buraco",
-            comments: [
-                {
-                    id: "5dacdfc1d733f71fcc194a8f",
-                    nick: "jooj",
-                    body: "Já perdi uns 5 MotoG"
-                }
-            ],
-            numlikes: 1,
-            numdislikes: 1,
-            likes: [],
-            dislikes: [
-                "jooj"
-            ]
-        }
-        this.setState({ blog });
+    defineLikeAndDislike = (blog) => {
+        const nickname = localStorage.getItem(NICKNAME);
+        let liked = blog.likes.includes(nickname);
+        let disliked = blog.dislikes.includes(nickname);
+        this.setState({ liked, disliked });
     }
 
     blogAuthor = () => {
         const { blog } = this.state;
         if (blog) {
             const profile = blog.author.profile;
-            const author = <Typography variant='h5'>{profile.name}</Typography>;
+            const author = <Link style={styles.profileLinks} to={`/profile/?user=${profile.name}`}><Typography variant='h5'>{profile.name}</Typography> </Link>;
             const nationality = <Typography>{profile.nationality}</Typography>;
             const institution = <Typography>{profile.institution}</Typography>;
             const submissions = <Typography>Submissões: {profile.submissions}</Typography>;
@@ -82,16 +60,16 @@ class Blog extends React.Component {
     }
 
     blogInit = () => {
-        const { blog } = this.state;
+        const { blog, liked, disliked } = this.state;
         if (blog) {
             const likesDislikes = (
-                <Box display='flex' flexDirection='column' style={{ marginTop: '2%' }}>
-                    <Box><Typography>{blog.numlikes}<IconButton><FontAwesomeIcon icon={faThumbsUp} /></IconButton></Typography></Box>
-                    <Box><Typography>{blog.numdislikes}<IconButton><FontAwesomeIcon icon={faThumbsDown} /></IconButton></Typography></Box>
+                <Box display='flex' flexDirection='column' style={styles.iconsContainer}>
+                    <Box><Typography>{blog.numlikes}<IconButton style={liked ? styles.hasLikedIcon : styles.notLikedIcon} onClick={() => { this.likeComment(blog.id) }}><FontAwesomeIcon icon={faThumbsUp} /></IconButton></Typography></Box>
+                    <Box><Typography>{blog.numdislikes}<IconButton style={disliked ? styles.hasDislikedIcon : styles.notDislikedIcon} onClick={() => { this.dislikeComment(blog.id) }}><FontAwesomeIcon icon={faThumbsDown} /></IconButton></Typography></Box>
                 </Box>
             )
             const blogContent = (
-                <Box display='flex' flexDirection='column' style={{ flex: 1 }}>
+                <Box display='flex' flexDirection='column' style={styles.blogContent}>
                     <Typography variant='h4'>{blog.title}</Typography>
                     <Divider />
                     <Typography>{blog.content}</Typography>
@@ -111,16 +89,15 @@ class Blog extends React.Component {
             let content = []
             blog.comments.forEach(element => {
                 let comment = (
-                    <Paper style={{ marginBottom: '2%' }}>
+                    <Paper style={styles.comments}>
                         <Box display='flex'>
-                            <Box display='flex' flexDirection='column' style={{ flex: 1 }}>
-                                <Typography>{element.nick}</Typography>
+                            <Box display='flex' flexDirection='column' style={styles.commentContent}>
+                                <Link style={styles.profileLinks} to={`/profile/?user=${element.nick}`}><Typography variant='h6'>{element.nick}</Typography></Link>
                                 <Typography>{element.body}</Typography>
                             </Box>
-                            {element.nick === localStorage.getItem("NICKNAME") ? <IconButton>
+                            {element.nick === localStorage.getItem(NICKNAME) ? <IconButton style={styles.trashIcon} onClick={() => { this.removeComment(blog.id, element.id) }}>
                                 <FontAwesomeIcon icon={faTrash} />
                             </IconButton> : undefined}
-
                         </Box>
                     </Paper>
                 )
@@ -133,29 +110,130 @@ class Blog extends React.Component {
 
     }
 
+    likeComment = async (blogId) => {
+        try {
+            const response = await blogRoutes.likeBlog(blogId);
+            if (response.status === 200) {
+                let { liked, disliked, blog } = this.state;
+                if (liked) {
+                    liked = false;
+                    blog.numlikes--;
+
+                }
+                else {
+                    liked = true;
+                    blog.numlikes++;
+                }
+                if (disliked) {
+                    disliked = false;
+                    blog.numdislikes--;
+                }
+                this.setState({ liked, disliked, blog });
+            }
+        } catch (error) {
+        }
+    }
+
+    dislikeComment = async (blogId) => {
+        try {
+            const response = await blogRoutes.dislikeBlog(blogId);
+            if (response.status === 200) {
+                let { liked, disliked, blog } = this.state;
+                if (disliked) {
+                    disliked = false;
+                    blog.numdislikes--;
+                }
+                else {
+                    disliked = true;
+                    blog.numdislikes++;
+                }
+                if (liked) {
+                    liked = false;
+                    blog.numlikes--;
+                }
+                this.setState({ liked, disliked, blog });
+            }
+        } catch (error) {
+
+        }
+
+    }
+
+    removeComment = async (blogId, commentId) => {
+        try {
+            const response = await blogRoutes.removeComment(blogId, commentId);
+            if (response.status === 200) {
+                const { blog } = this.state;
+                const comments = blog.comments;
+                for (let i = 0; i < comments.length; i++) {
+                    if (comments[i].id === commentId) {
+                        comments.splice(i, 1);
+                        break;
+                    }
+
+                }
+
+                this.setState({ blog });
+            }
+        } catch (error) {
+
+        }
+    }
+
+    handleChange = (event) => {
+        this.setState({ comment: event.target.value });
+    }
+
+    submitComment = async () => {
+        let { blog, comment } = this.state;
+        if (comment.length >= 5) {
+
+            try {
+                const response = await blogRoutes.commentBlog(blog.id, comment);
+                if (response.status === 200) {
+                    const getBlog = await blogRoutes.getBlog(blog.id);
+                    if (getBlog.status === 200) {
+                        this.setState({ blog: getBlog.data.blog });
+                    }
+                    comment = '';
+                    this.setState({ comment });
+                }
+
+            } catch (error) {
+
+            }
+        } else {
+            alert("Seu comentário precisa ter pelo menos 5 caracteres");
+        }
+    }
+
     render() {
         return (
             <>
                 <Header />
                 <BlogHeader />
-                <Container style={{ padding: 0 }}>
+                <Container style={styles.mainContainer}>
                     <Box display='flex' flexDirection='column'>
-                        <Box display='flex' style={{ marginBottom: '2%' }}>
+                        <Box display='flex' style={styles.initBlogContainer}>
                             <Paper>
                                 <Container>
                                     <Box display='column' textAlign='center'>
                                         {this.blogAuthor()}
                                     </Box>
                                 </Container>
-
                             </Paper>
-                            <Paper style={{ flex: 1, marginLeft: '1%' }}>
+                            <Paper style={styles.blogContainer}>
                                 <Box display='flex'>
                                     {this.blogInit()}
                                 </Box>
                             </Paper>
-
                         </Box>
+                        <Paper style={styles.createCommentContainer}>
+                            <Box display='flex'>
+                                <TextField fullWidth multiline rows={2} label='Comente' inputProps={{ maxLength: 250 }} onChange={this.handleChange} value={this.state.comment} />
+                                <Button style={styles.commentButton} onClick={this.submitComment}>Comentar</Button>
+                            </Box>
+                        </Paper>
                         {this.blogComments()}
                     </Box>
                 </Container>

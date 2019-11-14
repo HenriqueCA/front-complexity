@@ -46,62 +46,6 @@ class SearchBlog extends React.Component {
     listBlogs = () => {
         let { blogs } = this.state;
         let content = [];
-        blogs = [{
-            author: {
-                profile:{
-                    name:'Henrique'
-                }
-            },
-            numlikes:30,
-            numdislikes:30,
-            comments:['a','a','a'],
-            title:'Questão feia',
-            id:'42a'
-        },{
-            author: {
-                profile:{
-                    name:'Henrique'
-                }
-            },
-            numlikes:30,
-            numdislikes:30,
-            comments:['a','a','a'],
-            title:'Questão feia',
-            id:'42a'
-        },{
-            author: {
-                profile:{
-                    name:'Henrique'
-                }
-            },
-            numlikes:30,
-            numdislikes:30,
-            comments:['a','a','a'],
-            title:'Questão feia',
-            id:'42a'
-        },{
-            author: {
-                profile:{
-                    name:'Henrique'
-                }
-            },
-            numlikes:30,
-            numdislikes:30,
-            comments:['a','a','a'],
-            title:'Questão feia',
-            id:'42a'
-        },{
-            author: {
-                profile:{
-                    name:'Henrique'
-                }
-            },
-            numlikes:30,
-            numdislikes:30,
-            comments:['a','a','a'],
-            title:'Questão feia',
-            id:'42a'
-        }];
         if (blogs) {
 
             blogs.forEach(element => {

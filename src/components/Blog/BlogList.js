@@ -5,7 +5,6 @@ import { faThumbsUp, faThumbsDown, faCommentAlt } from '@fortawesome/free-solid-
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 import styles from 'components/Blog/BlogList.css.js';
 
-//TODO: STYLE BLOG LIST.
 const BlogList = ({ blog }) => {
     const author = blog.author.profile.name;
     const numLikes = blog.numlikes;
@@ -14,7 +13,7 @@ const BlogList = ({ blog }) => {
     const title = blog.title;
     const id = blog.id;
     return (
-        <Link style={styles.linkStyle} to={`/blog/?id=${id}`}>
+        <Link style={styles.linkStyle} to={`/blog/page/?id=${id}`}>
             <Paper style={styles.blogList}>
                 <Box display='flex'>
                     <Box display='flex' alignItems='center' style={styles.aval}>

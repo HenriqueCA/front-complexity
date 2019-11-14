@@ -71,8 +71,8 @@ const blogRoutes = {
      * Faz uma requisição para realizar um comentário em algum blog.
      * @param {string} blogId o id do blog.
      */
-    async commentBlog(blogId) {
-        const response = await axios.post(this.blogRoute + blogId + this.commentBlogRoute, headers);
+    async commentBlog(blogId, comment) {
+        const response = await axios.post(this.blogRoute + blogId + this.commentBlogRoute, {comment}, headers);
         return response;
     },
 
