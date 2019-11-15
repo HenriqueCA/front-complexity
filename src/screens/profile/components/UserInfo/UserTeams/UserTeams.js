@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './UserTeams.css';
-import { Card, Typography, Container, Box } from '@material-ui/core';
+import {Typography, Container, Box } from '@material-ui/core';
 import Scroll from 'components/Scroll/Scroll';
 
 function mountTeams(teams) {
@@ -35,7 +35,7 @@ const UserTeams = ({ teams }) => {
                         MEMBROS
                     </Typography>
                 </Box>
-                <Scroll height='60vh' >
+                <Scroll height='58vh' >
                     { mountTeams(teams) }
                 </Scroll>
         </Container>

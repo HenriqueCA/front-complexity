@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Card, Typography, Box } from '@material-ui/core';
+import { Container,Typography, Box } from '@material-ui/core';
 import styles from './UserSubmissions.css';
 import Scroll from 'components/Scroll/Scroll';
 
@@ -42,7 +42,7 @@ const UserSubmissions = ({ submissions }) => {
                         DATA DE SUBMISSÃO
                     </Typography>
                 </Box>
-                <Scroll height='60vh'>
+                <Scroll height='58vh'>
                     { mountSubmissions(submissions) }
                 </Scroll>
         </Container>
