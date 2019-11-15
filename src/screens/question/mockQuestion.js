@@ -1,5 +1,5 @@
 const problema = {
-    id: '42a',
+    id: '42a - Wet Shark and Bishops',
     level: 'red',
     descr: 'Dado dois números, imprima a soma deles',
     author: {

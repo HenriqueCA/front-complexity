@@ -81,7 +81,7 @@ class Question extends React.Component {
         return (
             <>
                 <Header/>
-                <Container style={{padding:0}}>
+                <Container style={{padding:0, paddingTop:'1%'}}>
                     <Grid container spacing={0} alignItems='center'>
                         <Grid item xs={2}>
                             <Paper style={{ height: '20vh' }}>
@@ -98,13 +98,15 @@ class Question extends React.Component {
                         </Grid>
                         <Grid item xs={10}>
                             <Container style={{ textAlign: 'center' }}>
+                                <Paper>
                                 <Typography style={{ padding: '1%' }} variant='h4'>{this.state.problem.id}</Typography>
+                                </Paper>
                                 <Grid container spacing={2} justify='center' style={{ padding: '1%' }}>
                                     {this.options()}
                                 </Grid>
-                                <Container style={{ minHeight: '60vh', backgroundColor: 'green', padding: '2%' }}>
+                                <Paper style={{ minHeight: '60vh', padding: '2%', marginBottom:'2%', backgroundColor:'f4f6f6' }}>
                                     {this.optionComponent()}
-                                </Container>
+                                </Paper>
                             </Container>
                         </Grid>
                     </Grid>
