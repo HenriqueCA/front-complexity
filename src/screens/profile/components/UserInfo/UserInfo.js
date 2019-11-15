@@ -7,12 +7,13 @@ import UserContests from './UserContests/UserContests';
 import UserEditProfile from './UserEditProfile/UserEditProfile';
 import UserInventory from './UserInventory/UserInventory';
 import styles from './UserInfo.css';
+import { NICKNAME } from '../../../../library/util';
 
 class UserInfo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            display: 'Editar Perfil'
+            display: 'Estatísticas'
         };
 
     }
@@ -28,26 +29,26 @@ class UserInfo extends React.Component {
             let mud = this.props.userData;
             return <UserStatistics
                 problemsSolved={mud.problemsSolved}
-                problemsTried={mud.problemsTried}
-                totalOfSubmissions={mud.totalOfSubmissions}
+                problemsTried={mud.problemsSubmitted}
+                totalOfSubmissions={mud.submissions}
             />;
         }
         else if (display === 'Submissões') {
-            let ms = this.props.userData.submissions;
+            let ms = this.props.userData.problemsSubmitted;
             return <UserSubmissions
-                submissions={ms.concat(ms.concat(ms.concat(ms)))}
+                submissions={ms}
             />;
         }
         else if (display === 'Times') {
             let mt = this.props.userData.teams;
             return <UserTeams
-                teams={mt.concat(mt.concat(mt.concat(mt)))}
+                teams={mt}
             />;
         }
         else if (display === 'Contests') {
             let mc = this.props.userData.contests;
             return <UserContests
-                contests={mc.concat(mc.concat(mc.concat(mc)))}
+                contests={mc}
             />;
         }
         else if (display === 'Inventário') {
@@ -66,8 +67,13 @@ class UserInfo extends React.Component {
         let content = []
 
         navigations.forEach(element => {
-            let button = <Button style={{marginLeft:'1%',marginRight:'1%'}} variant='contained' onClick={() => this.handleClick(element)}>{element}</Button>;
-            content.push(button);
+            if (element === 'Editar Perfil' && this.props.userData.nick !== localStorage.getItem(NICKNAME)) {
+                
+            } else {
+                let button = <Button style={{ marginLeft: '1%', marginRight: '1%' }} variant='contained' onClick={() => this.handleClick(element)}>{element}</Button>;
+                content.push(button);
+            }
+
         })
 
         return content;
@@ -79,8 +85,8 @@ class UserInfo extends React.Component {
                 <Box display='flex' justifyContent='center' style={{ padding: '1%' }}>
                     {this.navigationButtons()}
                 </Box>
-                <Paper style={{minHeight:'40vh', padding:'2%'}}>
-                {this.renderInner()}
+                <Paper style={{ minHeight: '60vh', maxHeight: '60vh', padding: '2%' }}>
+                    {this.renderInner()}
                 </Paper>
             </Container>
         );

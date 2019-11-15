@@ -36,7 +36,7 @@ const UserContests = ({ contests }) => {
                         DATA
                     </Typography>
                 </Box>
-                <Scroll>
+                <Scroll height='60vh'>
                     { mountContests(contests) }
                 </Scroll>
         </Container>

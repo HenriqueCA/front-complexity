@@ -42,7 +42,7 @@ const UserSubmissions = ({ submissions }) => {
                         DATA DE SUBMISSÃO
                     </Typography>
                 </Box>
-                <Scroll>
+                <Scroll height='60vh'>
                     { mountSubmissions(submissions) }
                 </Scroll>
         </Container>

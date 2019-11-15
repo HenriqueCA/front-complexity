@@ -8,27 +8,63 @@ import CardList from './components/CardList/CardList';
 import { Container, Box } from '@material-ui/core';
 import styles from './profile.css';
 import UserInfo from './components/UserInfo/UserInfo';
+import userRoutes from '../../library/routes/userRoutes';
+import { NICKNAME } from '../../library/util';
 
-function Profile() {
-  return (
-    <div className="Profile">
-      <Header />
+class Profile extends React.Component {
 
-      <Container style={styles.profileContainer} >
-        <Box display='flex'>
-          <Box display='flex' flexDirection='column' alignItems='center' style={{flex:1}}>
-            <ProfilePicture url={mockUser.picture} />
-            <CardList friendsList={mockUser.friends.concat(mockUser.friends.concat(mockUser.friends.concat(mockUser.friends.concat(mockUser.friends))))} />
+  constructor(props) {
+    super(props);
+    this.state = {
+      profile: undefined
+    }
+  }
+
+  async componentDidMount() {
+    let url = window.location.href;
+    url = new URL(url);
+    const player = url.searchParams.get("player");
+    try {
+      let response;
+
+      if (localStorage.getItem(NICKNAME) === player) {
+        response = await userRoutes.getMyProfile();
+      } else {
+        response = await userRoutes.getProfile(player);
+      }
+
+      if (response.status === 200) {
+        this.setState({ profile: response.data.profile });
+      }
+
+    } catch (error) {
+      alert("Oops. Something Went Wrong");
+    }
+  }
+
+  render() {
+
+    const player = this.state.profile || mockUser;
+
+    return (
+      <>
+        <Header />
+        <Container style={styles.profileContainer} >
+          <Box display='flex'>
+            <Box display='flex' flexDirection='column' alignItems='center' style={{ flex: 1 }}>
+              <ProfilePicture url={player.photo} />
+              <CardList friendsList={player.friends} />
+            </Box>
+            <Box display='flex' flexDirection='column' style={styles.infoContainer}>
+              <ProfileHeader uData={player} />
+              <UserInfo userData={player} />
+            </Box>
           </Box>
-          <Box display='flex' flexDirection='column' style={styles.infoContainer}>
-            <ProfileHeader uData={mockUser} />
-            <UserInfo userData={mockUser} />
-          </Box>
-        </Box>
-      </Container>
-      <Footer />
-    </div>
-  );
+        </Container>
+        <Footer />
+      </>
+    );
+  }
 }
 
 export default Profile;

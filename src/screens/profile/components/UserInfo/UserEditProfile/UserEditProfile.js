@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './UserEditProfile.css';
-import { Typography, Container, Box, Grid, TextField, Button } from '@material-ui/core';
+import { Typography, Container, Box, TextField, Button } from '@material-ui/core';
+import {userRoutes} from 'library/routes/backendRequest';
+import Scroll from 'components/Scroll/Scroll';
 
 
 class UserEditProfile extends React.Component {
@@ -13,6 +15,7 @@ class UserEditProfile extends React.Component {
             city: this.props.uData.city,
             state: this.props.uData.state,
             country: this.props.uData.country,
+            nationality: this.props.uData.nationality,
             nick: this.props.uData.nick,
             email: this.props.uData.email,
             password: '',
@@ -36,17 +39,80 @@ class UserEditProfile extends React.Component {
         this.setState({image, imagePreview});
     }
 
-    changeInfo() {
+    changeInfo = () => {
+        const {image,nationality,institution, name} = this.state;
+        if(image){
+            this.changeImage(image);
+        }                
+
+        let updates = {};
+        if(nationality !== this.props.uData.nationality){
+            updates.nationality = nationality;
+        }
+        if(institution !== this.props.uData.institution){
+            updates.institution = institution;
+        }
+        if(name !== this.props.uData.name){
+            updates.name = name;
+        }
+
+        this.requestChange(updates);
 
     }
-    changePassword() {
 
+    changeImage = (image) => {
+        let form = new FormData();
+        form.append('image', image);
+        try {
+            const response = userRoutes.uploadImage(form);
+            if (response.status === 200){
+            }
+            else{
+                alert(response.data.error);
+            }
+        } catch (error) {
+            alert("Oops. Something went wrong.");
+        }
+
+    }
+
+    requestChange = (updates) => {
+        try {
+            const response = userRoutes.updateMyProfile(updates);
+            if(response.status === 200){
+                alert("Seus dados foram alterados!");
+            }else{
+                alert(response.data.error);
+            }
+        } catch (error) {
+            alert("Oops. Something went wrong!");            
+        }
+    }
+
+    changePassword = () => {
+        const {password, confirmPassword, newPassword} = this.state;
+        if( newPassword === confirmPassword){
+            try {
+                const response = userRoutes.changePassword(password, newPassword);        
+                if(response.status === 200){
+                    alert("Sua senha foi alterada com sucesso.");
+                }else{
+                    alert(response.data.error);
+                }
+            } catch (error) {
+                alert("Oops. Something went wrong!");                
+            }
+        }else{
+            alert("Senhas diferentes.");
+        }
+        
     }
 
 
     render() {
         return (
             <Container style={{ padding: 0 }}>
+                <Scroll height='60vh'>
                 <Box display='flex' flexDirection='column'>
                     <Typography variant='h5' style={{alignSelf:'center'}}>Dados Pessoais</Typography>
 
@@ -58,6 +124,11 @@ class UserEditProfile extends React.Component {
                     <Box display='flex'>
                         <Typography style={styles.label}>Instituição:</Typography>
                         <TextField fullWidth value={this.state.institution} name='institution' onChange={e => this.handleChange(e)} />
+                    </Box>
+
+                    <Box display='flex'>
+                        <Typography style={styles.label}>Nacionalidade:</Typography>
+                        <TextField fullWidth value={this.state.nationality} name='nationality' onChange={e => this.handleChange(e)} />
                     </Box>
 
                     <Box display='flex'>
@@ -110,13 +181,13 @@ class UserEditProfile extends React.Component {
                     </Box>
 
                     <Box display='flex'>
-                        <Typography style={styles.label}>Confirme a senha:</Typography>
-                        <TextField fullWidth type="password" name="confirmPassword" onChange={this.handleChange} />
+                        <Typography style={styles.label}>Nova senha:</Typography>
+                        <TextField fullWidth type='password' name="newPassword" onChange={this.handleChange} />
                     </Box>
 
                     <Box display='flex'>
-                        <Typography style={styles.label}>Nova senha:</Typography>
-                        <TextField fullWidth name="newPassword" onChange={this.handleChange} />
+                        <Typography style={styles.label}>Confirme a senha:</Typography>
+                        <TextField fullWidth type="password" name="confirmPassword" onChange={this.handleChange} />
                     </Box>
 
                     <Button
@@ -129,7 +200,7 @@ class UserEditProfile extends React.Component {
                     </Button>
 
                 </Box>
-
+                </Scroll>
             </Container>
         )
     }

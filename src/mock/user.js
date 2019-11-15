@@ -1,20 +1,116 @@
 const user = {
-    picture: 'https://www.midlands4cities.ac.uk/wp-content/uploads/2019/04/student-profile-default.png',
+    photo: 'https://www.midlands4cities.ac.uk/wp-content/uploads/2019/04/student-profile-default.png',
     name:'Pires Quirino Flávio Roberto',
     nick: "PirateUser",
     institution: "Universidade Federal de Campina Grande",
+    nationality:'Brasileiro',
     city:'Campina Grande',
     state:'Paraíba',
     email:'flavin@gmail.com',
     country: "Brasil",
     level: 23,
-    currentXp: 1320,
+    xp: 1320,
     nextLvlXP: 2000,
-    gold: 130,
-    problemsSolved: 12,
-    problemsTried: 14,
-    totalOfSubmissions: 35,
-    submissions: [
+    coins: 130,
+    problemsSolved: [],
+    submissions: 34,
+    problemsSubmitted: [
+        {
+            pid: 5321,
+            name: 'revelation',
+            language: 'C++',
+            date: '12/05/2019 - 13:32:12'
+        },
+        {
+            pid: 1421,
+            name: 'atalho',
+            language: 'python',
+            date: '12/05/2019 - 13:32:12'
+        },
+        {
+            pid: 8965,
+            name: 'mouse',
+            language: 'C++',
+            date: '12/05/2019 - 13:32:12'
+        },
+        {
+            pid: 3092,
+            name: 'teclado',
+            language: 'python',
+            date: '12/05/2019 - 13:32:12'
+        },
+        {
+            pid: 5321,
+            name: 'revelation',
+            language: 'C++',
+            date: '12/05/2019 - 13:32:12'
+        },
+        {
+            pid: 1421,
+            name: 'atalho',
+            language: 'python',
+            date: '12/05/2019 - 13:32:12'
+        },
+        {
+            pid: 8965,
+            name: 'mouse',
+            language: 'C++',
+            date: '12/05/2019 - 13:32:12'
+        },
+        {
+            pid: 3092,
+            name: 'teclado',
+            language: 'python',
+            date: '12/05/2019 - 13:32:12'
+        },
+        {
+            pid: 5321,
+            name: 'revelation',
+            language: 'C++',
+            date: '12/05/2019 - 13:32:12'
+        },
+        {
+            pid: 1421,
+            name: 'atalho',
+            language: 'python',
+            date: '12/05/2019 - 13:32:12'
+        },
+        {
+            pid: 8965,
+            name: 'mouse',
+            language: 'C++',
+            date: '12/05/2019 - 13:32:12'
+        },
+        {
+            pid: 3092,
+            name: 'teclado',
+            language: 'python',
+            date: '12/05/2019 - 13:32:12'
+        },
+        {
+            pid: 5321,
+            name: 'revelation',
+            language: 'C++',
+            date: '12/05/2019 - 13:32:12'
+        },
+        {
+            pid: 1421,
+            name: 'atalho',
+            language: 'python',
+            date: '12/05/2019 - 13:32:12'
+        },
+        {
+            pid: 8965,
+            name: 'mouse',
+            language: 'C++',
+            date: '12/05/2019 - 13:32:12'
+        },
+        {
+            pid: 3092,
+            name: 'teclado',
+            language: 'python',
+            date: '12/05/2019 - 13:32:12'
+        },
         {
             pid: 5321,
             name: 'revelation',

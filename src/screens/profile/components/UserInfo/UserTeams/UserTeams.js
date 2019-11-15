@@ -35,7 +35,7 @@ const UserTeams = ({ teams }) => {
                         MEMBROS
                     </Typography>
                 </Box>
-                <Scroll>
+                <Scroll height='60vh' >
                     { mountTeams(teams) }
                 </Scroll>
         </Container>
