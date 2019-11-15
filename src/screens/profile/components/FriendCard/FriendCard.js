@@ -1,16 +1,16 @@
 import React from 'react';
 import styles from './FriendCard.css.js';
-
+import { Container, Avatar, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const FriendCard = ({nick, thumbnail}) => {
     return (
-        // Essa div tem que ser um link para o perfil
-        <div>
-            <div style={styles.friendContact}>
-                <img style={styles.img} src={thumbnail}/>
-                <figcaption style={styles.font}>{nick}</figcaption>
-            </div>
-        </div>
+        <Container style={styles.friendContact}>
+            <Link to={`/profile/?player=${nick}`} style={styles.link}>
+                <Avatar alt="profile picture" src={thumbnail} style={styles.avatar}/>
+                <Typography style={styles.font}>{nick}</Typography>
+             </Link>
+        </Container>
     );
 }
 

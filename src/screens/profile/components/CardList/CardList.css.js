@@ -1,11 +1,19 @@
+import { profileColor } from '../../../../resources/colors/appColors';
+
 const styles = {
-    div : {
-        border: '2px solid red',
+    container : {
         width: '100%',
-        textAlign: 'center'
+        textAlign: 'center',
+        padding: '0'
+    },
+
+    title :{
+        backgroundColor: profileColor.friendsCardTitle
     },
 
     card : {
+        backgroundColor: profileColor.background,
+        padding: '0px',
         display: 'grid',
         gridTemplateColumns: '1fr 1fr 1fr'
     }

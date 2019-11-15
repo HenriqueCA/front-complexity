@@ -1,28 +1,27 @@
-const styles = {
-    img : {
-        width : '30px',
-        height: '30px'
-    },
+import { profileColor } from '../../../../resources/colors/appColors';
 
-    figcaption : {
-    },
+const styles = {
 
     friendContact : {
-        padding : '0px',
+        padding: '5%',
         textAlign : 'center',
-        paddingBottom : '10px'
+        paddingBottom : '20%'
+    },
+
+    link: {
+      textDecoration: 'none',
     },
 
     font: {
-        fontSize : '11px'
+        fontSize : '0.8em',
+        color: profileColor.friendsCardText
+    },
+
+    avatar : {
+        marginLeft: 'auto',
+        marginRight: 'auto'
     }
-
-    
-
-
-
-
-
+ 
 }
 
 export default styles
