@@ -20,7 +20,7 @@ class Header extends React.Component {
                     </Grid>
                     <Grid container spacing={0} justify='space-evenly'>
                         <Grid item>
-                            <Link style={styles.headerLinksLogged} to='/profile'>
+                            <Link style={styles.headerLinksLogged} to={`/profile/?player=${NICKNAME}`}>
                                 Perfil
                             </Link>
                         </Grid>

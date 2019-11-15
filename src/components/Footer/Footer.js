@@ -4,6 +4,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { Container, Grid, Typography, Box } from '@material-ui/core';
 import styles from './Footer.css.js';
 import {Link} from 'react-router-dom';
+import { NICKNAME } from '../../library/util.js';
 
 class Footer extends React.Component {
 
@@ -42,7 +43,7 @@ class Footer extends React.Component {
             [['Loja', '/loja'], []],
             [['Ranking', '/ranking'], []],
             [['Sobre', '/sobre'], []],
-            [['Perfil', '/profile'], [['Submissões', '/profile/submissoes'], ['Times', '/profile/times'], ['Contests', '/profile/contests'], ['Inventário', '/profile/inventario'], ['Editar Perfil', '/profile/edit']]],
+            [['Perfil', `/profile/?player=${NICKNAME}`], [['Submissões', '/profile/submissoes'], ['Times', '/profile/times'], ['Contests', '/profile/contests'], ['Inventário', '/profile/inventario'], ['Editar Perfil', '/profile/edit']]],
         ];
         const mapPages = new Map(pages);
 
