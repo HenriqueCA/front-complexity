@@ -120,11 +120,7 @@ const userRoutes = {
      * @returns {JSON} conténdo o perfil do usuário caso seja achado ou um error.
      */
     async getProfile(nick) {
-        const response = await axios.get(this.userRoute + '/', {
-            params: {
-                nick
-            }
-        });
+        const response = await axios.get(this.userRoute + `/${nick}`);
         return response;
     },
 
@@ -154,11 +150,7 @@ const userRoutes = {
      * @returns {JSON} JSON conténdo message (quantidade de resultados encontrados) e results.
      */
     async searchPlayer(substring) {
-        const response = await axios.get(this.searchPlayerRoute + '/', {
-            params: {
-                substring
-            }
-        });
+        const response = await axios.get(this.searchPlayerRoute + `/${substring}`);
         return response;
     },
 
