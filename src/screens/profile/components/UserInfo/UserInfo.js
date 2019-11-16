@@ -13,7 +13,7 @@ class UserInfo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            display: 'Estatísticas'
+            display: 'Inventário'
         };
 
     }

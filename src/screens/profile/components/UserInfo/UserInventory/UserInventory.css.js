@@ -1,12 +1,18 @@
 const styles = {
-    size : {
-        minWidth: '100%',
-        height: '100%'
+
+    itemContainer: {
+        textAlign:'center'
+    },
+    imgContainer: {
+        padding:0,
+        height:100,
+        display:'flex',
+        justifyContent:'center'
     },
 
-    card : {
-        minWidth: '100%',
-        height: '100%'
+    img:{
+        maxWidth:'100%',
+        maxHeight:'100%',
     }
 }
 

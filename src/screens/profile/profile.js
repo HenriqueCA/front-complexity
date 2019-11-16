@@ -38,7 +38,7 @@ class Profile extends React.Component {
       }
 
     } catch (error) {
-      alert("Oops. Something Went Wrong");
+      //alert("Oops. Something Went Wrong");
     }
   }
 
