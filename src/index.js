@@ -13,6 +13,10 @@ ReactDOM.render(
             <Route path="/login" exact={true} component={stdScr.Login} />
             <Route path="/signup" exact={true} component={stdScr.Signup}/>
             <Route path="/profile" exact={true} component={ stdScr.Profile } />
+            <Route path="/blog" exact={true} component={stdScr.Blogs} />
+            <Route path="/blog/search" exact={true} component={stdScr.SearchBlog} />
+            <Route path="/blog/page" exact={true} component={stdScr.Blog} /> 
+            <Route path="/blog/create" exact={true} component={stdScr.CreateBlog}/>
 
         </Switch>
     </BrowserRouter>, document.getElementById('root')
