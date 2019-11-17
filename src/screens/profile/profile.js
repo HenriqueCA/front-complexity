@@ -1,43 +1,70 @@
 import React from 'react';
-import mockFriends from './mockFriends.js';
-import mockUser from './mockUser';
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
-import ProfileHeader from '../../components/ProfileHeader/ProfileHeader';
-import ProfilePicture from '../../components/ProfilePicture/ProfilePicture';
-import CardList from '../../components/CardList/CardList';
-import { Container, Grid, Box } from '@material-ui/core';
+import mockUser from '../../mock/user';
+import Header from 'components/Header/Header';
+import Footer from 'components/Footer/Footer';
+import ProfileHeader from './components/ProfileHeader/ProfileHeader';
+import ProfilePicture from './components/ProfilePicture/ProfilePicture';
+import CardList from './components/CardList/CardList';
+import { Container, Box } from '@material-ui/core';
 import styles from './profile.css';
-import UserInfo from '../../components/UserInfo/UserInfo';
+import UserInfo from './components/UserInfo/UserInfo';
+import userRoutes from '../../library/routes/userRoutes';
+import { NICKNAME } from '../../library/util';
 
-function Profile() {
-  return (
-    <div className="Profile">
-      <Header/>
-      
-      <Container >
-        <Box display='flex' flexDirection='row' style={styles.padding}>         
-          <ProfilePicture url="https://www.midlands4cities.ac.uk/wp-content/uploads/2019/04/student-profile-default.png"/>
-          <ProfileHeader uData={mockUser}/>
-        </Box>
-        
-        <Grid container direction='row' style={styles.size} style={styles.paddingTopBottom}>
-          
-          <Grid item style={styles.paddingRight}>
-            <CardList friendsList={mockFriends}/>
-          </Grid>
-          
-          <Grid item style={styles.paddingLeft}> 
-            <UserInfo/>
-          </Grid>
-  
-        </Grid>
-      </Container>
-      
+class Profile extends React.Component {
 
-      <Footer/>
-    </div>
-  );
+  constructor(props) {
+    super(props);
+    this.state = {
+      profile: undefined
+    }
+  }
+
+  async componentDidMount() {
+    let url = window.location.href;
+    url = new URL(url);
+    const player = url.searchParams.get("player");
+    try {
+      let response;
+
+      if (localStorage.getItem(NICKNAME) === player) {
+        response = await userRoutes.getMyProfile();
+      } else {
+        response = await userRoutes.getProfile(player);
+      }
+
+      if (response.status === 200) {
+        this.setState({ profile: response.data.profile });
+      }
+
+    } catch (error) {
+      //alert("Oops. Something Went Wrong");
+    }
+  }
+
+  render() {
+
+    const player = this.state.profile || mockUser;
+
+    return (
+      <>
+        <Header />
+        <Container style={styles.profileContainer} >
+          <Box display='flex'>
+            <Box display='flex' flexDirection='column' alignItems='center' style={styles.avatarAndFriendsContainer}>
+              <ProfilePicture url={player.photo} />
+              <CardList friendsList={player.friends} />
+            </Box>
+            <Box display='flex' flexDirection='column' style={styles.infoContainer}>
+              <ProfileHeader uData={player} />
+              <UserInfo userData={player} />
+            </Box>
+          </Box>
+        </Container>
+        <Footer />
+      </>
+    );
+  }
 }
 
 export default Profile;

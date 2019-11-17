@@ -68,7 +68,8 @@ const userRoutes = {
      * @returns {JSON} JSON com message
      */
     async updateMyProfile(updates) {
-        const response = await axios.post(this.myProfileRoute, updates, headers);
+        let updt = {updates};
+        const response = await axios.post(this.myProfileRoute, updt, headers);
         return response;
     },
 
@@ -107,8 +108,9 @@ const userRoutes = {
      * @param {JSON} updates JSON com current_password e new_password.
      * @returns {JSON} com message caso tenha sucesso ou error.
      */
-    async changePassword(updates) {
-        const response = await axios.post(this.changePasswordRoute, updates, headers);
+    async changePassword(current_password, new_password) {
+        let update = {current_password, new_password};
+        const response = await axios.post(this.changePasswordRoute, update, headers);
         return response;
     },
 
@@ -118,11 +120,7 @@ const userRoutes = {
      * @returns {JSON} conténdo o perfil do usuário caso seja achado ou um error.
      */
     async getProfile(nick) {
-        const response = await axios.get(this.userRoute + '/', {
-            params: {
-                nick
-            }
-        });
+        const response = await axios.get(this.userRoute + `/${nick}`);
         return response;
     },
 
@@ -152,11 +150,7 @@ const userRoutes = {
      * @returns {JSON} JSON conténdo message (quantidade de resultados encontrados) e results.
      */
     async searchPlayer(substring) {
-        const response = await axios.get(this.searchPlayerRoute + '/', {
-            params: {
-                substring
-            }
-        });
+        const response = await axios.get(this.searchPlayerRoute + `/${substring}`);
         return response;
     },
 
