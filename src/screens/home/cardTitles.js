@@ -27,6 +27,10 @@ const cardTitles = [
      {
         title: 'Sobre',
         url: '' 
+     },
+     {
+        title: 'Criar Questão',
+        url:''
      }
 
 ]

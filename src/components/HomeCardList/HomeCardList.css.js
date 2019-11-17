@@ -6,7 +6,6 @@ const styles = {
         padding: '1%',
         height: '100%'
     },
-
 }
 
 export default styles
