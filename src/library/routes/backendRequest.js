@@ -1,2 +1,3 @@
 import userRoutes from './userRoutes';
-export {userRoutes};
+import problemRoutes from './problemRoutes';
+export {userRoutes, problemRoutes};
