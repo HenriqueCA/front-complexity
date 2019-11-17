@@ -189,9 +189,9 @@ export default function EnhancedTable({rows, headCells}) {
                       <TableCell style={{paddingLeft:'3.2%'}} component="th" id={labelId} scope="row" padding="default">
                         {page * rowsPerPage + index+1}
                       </TableCell>
-                      <TableCell align="left">{row.nick}</TableCell>
-                      <TableCell align="right">{row.problems}</TableCell>
-                      <TableCell align="right">{row.level}</TableCell>
+                      <TableCell align="left" style={{width:'30%'}}>{row.nick}</TableCell>
+                      <TableCell align="right" >{row.problems}</TableCell>
+                      <TableCell align="right" >{row.level}</TableCell>
                     </TableRow>
                   );
                 })}

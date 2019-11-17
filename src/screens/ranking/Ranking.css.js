@@ -1,4 +1,3 @@
-import { textAlign } from "@material-ui/system";
 
 const styles = {
     head : {
