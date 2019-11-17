@@ -17,6 +17,28 @@ class BlogHeader extends React.Component {
         }
     }
 
+    componentDidMount() {
+        let url = window.location.href;
+        url = new URL(url);
+        let title = url.searchParams.get("title");
+        let author = url.searchParams.get("author");
+        let body = url.searchParams.get("body");
+        let searchBy = 'Titulo';
+        let search = '';
+        if(title !== null){
+            search = title;
+            searchBy = 'Titulo';
+        } else if (author !== null){
+            search = author;
+            searchBy = 'Autor';
+        } else if (body !== null) {
+            search = body;
+            searchBy = 'Corpo';
+        }
+
+        this.setState({searchBy,search});
+    }
+
     handleChange = (event) => {
         const name = event.target.name;
         this.setState({ [name]: event.target.value })
@@ -26,8 +48,14 @@ class BlogHeader extends React.Component {
         }
     }
 
-    handleSearch = () => {
-        this.setState({ redirect: true });
+    handleSearch = async () => {
+        const {makeSearch} = this.props;
+        if(makeSearch){
+            this.setState({redirect:true}, () => {makeSearch()});
+        }
+        else{
+            this.setState({redirect:true});
+        }
     }
 
     redirectSearch = () => {

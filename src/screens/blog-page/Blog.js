@@ -28,12 +28,11 @@ class Blog extends React.Component {
         const id = url.searchParams.get("id");
         try {
             const response = await blogRoutes.getBlog(id);
-            if (response.status === 200) {
-                this.setState({ blog: response.data.blog });
-                this.defineLikeAndDislike(response.data.blog);
-            }
+            this.setState({ blog: response.data.blog });
+            this.defineLikeAndDislike(response.data.blog);
         } catch (error) {
-            //alert("Oops. Something went wrong.");            
+            console.log(error);
+            //TODO: Handle Error.
         }
     }
 
@@ -112,71 +111,69 @@ class Blog extends React.Component {
 
     likeComment = async (blogId) => {
         try {
-            const response = await blogRoutes.likeBlog(blogId);
-            if (response.status === 200) {
-                let { liked, disliked, blog } = this.state;
-                if (liked) {
-                    liked = false;
-                    blog.numlikes--;
+            await blogRoutes.likeBlog(blogId);
+            let { liked, disliked, blog } = this.state;
+            if (liked) {
+                liked = false;
+                blog.numlikes--;
 
-                }
-                else {
-                    liked = true;
-                    blog.numlikes++;
-                }
-                if (disliked) {
-                    disliked = false;
-                    blog.numdislikes--;
-                }
-                this.setState({ liked, disliked, blog });
             }
+            else {
+                liked = true;
+                blog.numlikes++;
+            }
+            if (disliked) {
+                disliked = false;
+                blog.numdislikes--;
+            }
+            this.setState({ liked, disliked, blog });
         } catch (error) {
+            console.log(error);
+            //TODO: Handle Error.
         }
     }
 
     dislikeComment = async (blogId) => {
         try {
-            const response = await blogRoutes.dislikeBlog(blogId);
-            if (response.status === 200) {
-                let { liked, disliked, blog } = this.state;
-                if (disliked) {
-                    disliked = false;
-                    blog.numdislikes--;
-                }
-                else {
-                    disliked = true;
-                    blog.numdislikes++;
-                }
-                if (liked) {
-                    liked = false;
-                    blog.numlikes--;
-                }
-                this.setState({ liked, disliked, blog });
+            await blogRoutes.dislikeBlog(blogId);
+            let { liked, disliked, blog } = this.state;
+            if (disliked) {
+                disliked = false;
+                blog.numdislikes--;
             }
+            else {
+                disliked = true;
+                blog.numdislikes++;
+            }
+            if (liked) {
+                liked = false;
+                blog.numlikes--;
+            }
+            this.setState({ liked, disliked, blog });
         } catch (error) {
-
+            console.log(error);
+            //TODO: Handle Error.
         }
 
     }
 
     removeComment = async (blogId, commentId) => {
         try {
-            const response = await blogRoutes.removeComment(blogId, commentId);
-            if (response.status === 200) {
-                const { blog } = this.state;
-                const comments = blog.comments;
-                for (let i = 0; i < comments.length; i++) {
-                    if (comments[i].id === commentId) {
-                        comments.splice(i, 1);
-                        break;
-                    }
-
+            await blogRoutes.removeComment(blogId, commentId);
+            const { blog } = this.state;
+            const comments = blog.comments;
+            for (let i = 0; i < comments.length; i++) {
+                if (comments[i].id === commentId) {
+                    comments.splice(i, 1);
+                    break;
                 }
 
-                this.setState({ blog });
             }
-        } catch (error) {
 
+            this.setState({ blog });
+        } catch (error) {
+            console.log(error);
+            //TODO: Handle Error
         }
     }
 
@@ -189,17 +186,14 @@ class Blog extends React.Component {
         if (comment.length >= 5) {
 
             try {
-                const response = await blogRoutes.commentBlog(blog.id, comment);
-                if (response.status === 200) {
-                    const getBlog = await blogRoutes.getBlog(blog.id);
-                    if (getBlog.status === 200) {
-                        this.setState({ blog: getBlog.data.blog });
-                    }
-                    comment = '';
-                    this.setState({ comment });
-                }
-
+                await blogRoutes.commentBlog(blog.id, comment);
+                const getBlog = await blogRoutes.getBlog(blog.id);
+                this.setState({ blog: getBlog.data.blog });
+                comment = '';
+                this.setState({ comment });
             } catch (error) {
+                console.log(error);
+                //TODO: Handle Error.
 
             }
         } else {

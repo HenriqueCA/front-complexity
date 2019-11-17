@@ -32,13 +32,10 @@ class Profile extends React.Component {
       } else {
         response = await userRoutes.getProfile(player);
       }
-
-      if (response.status === 200) {
-        this.setState({ profile: response.data.profile });
-      }
-
+      this.setState({ profile: response.data.profile });
     } catch (error) {
-      //alert("Oops. Something Went Wrong");
+      //TODO: handle error.
+
     }
   }
 

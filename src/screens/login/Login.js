@@ -3,16 +3,16 @@ import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import { TextField, Container, Button, Link } from '@material-ui/core';
 import styles from './Login.css.js';
-import {userRoutes} from 'library/routes/backendRequest';
-import {TOKEN, NICKNAME} from 'library/util';
-import {Redirect} from 'react-router-dom';
+import { userRoutes } from 'library/routes/backendRequest';
+import { TOKEN, NICKNAME } from 'library/util';
+import { Redirect } from 'react-router-dom';
 
 class Login extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            email : '',
+            email: '',
             password: ''
         };
 
@@ -25,7 +25,7 @@ class Login extends React.Component {
         const value = target.value;
         const name = target.name;
         this.setState({
-            [name]:value
+            [name]: value
         });
     }
 
@@ -39,72 +39,66 @@ class Login extends React.Component {
     }
 
     loginUser = async () => {
-        const {email, password} = this.state;
+        const { email, password } = this.state;
         let user;
-        if(this.isEmail(email)){
-            user = {player:{email,password}};
-        }else{
-            user = {player:{nick:email,password}};
+        if (this.isEmail(email)) {
+            user = { player: { email, password } };
+        } else {
+            user = { player: { nick: email, password } };
         }
 
         try {
             const response = await userRoutes.login(user);
-            if(response.status === 200){
-                //Login bem sucedido.
-                localStorage.setItem(TOKEN,"Bearer " + response.data.token);
-                localStorage.setItem(NICKNAME,response.data.nick);
-                return <Redirect to="/"/>;
-            }
-            else{
-                alert(response.data.error);
-            }
+            localStorage.setItem(TOKEN, "Bearer " + response.data.token);
+            localStorage.setItem(NICKNAME, response.data.nick);
+            return <Redirect to="/" />;
 
         } catch (error) {
-            alert('Oops. Something went wrong');            
+            //TODO: Handle Error.
         }
     }
 
-    render () {
+    render() {
         return (
             <>
-                <Header/>
-                    <Container style={styles.main} maxWidth="xs">
-                        <h1>
-                            Login
+                <Header />
+                <Container style={styles.main} maxWidth="xs">
+                    <h1>
+                        Login
                         </h1>
-                        <TextField
-                          style={styles.input}
-                          variant="filled"
-                          margin="normal"
-                          fullWidth
-                          label="Email/Nickname"
-                          autoFocus
-                          onChange={this.handleChange}
-                          value={this.state.email}
-                          name='email'
-                        />
-                        <TextField
-                          style={styles.input}
-                          variant="filled"
-                          margin="normal"
-                          fullWidth
-                          label="Senha"
-                          onChange={this.handleChange}
-                          value={this.state.password}
-                          name='password'
-                          type='password'
-                        />
-                        <Link style={styles.link} href="">Esqueceu sua senha?</Link>
-                        <Button
-                          style={styles.button}
-                          variant='contained'
-                          size='medium'
-                          onClick={this.handleSubmit}
-                        >
-                            Entrar
+                    <TextField
+                        style={styles.input}
+                        variant="filled"
+                        margin="normal"
+                        fullWidth
+                        label="Email/Nickname"
+                        autoFocus
+                        onChange={this.handleChange}
+                        value={this.state.email}
+                        name='email'
+                    />
+                    <TextField
+                        style={styles.input}
+                        variant="filled"
+                        margin="normal"
+                        fullWidth
+                        label="Senha"
+                        onChange={this.handleChange}
+                        value={this.state.password}
+                        name='password'
+                        type='password'
+                    />
+                    <Link style={styles.link} href="">Esqueceu sua senha?</Link>
+                    <Button
+                        style={styles.button}
+                        variant='contained'
+                        size='medium'
+                        onClick={this.handleSubmit}
+                    >
+                        Entrar
                         </Button>
-                    </Container>
-                <Footer/>
+                </Container>
+                <Footer />
             </>
         )
     }

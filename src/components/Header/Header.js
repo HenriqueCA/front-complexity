@@ -11,29 +11,29 @@ class Header extends React.Component {
         const logged = localStorage.getItem(TOKEN);
         const nickname = localStorage.getItem(NICKNAME);
         if (logged) {
-            return (
-                <Grid container direction='column' xs={2} align='center'>
+            let item = (<Grid container direction='column' xs={2} align='center'>
+                <Grid item>
+                    <Typography variant='h4'>
+                        {nickname}
+                    </Typography>
+                </Grid>
+                <Grid container spacing={0} justify='space-evenly'>
                     <Grid item>
-                        <Typography variant='h4'>
-                            {nickname}
-                        </Typography>
+                        <Link style={styles.headerLinksLogged} to={`/profile/?player=${nickname}`}>
+                            Perfil
+                    </Link>
                     </Grid>
-                    <Grid container spacing={0} justify='space-evenly'>
-                        <Grid item>
-                            <Link style={styles.headerLinksLogged} to={`/profile/?player=${NICKNAME}`}>
-                                Perfil
-                            </Link>
-                        </Grid>
-                        <Grid item>
-                            <Link style={styles.headerLinksLogged} onPress={this.logout()}>
-                                Sair
-                            </Link>
-                        </Grid>
+                    <Grid item>
+                        <Link style={styles.headerLinksLogged} onClick={() => this.logout()}>
+                            Sair
+                    </Link>
                     </Grid>
                 </Grid>
-            )
+            </Grid>);
+            return item;
         } else {
-            return (
+
+            let item = (
                 [
                     (
                         <Grid item align='center' xs={1}>
@@ -51,14 +51,21 @@ class Header extends React.Component {
                     )
                 ]
             )
+            return item;
         }
     }
 
     logout = async () => {
-        await userRoutes.logout();
-        localStorage.removeItem(TOKEN);
-        localStorage.removeItem(NICKNAME);
-        return <Redirect to='/' />;
+        try {
+            await userRoutes.logout();
+            localStorage.removeItem(TOKEN);
+            localStorage.removeItem(NICKNAME);
+            return <Redirect to='/' />;
+        }
+        catch (error) {
+            console.log(error);
+            //TODO: handle error.
+        }
     }
 
 

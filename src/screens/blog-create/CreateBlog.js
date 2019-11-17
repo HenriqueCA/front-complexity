@@ -23,19 +23,15 @@ class CreateBlog extends React.Component {
         this.setState({[name]: event.target.value });
     }
 
-    postBlog = () => {
+    postBlog = async () => {
         const {title, body} = this.state;
         if(title.length > 5 && body.length > 5){
             try {
-                const response = blogRoutes.createBlog(title, body);
-                if(response.status === 200){
-                    return <Redirect to='/blog'/>
-                }
-                else{
-                    alert("Aconteceu algo de errado na criação...");
-                }
+                const response = await blogRoutes.createBlog(title, body);
+                console.log(response);
             } catch (error) {
-                
+                console.log(error);
+                //TODO: Handle error.
             }
         }else{
             alert("O titulo e o conteúdo precisam ser maiores que 5 caracteres.");
