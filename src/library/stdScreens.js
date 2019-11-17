@@ -14,6 +14,7 @@ import Signup from '../screens/signup/Signup';
 
 import Question from '../screens/question/Question';
 
+import Questions from '../screens/questions/Questions';
 
 
-export default { Home, Forgot, Login, Signup, Profile, Question }; 
+export default { Home, Forgot, Login, Signup, Profile, Question, Questions }; 
