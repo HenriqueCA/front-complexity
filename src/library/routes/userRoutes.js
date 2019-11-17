@@ -3,7 +3,7 @@ import {TOKEN, baseURL} from '../util';
 
 
 const headers = {
-    'Authorization': localStorage.getItem(TOKEN),
+    Authorization: localStorage.getItem(TOKEN),
 };
 
 /**
@@ -11,17 +11,17 @@ const headers = {
  */
 const userRoutes = {
 
-    userRoute: baseURL + '/player',
-    loginRoute: baseURL + '/player/login',
-    signupRoute: baseURL + '/player/signup',
-    forgetPasswordRoute: baseURL + '/player/forgetpassword',
-    myProfileRoute: baseURL + '/player/me',
-    logoutRoute: baseURL + '/player/me/logout',
-    logoutAllRoute: baseURL + '/player/me/logoutall',
-    imageUploadRoute: baseURL + '/player/me/image',
-    changePasswordRoute: baseURL + '/player/me/password',
-    friendRoute: baseURL + '/player/friend',
-    searchPlayerRoute: baseURL + '/player/search',
+    userRoute: baseURL + '/player/',
+    loginRoute: baseURL + '/player/login/',
+    signupRoute: baseURL + '/player/signup/',
+    forgetPasswordRoute: baseURL + '/player/forgetpassword/',
+    myProfileRoute: baseURL + '/player/me/',
+    logoutRoute: baseURL + '/player/me/logout/',
+    logoutAllRoute: baseURL + '/player/me/logoutall/',
+    imageUploadRoute: baseURL + '/player/me/image/',
+    changePasswordRoute: baseURL + '/player/me/password/',
+    friendRoute: baseURL + '/player/friend/',
+    searchPlayerRoute: baseURL + '/player/search/',
 
     /**
      * Rota para o login de um usuário.
@@ -58,7 +58,7 @@ const userRoutes = {
      * @returns {JSON} conténdo o perfil do usuário.
      */
     async getMyProfile() {
-        const response = await axios.get(this.myProfileRoute, headers);
+        const response = await axios.get(this.myProfileRoute, {headers});
         return response;
     },
 
@@ -69,7 +69,7 @@ const userRoutes = {
      */
     async updateMyProfile(updates) {
         let updt = {updates};
-        const response = await axios.post(this.myProfileRoute, updt, headers);
+        const response = await axios.post(this.myProfileRoute, updt, {headers});
         return response;
     },
 
@@ -78,7 +78,7 @@ const userRoutes = {
      * @returns {JSON}
      */
     async logout() {
-        const response = await axios.post(this.logoutRoute, headers);
+        const response = await axios.post(this.logoutRoute,{}, {headers});
         return response;
     },
 
@@ -86,7 +86,7 @@ const userRoutes = {
      * TODO
      */
     async logoutAll() {
-        const response = await axios.post(this.logoutAllRoute, headers);
+        const response = await axios.post(this.logoutAllRoute,{}, {headers});
         return response;
     },
     
@@ -95,11 +95,7 @@ const userRoutes = {
      * @param {FormData} image FormData com imagem a ser enviada.
      */
     async uploadImage(image) {
-        const h = {
-            'Authorization': headers.Authorization,
-            'content-type': 'multipart/form-data'
-        };
-        const response = await axios.post(this.imageUploadRoute, image, h);
+        const response = await axios.post(this.imageUploadRoute, image, {headers});
         return response;
     },
 
@@ -110,7 +106,7 @@ const userRoutes = {
      */
     async changePassword(current_password, new_password) {
         let update = {current_password, new_password};
-        const response = await axios.post(this.changePasswordRoute, update, headers);
+        const response = await axios.post(this.changePasswordRoute, update, {headers});
         return response;
     },
 
@@ -120,7 +116,7 @@ const userRoutes = {
      * @returns {JSON} conténdo o perfil do usuário caso seja achado ou um error.
      */
     async getProfile(nick) {
-        const response = await axios.get(this.userRoute + `/${nick}`);
+        const response = await axios.get(this.userRoute + nick);
         return response;
     },
 
@@ -130,7 +126,7 @@ const userRoutes = {
      * @returns {JSON}
      */
     async addFriend(friend) {
-        const response = await axios.post(this.friendRoute, friend, headers);
+        const response = await axios.post(this.friendRoute, friend, {headers});
         return response;
     },
 
@@ -140,7 +136,7 @@ const userRoutes = {
      * @returns {JSON}
      */
     async deleteFriend(friend) {
-        const response = await axios.delete(this.friendRoute, friend, headers);
+        const response = await axios.delete(this.friendRoute, friend, {headers});
         return response;
     },
 
@@ -150,7 +146,7 @@ const userRoutes = {
      * @returns {JSON} JSON conténdo message (quantidade de resultados encontrados) e results.
      */
     async searchPlayer(substring) {
-        const response = await axios.get(this.searchPlayerRoute + `/${substring}`);
+        const response = await axios.get(this.searchPlayerRoute + substring);
         return response;
     },
 

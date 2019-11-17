@@ -32,19 +32,16 @@ class Profile extends React.Component {
       } else {
         response = await userRoutes.getProfile(player);
       }
-
-      if (response.status === 200) {
-        this.setState({ profile: response.data.profile });
-      }
-
+      this.setState({ profile: response.data.profile });
     } catch (error) {
-      //alert("Oops. Something Went Wrong");
+      //TODO: handle error.
+
     }
   }
 
   render() {
 
-    const player = this.state.profile || mockUser;
+    const player = this.state.profile;
 
     return (
       <>
@@ -52,12 +49,11 @@ class Profile extends React.Component {
         <Container style={styles.profileContainer} >
           <Box display='flex'>
             <Box display='flex' flexDirection='column' alignItems='center' style={styles.avatarAndFriendsContainer}>
-              <ProfilePicture url={player.photo} />
-              <CardList friendsList={player.friends} />
+              {player ? (<><ProfilePicture url={player.photo} /><CardList friendsList={player.friends} /> </>) : undefined}
             </Box>
             <Box display='flex' flexDirection='column' style={styles.infoContainer}>
-              <ProfileHeader uData={player} />
-              <UserInfo userData={player} />
+              {player
+                ? (<><ProfileHeader uData={player} /> <UserInfo userData={player} /></>) : undefined}
             </Box>
           </Box>
         </Container>

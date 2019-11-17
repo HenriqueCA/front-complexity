@@ -43,7 +43,7 @@ class Footer extends React.Component {
             [['Loja', '/loja'], []],
             [['Ranking', '/ranking'], []],
             [['Sobre', '/sobre'], []],
-            [['Perfil', `/profile/?player=${NICKNAME}`], [['Submissões', '/profile/submissoes'], ['Times', '/profile/times'], ['Contests', '/profile/contests'], ['Inventário', '/profile/inventario'], ['Editar Perfil', '/profile/edit']]],
+            [['Perfil', `/profile/?player=${localStorage.getItem(NICKNAME)}`], [['Submissões', '/profile/submissoes'], ['Times', '/profile/times'], ['Contests', '/profile/contests'], ['Inventário', '/profile/inventario'], ['Editar Perfil', '/profile/edit']]],
         ];
         const mapPages = new Map(pages);
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import { Container, Box} from '@material-ui/core';
+import { Container, Box } from '@material-ui/core';
 import { blogRoutes } from 'library/routes/backendRequest';
 import BlogHeader from '../../components/Blog/BlogHeader';
 import BlogList from '../../components/Blog/BlogList';
@@ -20,20 +20,14 @@ class Blogs extends React.Component {
 
     async componentDidMount() {
         try {
-            let response = await blogRoutes.listByTime();
-            if (response.status === 200) {
-                let blogs = response.data.query;
-                blogs.reverse();
-                this.setState({ blogsByTime: blogs });
-            }
-
-            response = await blogRoutes.listByLike();
-            if (response.status === 200) {
-                let blogs = response.data.query;
-                this.setState({ blogsByLikes: blogs });
-            }
+            let responseTime = await blogRoutes.listByTime();
+            let responseLike = await blogRoutes.listByLike();
+            let blogsByTime = responseTime.data.query;
+            blogsByTime.reverse();
+            let blogsByLikes = responseLike.data.query;
+            this.setState({ blogsByLikes, blogsByTime });
         } catch (error) {
-            //alert('Oops. Something went wrong');
+            //TODO: Handle Response.
         }
     }
 
@@ -48,9 +42,8 @@ class Blogs extends React.Component {
         let content = []
 
         if (list) {
-
             list.forEach(element => {
-                content.push(<BlogList blog={element} />);
+                content.push(<BlogList blog={element.blog} />);
             });
         }
 
@@ -63,7 +56,7 @@ class Blogs extends React.Component {
         return (
             <>
                 <Header />
-                    <BlogHeader orderBar changeOrder={(ord) => {this.setState({order: ord})}} />
+                <BlogHeader orderBar changeOrder={(ord) => { this.setState({ order: ord }) }} />
                 <Container style={styles.listBlogs}>
                     <Box display='flex' flexDirection='column' style={styles.listBlogs}>
                         {this.listBlogs()}
