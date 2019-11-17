@@ -4,7 +4,7 @@ import styles from './Scroll.css';
 
 const Scroll = (props) => {
     return (
-        <div style={styles}>
+        <div style={{ ...styles,...{height: props.height || '250px'} }} >
             {props.children}
         </div>
     );

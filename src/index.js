@@ -14,6 +14,10 @@ ReactDOM.render(
             <Route path="/signup" exact={true} component={stdScr.Signup}/>
             <Route path="/profile" exact={true} component={ stdScr.Profile } />
             <Route path="/question" exact={true} component={ stdScr.Question } />
+            <Route path="/blog" exact={true} component={stdScr.Blogs} />
+            <Route path="/blog/search" exact={true} component={stdScr.SearchBlog} />
+            <Route path="/blog/page" exact={true} component={stdScr.Blog} /> 
+            <Route path="/blog/create" exact={true} component={stdScr.CreateBlog}/>
         </Switch>
     </BrowserRouter>, document.getElementById('root')
     );

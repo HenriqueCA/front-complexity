@@ -34,4 +34,18 @@ const forgotColor = {
     text: 'white',
 }
 
-export { headerColor, footerColor, loginColor, signupColor, forgotColor };
+
+const profileColor = {
+    friendsCardTitle: 'grey',
+    friendsCardText: 'black',
+    background: 'white'
+}
+
+const blogListColors = {
+    thumbsUp: 'green',
+    thumbsDown:'red',
+    comment:'black',
+    background: 'white',
+}
+
+export { headerColor, footerColor, loginColor, signupColor, forgotColor, blogListColors, profileColor };

@@ -3,14 +3,18 @@ import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import { TextField, Container, Button, Link } from '@material-ui/core';
 import styles from './Login.css.js';
+import { userRoutes } from 'library/routes/backendRequest';
+import { TOKEN, NICKNAME } from 'library/util';
+import { Redirect } from 'react-router-dom';
 
 class Login extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            email : '',
-            password: ''
+            email: '',
+            password: '',
+            redirect: false,
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -22,55 +26,81 @@ class Login extends React.Component {
         const value = target.value;
         const name = target.name;
         this.setState({
-            [name]:value
+            [name]: value
         });
     }
 
     handleSubmit(event) {
-        //Todo
+        this.loginUser();
     }
 
-    render () {
+    isEmail = (email) => {
+        const re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
+
+    loginUser = async () => {
+        const { email, password } = this.state;
+        let user;
+        if (this.isEmail(email)) {
+            user = { player: { email, password } };
+        } else {
+            user = { player: { nick: email, password } };
+        }
+
+        try {
+            const response = await userRoutes.login(user);
+            localStorage.setItem(TOKEN, "Bearer " + response.data.token);
+            localStorage.setItem(NICKNAME, response.data.nick);
+            this.setState({redirect:true});
+        } catch (error) {
+            //TODO: Handle Error.
+        }
+    }
+
+    render() {
+        const {redirect} = this.state;
         return (
             <>
-                <Header/>
-                    <Container style={styles.main} maxWidth="xs">
-                        <h1>
-                            Login
+                {redirect ? <Redirect to='/'/> : undefined} 
+                <Header />
+                <Container style={styles.main} maxWidth="xs">
+                    <h1>
+                        Login
                         </h1>
-                        <TextField
-                          style={styles.input}
-                          variant="filled"
-                          margin="normal"
-                          fullWidth
-                          label="Email/Nickname"
-                          autoFocus
-                          onChange={this.handleChange}
-                          value={this.state.email}
-                          name='email'
-                        />
-                        <TextField
-                          style={styles.input}
-                          variant="filled"
-                          margin="normal"
-                          fullWidth
-                          label="Senha"
-                          onChange={this.handleChange}
-                          value={this.state.password}
-                          name='password'
-                          type='password'
-                        />
-                        <Link style={styles.link} href="">Esqueceu sua senha?</Link>
-                        <Button
-                          style={styles.button}
-                          variant='contained'
-                          size='medium'
-                          onClick={this.handleSubmit}
-                        >
-                            Entrar
+                    <TextField
+                        style={styles.input}
+                        variant="filled"
+                        margin="normal"
+                        fullWidth
+                        label="Email/Nickname"
+                        autoFocus
+                        onChange={this.handleChange}
+                        value={this.state.email}
+                        name='email'
+                    />
+                    <TextField
+                        style={styles.input}
+                        variant="filled"
+                        margin="normal"
+                        fullWidth
+                        label="Senha"
+                        onChange={this.handleChange}
+                        value={this.state.password}
+                        name='password'
+                        type='password'
+                    />
+                    <Link style={styles.link} href="">Esqueceu sua senha?</Link>
+                    <Button
+                        style={styles.button}
+                        variant='contained'
+                        size='medium'
+                        onClick={this.handleSubmit}
+                    >
+                        Entrar
                         </Button>
-                    </Container>
-                <Footer/>
+                </Container>
+                <Footer />
             </>
         )
     }
