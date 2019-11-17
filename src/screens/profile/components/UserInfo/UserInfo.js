@@ -7,7 +7,7 @@ import UserContests from './UserContests/UserContests';
 import UserEditProfile from './UserEditProfile/UserEditProfile';
 import UserInventory from './UserInventory/UserInventory';
 import styles from './UserInfo.css';
-import { NICKNAME } from '../../../../library/util';
+import { NICKNAME } from 'library/util';
 
 class UserInfo extends React.Component {
     constructor(props) {
@@ -28,8 +28,8 @@ class UserInfo extends React.Component {
         if (display === 'Estatísticas') {
             let mud = this.props.userData;
             return <UserStatistics
-                problemsSolved={mud.problemsSolved}
-                problemsTried={mud.problemsSubmitted}
+                problemsSolved={mud.problemsSolved.length}
+                problemsTried={mud.problemsSubmitted.length}
                 totalOfSubmissions={mud.submissions}
             />;
         }
@@ -64,28 +64,27 @@ class UserInfo extends React.Component {
     navigationButtons = () => {
         const navigations = ['Estatísticas', 'Submissões', 'Times', 'Inventário', 'Contests', 'Editar Perfil'];
 
-        let content = []
+        let content = [];
 
         navigations.forEach(element => {
             if (element === 'Editar Perfil' && this.props.userData.nick !== localStorage.getItem(NICKNAME)) {
                 
             } else {
-                let button = <Button style={{ marginLeft: '1%', marginRight: '1%' }} variant='contained' onClick={() => this.handleClick(element)}>{element}</Button>;
+                let button = <Button style={styles.buttons} variant='contained' onClick={() => this.handleClick(element)}>{element}</Button>;
                 content.push(button);
             }
-
-        })
+        });
 
         return content;
     }
 
     render() {
         return (
-            <Container style={{ padding: 0 }}>
-                <Box display='flex' justifyContent='center' style={{ padding: '1%' }}>
+            <Container style={styles.container}>
+                <Box display='flex' justifyContent='center' style={styles.navigationContainer}>
                     {this.navigationButtons()}
                 </Box>
-                <Paper style={{ minHeight: '60vh', maxHeight: '60vh', padding: '2%' }}>
+                <Paper style={styles.infosContainer}>
                     {this.renderInner()}
                 </Paper>
             </Container>

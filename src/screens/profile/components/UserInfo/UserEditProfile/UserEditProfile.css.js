@@ -1,6 +1,19 @@
 import { forgotColor } from 'resources/colors/appColors.js';
 const styles = {
 
+    container: {
+        padding:0
+    },
+    
+    title:{
+        alignSelf:'center'
+    },
+
+    accountTitle: {
+        alignSelf:'center',
+        marginTop:'2%',
+    },
+
     button: {
         backgroundColor: forgotColor.button,
         color: forgotColor.text,
@@ -17,7 +30,8 @@ const styles = {
 
     imagePreview: {
         alignSelf: 'center', margin: '1%', height: '140px', width: '140px', border: 'solid black'
-    }
+    },
+
 }
 
 export default styles;

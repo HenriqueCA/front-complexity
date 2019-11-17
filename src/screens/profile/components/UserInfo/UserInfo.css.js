@@ -1,8 +1,21 @@
 const styles = {
-    size : {
-        width: '100%',
-        height: '100%'
+
+    container:{
+        padding:0
+    },
+
+    navigationContainer: {
+        padding:'1%'
+    },
+    
+    buttons: {
+        marginLeft: '1%', marginRight: '1%'
+    },
+
+    infosContainer: {
+        minHeight: '60vh', maxHeight: '60vh', padding: '2%'
     }
+
 }
 
 

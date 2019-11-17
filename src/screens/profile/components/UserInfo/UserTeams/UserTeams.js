@@ -23,7 +23,7 @@ function mountTeams(teams) {
 
 const UserTeams = ({ teams }) => {
     return (
-        <Container style={{padding:0}}>
+        <Container style={styles.container}>
             <Box display='flex' style={styles.teamInfo} >
                     <Typography  style={styles.infoContest}>
                         CONTEST

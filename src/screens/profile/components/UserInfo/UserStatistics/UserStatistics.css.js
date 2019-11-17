@@ -1,18 +1,13 @@
 const styles = {
-    size : {
-        minWidth: '100%',
-        height: '100%'
+
+    container: {
+        padding:0,
+        textAlign:'center',
     },
 
-    card : {
-        minWidth: '100%',
-        height: '100%'
+    tabs: {
+        backgroundColor:'lightblue',
     },
-
-    margin : {
-        margingRight: '2%',
-        marginLeft: '2%'
-    }
 }
 
 export default styles;

@@ -1,4 +1,9 @@
 const styles = {
+
+    container: {
+        padding:0
+    },
+
     infoContainer: {
         backgroundColor: 'lightgrey',
     },

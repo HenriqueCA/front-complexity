@@ -20,20 +20,20 @@ class ProfileHeader extends React.Component {
 
         const { uData } = this.props;
         return (
-            <Container style={{ padding: 0 }}>
+            <Container style={styles.container}>
                 <Paper>
-                    <Box display='flex' style={{ padding: '2%', flex: 1 }}>
-                        <Box display='flex' flexDirection='column' style={{ flex: 1 }}>
-                            <Typography variant='h4' style={{ paddingBottom: '2%' }}>
+                    <Box display='flex' style={styles.infoContainer}>
+                        <Box display='flex' flexDirection='column' style={styles.leftInfo}>
+                            <Typography variant='h4' style={styles.nick}>
                                 {uData.nick}
                             </Typography>
-                            <Typography variant='body2' style={{ paddingLeft: '5%' }}>
+                            <Typography variant='body2' style={styles.institution}>
                                 {uData.institution}
                             </Typography>
-                            <Typography variant='body2' style={{ paddingLeft: '5%' }}>
+                            <Typography variant='body2' style={styles.country}>
                                 {uData.country}
                             </Typography>
-                            <Typography style={{ paddingTop: '2%', paddingLeft: '5%' }}>
+                            <Typography style={styles.level}>
                                 Nível: {uData.level}
                             </Typography>
                         </Box>
@@ -41,7 +41,7 @@ class ProfileHeader extends React.Component {
                             <Typography>
                                 Moedas: {uData.coins}
                             </Typography>
-                            <Typography style={{ paddingTop: '50%' }}>
+                            <Typography style={styles.xp}>
                                 Experiência: {uData.xp || 0}/{uData.nextLvlXP || 2000}
                             </Typography>
                         </Box>

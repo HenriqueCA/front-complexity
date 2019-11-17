@@ -51,7 +51,7 @@ class Profile extends React.Component {
         <Header />
         <Container style={styles.profileContainer} >
           <Box display='flex'>
-            <Box display='flex' flexDirection='column' alignItems='center' style={{ flex: 1 }}>
+            <Box display='flex' flexDirection='column' alignItems='center' style={styles.avatarAndFriendsContainer}>
               <ProfilePicture url={player.photo} />
               <CardList friendsList={player.friends} />
             </Box>

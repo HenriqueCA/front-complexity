@@ -111,10 +111,10 @@ class UserEditProfile extends React.Component {
 
     render() {
         return (
-            <Container style={{ padding: 0 }}>
+            <Container style={styles.container}>
                 <Scroll height='60vh'>
                 <Box display='flex' flexDirection='column'>
-                    <Typography variant='h5' style={{alignSelf:'center'}}>Dados Pessoais</Typography>
+                    <Typography variant='h5' style={styles.title}>Dados Pessoais</Typography>
 
                     <Box display='flex'>
                         <Typography style={styles.label}>Nome:</Typography>
@@ -146,7 +146,7 @@ class UserEditProfile extends React.Component {
                         <TextField fullWidth value={this.state.country} name='country' onChange={e => this.handleChange(e)} />
                     </Box>
 
-                    <Typography variant='h5' style={{alignSelf:'center', marginTop:'2%'}}>Conta</Typography>
+                    <Typography variant='h5' style={styles.accountTitle}>Conta</Typography>
 
                     <Box display='flex'>
                         <Typography style={styles.label}>Nickname:</Typography>
@@ -158,8 +158,8 @@ class UserEditProfile extends React.Component {
                         <TextField fullWidth value={this.state.email} name='email' onChange={this.handleChange} />
                     </Box>
 
-                        <img src={this.state.imagePreview} style={styles.imagePreview}/>
-                        <Button variant='contained' component='label' style={{alignSelf:'center'}}>
+                        <img src={this.state.imagePreview} style={styles.imagePreview} alt='img-preview'/>
+                        <Button variant='contained' component='label' style={styles.title}>
                         Alterar imagem <input type='file' style={{display:'none'}} onChange={this.handleImage}/>
                     </Button>
 
@@ -173,7 +173,7 @@ class UserEditProfile extends React.Component {
                         Salvar alterações!
                     </Button>
 
-                    <Typography variant='h6' style={{alignSelf:'center'}}>Alterar Senha</Typography>
+                    <Typography variant='h6' style={styles.title}>Alterar Senha</Typography>
 
                     <Box display='flex'>
                         <Typography style={styles.label}>Senha Atual:</Typography>

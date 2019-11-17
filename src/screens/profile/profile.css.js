@@ -6,6 +6,9 @@ const styles = {
         paddingTop:'1%',
         paddingBottom:'3%'
     },
+    avatarAndFriendsContainer: {
+        flex:1
+    },
 
     infoContainer: {
         flex:4,

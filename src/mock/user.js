@@ -12,7 +12,18 @@ const user = {
     xp: 1320,
     nextLvlXP: 2000,
     coins: 130,
-    problemsSolved: [],
+    problemsSolved: [{
+        pid: 5321,
+        name: 'revelation',
+        language: 'C++',
+        date: '12/05/2019 - 13:32:12'
+    },
+    {
+        pid: 1421,
+        name: 'atalho',
+        language: 'python',
+        date: '12/05/2019 - 13:32:12'
+    },],
     submissions: 34,
     problemsSubmitted: [
         {

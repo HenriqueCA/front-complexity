@@ -1,4 +1,8 @@
 const styles = {
+    
+    container: {
+        padding:0
+    },
 
     teamInfo: {
         backgroundColor: 'lightgrey',

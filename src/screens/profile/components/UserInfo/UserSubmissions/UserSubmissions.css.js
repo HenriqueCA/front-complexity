@@ -1,4 +1,9 @@
 const styles = {
+
+    container: {
+        padding:0
+    },
+
     submission: {
         flex: 1,
         marginTop: '2%'

@@ -24,7 +24,7 @@ function mountContests(contests) {
 
 const UserContests = ({ contests }) => {
     return (
-        <Container style={{padding:0}}>
+        <Container style={styles.container}>
             <Box flexDirection='row' display='flex' style={styles.infoContainer} >
                     <Typography  style={styles.contestInfo}>
                         ID
