@@ -1,2 +1,3 @@
 import userRoutes from './userRoutes';
-export {userRoutes};
+import blogRoutes from './blogRoutes';
+export {userRoutes, blogRoutes};
