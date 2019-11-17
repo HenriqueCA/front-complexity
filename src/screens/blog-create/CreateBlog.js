@@ -14,6 +14,7 @@ class CreateBlog extends React.Component {
         this.state = {
             title: '',
             body: '',
+            redirect: false,
         }
     }
 
@@ -27,8 +28,9 @@ class CreateBlog extends React.Component {
         const {title, body} = this.state;
         if(title.length > 5 && body.length > 5){
             try {
-                const response = await blogRoutes.createBlog(title, body);
-                console.log(response);
+                await blogRoutes.createBlog(title, body);
+                this.setState({redirect:true});
+
             } catch (error) {
                 console.log(error);
                 //TODO: Handle error.
@@ -40,8 +42,10 @@ class CreateBlog extends React.Component {
     }
 
     render() {
+        const { redirect } = this.state;
         return (
             <>
+            {redirect? <Redirect to='/blog'/> : undefined}
                 <Header />
                 <BlogHeader />
                 <Container style={styles.mainContainer}>

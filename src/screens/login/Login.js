@@ -13,7 +13,8 @@ class Login extends React.Component {
         super(props);
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            redirect: false,
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -51,16 +52,17 @@ class Login extends React.Component {
             const response = await userRoutes.login(user);
             localStorage.setItem(TOKEN, "Bearer " + response.data.token);
             localStorage.setItem(NICKNAME, response.data.nick);
-            return <Redirect to="/" />;
-
+            this.setState({redirect:true});
         } catch (error) {
             //TODO: Handle Error.
         }
     }
 
     render() {
+        const {redirect} = this.state;
         return (
             <>
+                {redirect ? <Redirect to='/'/> : undefined} 
                 <Header />
                 <Container style={styles.main} maxWidth="xs">
                     <h1>

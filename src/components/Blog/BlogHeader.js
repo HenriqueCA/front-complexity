@@ -73,11 +73,9 @@ class BlogHeader extends React.Component {
 
     render() {
         const { redirect } = this.state
-        if (redirect) {
-            return this.redirectSearch();
-        }
         return (
             <Container style={{ padding: 0 }}>
+            {redirect ? this.redirectSearch() : undefined}
                 <Paper square={true} style={styles.blogHeader}>
                     <Grid container style={styles.grid} alignItems='center' spacing={0}>
                         {this.props.orderBar ?

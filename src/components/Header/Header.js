@@ -7,6 +7,13 @@ import { Redirect, Link } from 'react-router-dom';
 
 class Header extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            redirect: false
+        }
+    }
+
     options = () => {
         const logged = localStorage.getItem(TOKEN);
         const nickname = localStorage.getItem(NICKNAME);
@@ -58,14 +65,15 @@ class Header extends React.Component {
     logout = async () => {
         try {
             await userRoutes.logout();
-            localStorage.removeItem(TOKEN);
-            localStorage.removeItem(NICKNAME);
-            return <Redirect to='/' />;
+            this.setState({ redirect: true });
         }
         catch (error) {
             console.log(error);
             //TODO: handle error.
         }
+        localStorage.removeItem(TOKEN);
+        localStorage.removeItem(NICKNAME);
+        this.setState({ redirect: true });
     }
 
 
@@ -95,8 +103,10 @@ class Header extends React.Component {
     }
 
     render() {
+        const { redirect } = this.state;
         return (
             <Container style={styles.header}>
+                {redirect ? <Redirect to='/' /> : undefined}
                 <Grid container alignItems='center' spacing={0}>
                     <Grid item xs={10}>
                         <Typography variant='h3'>

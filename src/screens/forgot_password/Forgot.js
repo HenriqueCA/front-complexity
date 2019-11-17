@@ -14,6 +14,7 @@ class Forgot extends React.Component {
         this.state = {
             email: '',
             validEmail: true,
+            redirect: false
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -38,8 +39,7 @@ class Forgot extends React.Component {
         try {
             await userRoutes.forgetPassword(user);
             alert("Sua senha nova foi enviada para o seu email!");
-            await setTimeout({}, 2000);
-            return <Redirect to='/' />;
+            this.setState({redirect:true});
         } catch (error) {
             //TODO: Handle Error.
         }
@@ -53,8 +53,10 @@ class Forgot extends React.Component {
     }
 
     render() {
+        const { redirect } = this.state;
         return (
             <>
+            {redirect ? <Redirect to='/'/> : undefined}
                 <Header />
                 <Container style={styles.main} maxWidth="xs">
                     <h1>Esqueci minha senha</h1>

@@ -19,6 +19,7 @@ class Signup extends React.Component {
             validEmail: true,
             validPassword: true,
             validConfirm: true,
+            redirect: false
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -49,8 +50,7 @@ class Signup extends React.Component {
             await userRoutes.signup(user);
 
             alert(`Seu cadastro foi realizado com sucesso, ${nickname}!`);
-            await setTimeout({}, 2000);
-            return <Redirect to='/' />;
+            this.setState({redirect: true});
 
         } catch (error) {
             //TODO: Handle Error.
@@ -84,8 +84,10 @@ class Signup extends React.Component {
     }
 
     render() {
+        const { redirect } = this.state;
         return (
             <>
+                {redirect ? <Redirect to='/'/> : undefined}
                 <Header />
                 <Container style={styles.main} maxWidth="xs">
                     <h1>

@@ -109,10 +109,10 @@ const blogRoutes = {
 
     /**
      * Faz uma requisição para retornar um blog a partir de uma substring do autor do blog.
-     * @param {string} pattern padrão a ser procurado.
+     * @param {string} nick padrão a ser procurado.
      */
-    async searchByAuthor(pattern) {
-        const response = await axios.get(this.searchByAuthorRoute + pattern, { headers });
+    async searchByAuthor(nick) {
+        const response = await axios.get(this.searchByAuthorRoute + nick, { headers });
         return response;
     },
 
