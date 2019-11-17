@@ -17,7 +17,7 @@ ReactDOM.render(
             <Route path="/blog/search" exact={true} component={stdScr.SearchBlog} />
             <Route path="/blog/page" exact={true} component={stdScr.Blog} /> 
             <Route path="/blog/create" exact={true} component={stdScr.CreateBlog}/>
-
+            <Route path="/ranking" exact={true} component={stdScr.Ranking} />
         </Switch>
     </BrowserRouter>, document.getElementById('root')
     );
