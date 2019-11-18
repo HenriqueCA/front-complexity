@@ -5,8 +5,14 @@ import { TextField, Container, Button } from '@material-ui/core';
 import styles from './Signup.css.js';
 import { userRoutes } from 'library/routes/backendRequest';
 import { Redirect } from 'react-router-dom';
+import SnackbarUtil from '../../components/SnackBar/SnackbarUtil';
+
+const SIGNUPSUCCESS = 'Bem vindo ao Complexity ';
+const SIGNUPFAIL = 'Algo deu errado no seu cadastro...';
 
 class Signup extends React.Component {
+
+    snackbarRef = React.createRef();
 
     constructor(props) {
         super(props);
@@ -48,12 +54,10 @@ class Signup extends React.Component {
         const user = { player: { email, nick: nickname, password } };
         try {
             await userRoutes.signup(user);
-
-            alert(`Seu cadastro foi realizado com sucesso, ${nickname}!`);
-            this.setState({redirect: true});
-
+            this.snackbarRef.current.openSnackbar(SIGNUPSUCCESS + nickname, 'success');
+            setTimeout(() => {this.setState({redirect:true})}, 3000);
         } catch (error) {
-            //TODO: Handle Error.
+            this.snackbarRef.current.openSnackbar(SIGNUPFAIL,'warn');
         }
 
     }
@@ -87,6 +91,7 @@ class Signup extends React.Component {
         const { redirect } = this.state;
         return (
             <>
+            <SnackbarUtil ref={this.snackbarRef}/>
                 {redirect ? <Redirect to='/'/> : undefined}
                 <Header />
                 <Container style={styles.main} maxWidth="xs">

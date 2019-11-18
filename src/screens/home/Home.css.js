@@ -7,7 +7,8 @@ const styles = {
     },
 
     container: {
-        backgroundColor:'rgb(218, 218, 218)'
+        backgroundColor:'rgb(218, 218, 218)',
+        padding:0,
     },
 
     ranking: {

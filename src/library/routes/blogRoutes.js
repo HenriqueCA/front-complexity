@@ -50,7 +50,8 @@ const blogRoutes = {
      * @param {string} blogId o id do blog.
      */
     async likeBlog(blogId) {
-        const response = await axios.post(this.blogRoute + blogId + this.likeBlogRoute, { headers });
+        console.log(this.blogRoute + blogId + this.likeBlogRoute);
+        const response = await axios.post(this.blogRoute + blogId + this.likeBlogRoute, {}, { headers });
         return response;
     },
 
@@ -59,7 +60,7 @@ const blogRoutes = {
      * @param {string} blogId o id do blog.
      */
     async dislikeBlog(blogId) {
-        const response = await axios.post(this.blogRoute + blogId + this.dislikeBlogRoute, { headers });
+        const response = await axios.post(this.blogRoute + blogId + this.dislikeBlogRoute, {}, { headers });
         return response;
     },
 

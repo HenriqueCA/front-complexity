@@ -1,11 +1,17 @@
 import React from 'react';
 import styles from './Header.css.js';
-import { Container, Grid, Box, Typography } from '@material-ui/core';
+import { Container, Grid, Box, Typography, Button } from '@material-ui/core';
 import { TOKEN, NICKNAME } from 'library/util';
 import { userRoutes } from 'library/routes/backendRequest';
 import { Redirect, Link } from 'react-router-dom';
+import SnackbarUtil from '../SnackBar/SnackbarUtil.js';
+
+
+const PAGENOTFINISHED = 'Infelizmente essa página ainda está em construção :(';
 
 class Header extends React.Component {
+    
+    snackbarRef = React.createRef();
 
     constructor(props) {
         super(props);
@@ -65,11 +71,9 @@ class Header extends React.Component {
     logout = async () => {
         try {
             await userRoutes.logout();
-            this.setState({ redirect: true });
         }
         catch (error) {
             console.log(error);
-            //TODO: handle error.
         }
         localStorage.removeItem(TOKEN);
         localStorage.removeItem(NICKNAME);
@@ -90,8 +94,9 @@ class Header extends React.Component {
                     </Link>
                 );
             } else {
+                const linkTo = ['QUESTÕES', 'CONTESTS', 'LOJA', 'SOBRE',].includes(e[0]) ? undefined : e[1];
                 link = (
-                    <Link style={styles.link} to={e[1]}>
+                    <Link style={styles.link} to={linkTo} onClick={() => {this.snackbarRef.current.openSnackbar(PAGENOTFINISHED,'info')}}>
                         {e[0]}
                     </Link>
                 );
@@ -101,11 +106,13 @@ class Header extends React.Component {
 
         return elements;
     }
+    
 
     render() {
         const { redirect } = this.state;
         return (
             <Container style={styles.header}>
+                <SnackbarUtil ref={this.snackbarRef}/>
                 {redirect ? <Redirect to='/' /> : undefined}
                 <Grid container alignItems='center' spacing={0}>
                     <Grid item xs={10}>

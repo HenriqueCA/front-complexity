@@ -6,8 +6,15 @@ import styles from './Login.css.js';
 import { userRoutes } from 'library/routes/backendRequest';
 import { TOKEN, NICKNAME } from 'library/util';
 import { Redirect } from 'react-router-dom';
+import SnackbarUtil from '../../components/SnackBar/SnackbarUtil';
+
+const LOGINSUCCESS = 'Autenticação bem sucedida!';
+
+const LOGINFAILED = 'Parece que suas credenciais estão inválidas.';
 
 class Login extends React.Component {
+
+    snackbarRef = React.createRef();
 
     constructor(props) {
         super(props);
@@ -52,17 +59,19 @@ class Login extends React.Component {
             const response = await userRoutes.login(user);
             localStorage.setItem(TOKEN, "Bearer " + response.data.token);
             localStorage.setItem(NICKNAME, response.data.nick);
-            this.setState({redirect:true});
+            this.snackbarRef.current.openSnackbar(LOGINSUCCESS,'success');
+            setTimeout(() => window.location.href = '/', 3000);
         } catch (error) {
-            //TODO: Handle Error.
+            this.snackbarRef.current.openSnackbar(LOGINFAILED,'error');
         }
     }
 
     render() {
-        const {redirect} = this.state;
+        const { redirect } = this.state;
         return (
             <>
-                {redirect ? <Redirect to='/'/> : undefined} 
+                <SnackbarUtil ref={this.snackbarRef} />
+                {redirect ? <Redirect to='/' /> : undefined}
                 <Header />
                 <Container style={styles.main} maxWidth="xs">
                     <h1>
