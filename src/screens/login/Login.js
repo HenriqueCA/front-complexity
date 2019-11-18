@@ -52,7 +52,7 @@ class Login extends React.Component {
             const response = await userRoutes.login(user);
             localStorage.setItem(TOKEN, "Bearer " + response.data.token);
             localStorage.setItem(NICKNAME, response.data.nick);
-            this.setState({redirect:true});
+            window.location.href = '/';
         } catch (error) {
             //TODO: Handle Error.
         }

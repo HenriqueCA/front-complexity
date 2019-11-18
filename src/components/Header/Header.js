@@ -65,7 +65,6 @@ class Header extends React.Component {
     logout = async () => {
         try {
             await userRoutes.logout();
-            this.setState({ redirect: true });
         }
         catch (error) {
             console.log(error);
