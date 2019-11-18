@@ -14,6 +14,13 @@ class Questions extends React.Component {
         this.state = {};
     }
 
+    componentDidMount(){
+/*         const script = document.createElement("script");
+        script.src="./Script";
+        script.async = true;
+        document.body.appendChild(script); */
+    }
+
     render() {
 
         return (

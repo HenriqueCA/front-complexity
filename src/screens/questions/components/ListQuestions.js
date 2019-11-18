@@ -7,37 +7,23 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import problems from '../mockQuestions'
+import { Link } from 'react-router-dom';
+import problems from '../mockQuestions';
+import { Container } from '@material-ui/core';
+import { blue } from '@material-ui/core/colors';
 
 const columns = [
   { id: 'name', label: 'Nome', minWidth: 170 },
   { id: 'level', label: 'Nível', minWidth: 50 },
 ];
 
-function createData(name, level) {
-  return { name, level};
+function createData(name, level,id) {
+  return {name, level, id};
 }
 
-const row = [
-  createData('India', 'IN', 1324171354, 3287263),
-  createData('China', 'CN', 1403500365, 9596961),
-  createData('Italy', 'IT', 60483973, 301340),
-  createData('United States', 'US', 327167434, 9833520),
-  createData('Canada', 'CA', 37602103, 9984670),
-  createData('Australia', 'AU', 25475400, 7692024),
-  createData('Germany', 'DE', 83019200, 357578),
-  createData('Ireland', 'IE', 4857000, 70273),
-  createData('Mexico', 'MX', 126577691, 1972550),
-  createData('Japan', 'JP', 126317000, 377973),
-  createData('France', 'FR', 67022000, 640679),
-  createData('United Kingdom', 'GB', 67545757, 242495),
-  createData('Russia', 'RU', 146793744, 17098246),
-  createData('Nigeria', 'NG', 200962417, 923768),
-  createData('Brazil', 'BR', 210147125, 8515767),
-];
 
 const rows = 
-    problems.map((problem) =>{return createData(problem.id, problem.level)})
+    problems.map((problem) =>{return createData(problem.title, problem.level, problem._id)})
      
 
 const useStyles = makeStyles({
@@ -50,6 +36,13 @@ const useStyles = makeStyles({
     maxHeight: 440,
     overflow: 'auto',
   },
+  input: {
+      margin: "5px"
+  },
+  link:{
+      textDecoration: 'none',
+      color: blue,
+  }
 });
 
 export default function StickyHeadTable() {
@@ -61,13 +54,17 @@ export default function StickyHeadTable() {
     setPage(newPage);
   };
 
+ 
+
   const handleChangeRowsPerPage = event => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
 
   return (
+      <div>
     <Paper className={classes.root}>
+      <input  className={classes.input} id="txtBusca" placeHolder="Buscar"></input>
       <div className={classes.tableWrapper}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -83,17 +80,28 @@ export default function StickyHeadTable() {
               ))}
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody id="tbody">
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => {
               return (
                 <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                   {columns.map(column => {
                     const value = row[column.id];
-                    return (
+                    const ide = row.id;
+                    const link = "/problem/?id=".concat(ide);
+                    if(typeof value == 'string'){
+                      return (
                       <TableCell key={column.id} align={column.align}>
-                        {column.format && typeof value === 'number' ? column.format(value) : value}
+                        <Link to={link} className={classes.link}> {column.format && typeof value === 'number' ? column.format(value) : value} </Link>
                       </TableCell>
-                    );
+                      )  
+                    }
+                    else{
+                        return (
+                            <TableCell key={column.id} align={column.align}>
+                               {column.format && typeof value === 'number' ? column.format(value) : value}
+                            </TableCell>
+                            ) 
+                    }
                   })}
                 </TableRow>
               );
@@ -117,5 +125,6 @@ export default function StickyHeadTable() {
         onChangeRowsPerPage={handleChangeRowsPerPage}
       />
     </Paper>
+    </div>
   );
 }

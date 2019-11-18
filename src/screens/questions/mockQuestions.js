@@ -1,121 +1,92 @@
 const problemas = [
     {
-    id: '42a - Wet Shark and Bishops',
-    level: 'red',
-    descr: 'Dado dois números, imprima a soma deles',
-    author: {
-        name: 'Hand',
-        email: 'spinner@hand.tfg'
-    },
-    samples: [
-        {
-            input: '1 2\n',
-            output: '3\n'
-        },
-        {
-            input: '16 18\n',
-            output: '34\n'
-        }
-    ]
-    },
-    {
-    id: '42a - Wet Shark and Bishops',
-    level: 'red',
-    descr: 'Dado dois números, imprima a soma deles',
-    author: {
-        name: 'Hand',
-        email: 'spinner@hand.tfg'
-    },
-    samples: [
-        {
-            input: '1 2\n',
-            output: '3\n'
-        },
-        {
-            input: '16 18\n',
-            output: '34\n'
-        }
-    ]
-    },
-
-         {
-    id: '42a - Wet Shark and Bishops',
-    level: 'red',
-    descr: 'Dado dois números, imprima a soma deles',
-    author: {
-        name: 'Hand',
-        email: 'spinner@hand.tfg'
-    },
-    samples: [
-        {
-            input: '1 2\n',
-            output: '3\n'
-        },
-        {
-            input: '16 18\n',
-            output: '34\n'
-        }
-    ]
-    },
-
-    {
-    id: '42a - Wet Shark and Bishops',
-    level: 'red',
-    descr: 'Dado dois números, imprima a soma deles',
-    author: {
-        name: 'Hand',
-        email: 'spinner@hand.tfg'
-    },
-    samples: [
-        {
-            input: '1 2\n',
-            output: '3\n'
-        },
-        {
-            input: '16 18\n',
-            output: '34\n'
-        }
-    ]
-    },
+        "tags": [
+            "initiate",
+            "adhoc"
+        ],
+        "_id": "5dc76d1e9e40e73997e3477c",
+        "title": "canela ruimm 3",
+        "level": 9,
+        "description": "fgggslskskdkdldlda",
+        "author": "Anonymous",
+        "photo": "sxhxhxhj",
+        "samples": [
+            {
+                "_id": "5dc76d1e9e40e73997e3477d",
+                "input": "6",
+                "output": "7"
+            }
+        ],
     
-    {
-    id: '42a - Wet Shark and Bishops',
-    level: 'red',
-    descr: 'Dado dois números, imprima a soma deles',
-    author: {
-        name: 'Hand',
-        email: 'spinner@hand.tfg'
-    },
-    samples: [
-        {
-            input: '1 2\n',
-            output: '3\n'
-        },
-        {
-            input: '16 18\n',
-            output: '34\n'
-        }
-    ]
+        "createdAt": "2019-11-10T01:51:26.881Z",
+        "updatedAt": "2019-11-14T19:11:31.724Z",
     },
     {
-    id: '42a - Wet Shark and Bishops',
-    level: 'red',
-    descr: 'Dado dois números, imprima a soma deles',
-    author: {
-        name: 'Hand',
-        email: 'spinner@hand.tfg'
+        "tags": [
+            "initiate",
+            "adhoc"
+        ],
+        "_id": "5dc76d1e9e40e73997e3477c",
+        "title": "deu ruim",
+        "level": 9,
+        "description": "fgggslskskdkdldlda",
+        "author": "Anonymous",
+        "photo": "sxhxhxhj",
+        "samples": [
+            {
+                "_id": "5dc76d1e9e40e73997e3477d",
+                "input": "6",
+                "output": "7"
+            }
+        ],
+    
+        "createdAt": "2019-11-10T01:51:26.881Z",
+        "updatedAt": "2019-11-14T19:11:31.724Z",
     },
-    samples: [
-        {
-            input: '1 2\n',
-            output: '3\n'
-        },
-        {
-            input: '16 18\n',
-            output: '34\n'
-        }
-    ]
-    }
+    {
+        "tags": [
+            "initiate",
+            "adhoc"
+        ],
+        "_id": "5dc76d1e9e40e73997e3477c",
+        "title": "is fumo",
+        "level": 9,
+        "description": "fgggslskskdkdldlda",
+        "author": "Anonymous",
+        "photo": "sxhxhxhj",
+        "samples": [
+            {
+                "_id": "5dc76d1e9e40e73997e3477d",
+                "input": "6",
+                "output": "7"
+            }
+        ],
+    
+        "createdAt": "2019-11-10T01:51:26.881Z",
+        "updatedAt": "2019-11-14T19:11:31.724Z",
+    },
+    {
+        "tags": [
+            "initiate",
+            "adhoc"
+        ],
+        "_id": "5dc76d1e9e40e73997e3477c",
+        "title": "ruimm 3",
+        "level": 9,
+        "description": "fgggslskskdkdldlda",
+        "author": "Anonymous",
+        "photo": "sxhxhxhj",
+        "samples": [
+            {
+                "_id": "5dc76d1e9e40e73997e3477d",
+                "input": "6",
+                "output": "7"
+            }
+        ],
+    
+        "createdAt": "2019-11-10T01:51:26.881Z",
+        "updatedAt": "2019-11-14T19:11:31.724Z",
+    },
 ]
 
 export default problemas
