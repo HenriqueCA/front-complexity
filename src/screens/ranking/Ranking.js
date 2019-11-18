@@ -27,7 +27,9 @@ const Ranking = () => {
     return (
         <Container style={styles.container}>
             <Header/>
+            <Container style={{padding:0, minHeight:'80vh'}}>
                 <RankingTable rows={ rows(ranking) } headCells={ headCells }/>
+                </Container>
             <Footer/>
         </Container>
     );

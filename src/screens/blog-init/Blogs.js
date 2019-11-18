@@ -27,6 +27,7 @@ class Blogs extends React.Component {
             let blogsByLikes = responseLike.data.query;
             this.setState({ blogsByLikes, blogsByTime });
         } catch (error) {
+            console.log(error);
             //TODO: Handle Response.
         }
     }

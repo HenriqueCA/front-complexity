@@ -55,9 +55,9 @@ class Signup extends React.Component {
         try {
             await userRoutes.signup(user);
             this.snackbarRef.current.openSnackbar(SIGNUPSUCCESS + nickname, 'success');
-            setTimeout(() => {this.setState({redirect:true})}, 3000);
+            setTimeout(() => { this.setState({ redirect: true }) }, 3000);
         } catch (error) {
-            this.snackbarRef.current.openSnackbar(SIGNUPFAIL,'warn');
+            this.snackbarRef.current.openSnackbar(SIGNUPFAIL, 'warn');
         }
 
     }
@@ -90,84 +90,84 @@ class Signup extends React.Component {
     render() {
         const { redirect } = this.state;
         return (
-            <>
-            <SnackbarUtil ref={this.snackbarRef}/>
-                {redirect ? <Redirect to='/'/> : undefined}
+            <Container style={{ padding: 0 }}>
+                <SnackbarUtil ref={this.snackbarRef} />
+                {redirect ? <Redirect to='/' /> : undefined}
                 <Header />
-                <Paper style={{marginTop:'2%',marginBottom:'2%'}}>
-                <Container style={styles.main} maxWidth="xs">
-                    <h1>
-                        CADASTRE-SE
+                <Paper style={{ marginTop: '2%', marginBottom: '2%' }}>
+                    <Container style={styles.main} maxWidth="xs">
+                        <h1>
+                            CADASTRE-SE
                         </h1>
-                    <TextField
-                        style={styles.input}
-                        variant="filled"
-                        margin="normal"
-                        required
-                        fullWidth
-                        label="Nickname"
-                        autoFocus
-                        onChange={this.handleChange}
-                        value={this.state.nickname}
-                        name='nickname'
-                        onBlur={this.validateNickname}
-                        error={!this.state.validNickname}
-                        helperText={this.state.validNickname ? "" : "Nickname inválido."}
-                    />
-                    <TextField
-                        style={styles.input}
-                        variant="filled"
-                        margin="normal"
-                        required
-                        fullWidth
-                        label="Email"
-                        onChange={this.handleChange}
-                        value={this.state.email}
-                        name='email'
-                        onBlur={this.validateEmail}
-                        error={!this.state.validEmail}
-                        helperText={this.state.validEmail ? "" : "Email inválido."}
-                    />
-                    <TextField
-                        style={styles.input}
-                        variant="filled"
-                        margin="normal"
-                        required
-                        fullWidth
-                        label="Senha"
-                        onChange={this.handleChange}
-                        name='password'
-                        type='password'
-                        onBlur={this.validatePassword}
-                        error={!this.state.validPassword}
-                        helperText={this.state.validPassword ? "" : "Senha inválida."}
-                    />
-                    <TextField
-                        style={styles.input}
-                        variant="filled"
-                        margin="normal"
-                        required
-                        fullWidth
-                        label="Confirme sua senha"
-                        onChange={this.handleChange}
-                        name='confirm'
-                        type='password'
-                        onBlur={this.validateConfirm}
-                        error={!this.state.validConfirm}
-                        helperText={this.state.validConfirm ? "" : "Sua senha está diferente!"}
-                    />
-                    <Button
-                        style={styles.button}
-                        variant='contained'
-                        size='medium'
-                        onClick={this.handleSubmit}
-                    >
-                        Cadastrar
+                        <TextField
+                            style={styles.input}
+                            variant="filled"
+                            margin="normal"
+                            required
+                            fullWidth
+                            label="Nickname"
+                            autoFocus
+                            onChange={this.handleChange}
+                            value={this.state.nickname}
+                            name='nickname'
+                            onBlur={this.validateNickname}
+                            error={!this.state.validNickname}
+                            helperText={this.state.validNickname ? "" : "Nickname inválido."}
+                        />
+                        <TextField
+                            style={styles.input}
+                            variant="filled"
+                            margin="normal"
+                            required
+                            fullWidth
+                            label="Email"
+                            onChange={this.handleChange}
+                            value={this.state.email}
+                            name='email'
+                            onBlur={this.validateEmail}
+                            error={!this.state.validEmail}
+                            helperText={this.state.validEmail ? "" : "Email inválido."}
+                        />
+                        <TextField
+                            style={styles.input}
+                            variant="filled"
+                            margin="normal"
+                            required
+                            fullWidth
+                            label="Senha"
+                            onChange={this.handleChange}
+                            name='password'
+                            type='password'
+                            onBlur={this.validatePassword}
+                            error={!this.state.validPassword}
+                            helperText={this.state.validPassword ? "" : "Senha inválida."}
+                        />
+                        <TextField
+                            style={styles.input}
+                            variant="filled"
+                            margin="normal"
+                            required
+                            fullWidth
+                            label="Confirme sua senha"
+                            onChange={this.handleChange}
+                            name='confirm'
+                            type='password'
+                            onBlur={this.validateConfirm}
+                            error={!this.state.validConfirm}
+                            helperText={this.state.validConfirm ? "" : "Sua senha está diferente!"}
+                        />
+                        <Button
+                            style={styles.button}
+                            variant='contained'
+                            size='medium'
+                            onClick={this.handleSubmit}
+                        >
+                            Cadastrar
                         </Button>
-                </Container>
+                    </Container>
                 </Paper>
                 <Footer />
-            </>
+            </Container>
         )
     }
 

@@ -23,7 +23,7 @@ class Question extends React.Component {
         let id = url.searchParams.get('id');
         try {
             const response = await problemRoutes.getProblem(id);
-            this.setState({ problem: response.problem });
+            this.setState({ problem: response.data.problem });
         } catch (error) {
             console.log(error);
             //Todo: Handle Error.

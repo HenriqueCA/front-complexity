@@ -2,7 +2,8 @@ const styles = {
 
     listBlogs:{
         padding:0,
-        marginBottom:'2%'
+        marginBottom:'2%',
+        minHeight:'70vh'
     }
 }
 

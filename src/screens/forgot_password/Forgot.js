@@ -60,7 +60,7 @@ class Forgot extends React.Component {
     render() {
         const { redirect } = this.state;
         return (
-            <>
+            <Container style={{ padding: 0 }}>
                 <SnackbarUtil ref={this.snackbarRef} />
                 {redirect ? <Redirect to='/' /> : undefined}
                 <Header />
@@ -93,7 +93,7 @@ class Forgot extends React.Component {
                     </Container>
                 </Paper>
                 <Footer />
-            </>
+            </Container>
         )
     }
 };
