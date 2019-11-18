@@ -3,9 +3,17 @@ import styles from './UserEditProfile.css';
 import { Typography, Container, Box, TextField, Button } from '@material-ui/core';
 import { userRoutes } from 'library/routes/backendRequest';
 import Scroll from 'components/Scroll/Scroll';
+import SnackbarUtil from '../../../../../components/SnackBar/SnackbarUtil';
 
+const INFOCHANGESUCCESS = 'Suas informações foram alteradas com sucesso!';
+const INFOCHANGEFAIL = 'Algo de errado aconteceu ao tentarmos alterar suas informações!';
+const PASSWORDCHANGESUCCESS = 'Sua senha foi alterada com sucesso!';
+const PASSWORDCHANGEFAIL = 'Algo de errado aconteceu ao tentarmos alterar sua senha!';
+const DIFFERENTPASSWORDS = 'Sua senha está diferente!';
 
 class UserEditProfile extends React.Component {
+
+    snackbarRef = React.createRef();
 
     constructor(props) {
         super(props);
@@ -65,33 +73,32 @@ class UserEditProfile extends React.Component {
         form.append('image', image);
         try {
             await userRoutes.uploadImage(form);
-            alert("Imagem Atualizada!");
+            this.snackbarRef.current.openSnackbar(INFOCHANGESUCCESS,'success');
         } catch (error) {
-            //TODO: Handle Error
+            this.snackbarRef.current.openSnackbar(INFOCHANGEFAIL,'error');
         }
-
     }
 
     requestChange = async (updates) => {
         try {
             await userRoutes.updateMyProfile(updates);
-            alert("Seus dados foram alterados!");
+            this.snackbarRef.current.openSnackbar(INFOCHANGESUCCESS,'success');
         } catch (error) {
-            // TODO: Handle Error.
+            this.snackbarRef.current.openSnackbar(INFOCHANGEFAIL,'error');
         }
     }
 
-    changePassword = () => {
+    changePassword = async () => {
         const { password, confirmPassword, newPassword } = this.state;
         if (newPassword === confirmPassword) {
             try {
-                userRoutes.changePassword(password, newPassword);
-                alert("Sua senha foi alterada com sucesso.");
+                await userRoutes.changePassword(password, newPassword);
+                this.snackbarRef.current.openSnackbar(PASSWORDCHANGESUCCESS, 'success');
             } catch (error) {
-                //TODO: Handle Error.
+                this.snackbarRef.current.openSnackbar(PASSWORDCHANGEFAIL,'error');
             }
         } else {
-            alert("Senhas diferentes.");
+            this.snackbarRef.current.openSnackbar(DIFFERENTPASSWORDS, 'warn');
         }
 
     }
@@ -100,6 +107,7 @@ class UserEditProfile extends React.Component {
     render() {
         return (
             <Container style={styles.container}>
+                <SnackbarUtil ref={this.snackbarRef} />
                 <Scroll height='60vh'>
                     <Box display='flex' flexDirection='column'>
                         <Typography variant='h5' style={styles.title}>Dados Pessoais</Typography>

@@ -91,7 +91,7 @@ class HomeToolbar extends React.Component {
     const { redirect, searchBy } = this.state;
 
     return (redirect ? (
-      <Redirect to={`/profile/?user=${searchBy }`}/>
+      <Redirect to={`/profile/?player=${searchBy }`}/>
     ) : (
       <div className={classes.root}>
         <AppBar position="static" className={classes.appBar}>

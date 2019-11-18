@@ -9,8 +9,14 @@ import BlogHeader from '../../components/Blog/BlogHeader';
 import styles from './Blog.css.js';
 import { Link } from 'react-router-dom';
 import { NICKNAME } from 'library/util';
+import SnackbarUtil from '../../components/SnackBar/SnackbarUtil';
+
+const BLOGNOTFOUND = 'Não encontramos o blog que você está procurando...';
+const INVALIDCOMMENT = 'Seu comentário precisa ter mais que 5 caracteres!';
 
 class Blog extends React.Component {
+
+    snackbarRef = React.createRef();
 
     constructor(props) {
         super(props);
@@ -31,8 +37,7 @@ class Blog extends React.Component {
             this.setState({ blog: response.data.blog });
             this.defineLikeAndDislike(response.data.blog);
         } catch (error) {
-            console.log(error);
-            //TODO: Handle Error.
+            this.snackbarRef.current.openSnackbar(BLOGNOTFOUND,'error');
         }
     }
 
@@ -47,7 +52,7 @@ class Blog extends React.Component {
         const { blog } = this.state;
         if (blog) {
             const profile = blog.author.profile;
-            const author = <Link style={styles.profileLinks} to={`/profile/?user=${profile.name}`}><Typography variant='h5'>{profile.name}</Typography> </Link>;
+            const author = <Link style={styles.profileLinks} to={`/profile/?player=${profile.name}`}><Typography variant='h5'>{profile.name}</Typography> </Link>;
             const nationality = <Typography>{profile.nationality}</Typography>;
             const institution = <Typography>{profile.institution}</Typography>;
             const submissions = <Typography>Submissões: {profile.submissions}</Typography>;
@@ -91,7 +96,7 @@ class Blog extends React.Component {
                     <Paper style={styles.comments}>
                         <Box display='flex'>
                             <Box display='flex' flexDirection='column' style={styles.commentContent}>
-                                <Link style={styles.profileLinks} to={`/profile/?user=${element.nick}`}><Typography variant='h6'>{element.nick}</Typography></Link>
+                                <Link style={styles.profileLinks} to={`/profile/?player=${element.nick}`}><Typography variant='h6'>{element.nick}</Typography></Link>
                                 <Typography>{element.body}</Typography>
                             </Box>
                             {element.nick === localStorage.getItem(NICKNAME) ? <IconButton style={styles.trashIcon} onClick={() => { this.removeComment(blog.id, element.id) }}>
@@ -128,8 +133,6 @@ class Blog extends React.Component {
             }
             this.setState({ liked, disliked, blog });
         } catch (error) {
-            console.log(error);
-            //TODO: Handle Error.
         }
     }
 
@@ -151,8 +154,6 @@ class Blog extends React.Component {
             }
             this.setState({ liked, disliked, blog });
         } catch (error) {
-            console.log(error);
-            //TODO: Handle Error.
         }
 
     }
@@ -172,8 +173,6 @@ class Blog extends React.Component {
 
             this.setState({ blog });
         } catch (error) {
-            console.log(error);
-            //TODO: Handle Error
         }
     }
 
@@ -192,18 +191,16 @@ class Blog extends React.Component {
                 comment = '';
                 this.setState({ comment });
             } catch (error) {
-                console.log(error);
-                //TODO: Handle Error.
-
             }
         } else {
-            alert("Seu comentário precisa ter pelo menos 5 caracteres");
+            this.snackbarRef.current.openSnackbar(INVALIDCOMMENT,'warn');
         }
     }
 
     render() {
         return (
             <>
+            <SnackbarUtil ref={this.snackbarRef} />
                 <Header />
                 <BlogHeader />
                 <Container style={styles.mainContainer}>
