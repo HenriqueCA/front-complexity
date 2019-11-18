@@ -83,7 +83,7 @@ class Header extends React.Component {
         let elements = [];
         pages.forEach(e => {
             let link;
-            if (e === page) {
+            if (e[0] === page) {
                 link = (
                     <Link style={{ ...styles.link, ...styles.linkCurrent }} to={e[1]}>
                         {e[0]}

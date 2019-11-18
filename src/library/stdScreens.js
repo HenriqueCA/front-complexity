@@ -16,6 +16,6 @@ import SearchBlog from '../screens/blog-search/SearchBlog';
 import Blog from '../screens/blog-page/Blog';
 import CreateBlog from '../screens/blog-create/CreateBlog';
 
+import Question from '../screens/question/Question';
 
-
-export default { Home, Forgot, Login, Signup, Profile, Blogs, SearchBlog, Blog, CreateBlog}; 
+export default { Home, Forgot, Login, Signup, Profile, Blogs, SearchBlog, Blog, CreateBlog, Question}; 
