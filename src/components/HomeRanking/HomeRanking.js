@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './HomeRanking.css';
-import { Container, Typography, Paper } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Typography, Paper } from '@material-ui/core';
 
 import { Table, TableBody, TableHead, TableRow, TableCell } from '@material-ui/core';
 

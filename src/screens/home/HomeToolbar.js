@@ -80,7 +80,7 @@ class HomeToolbar extends React.Component {
   }
 
   handleEnter = event => {
-    if((event.which == 13 || event.keyCode == 13) && event.target.value !== ''){
+    if((event.which === 13 || event.keyCode === 13) && event.target.value !== ''){
       this.setState({ redirect: true, searchBy: event.target.value });
     }
   }
@@ -105,7 +105,7 @@ class HomeToolbar extends React.Component {
               </div>
               <InputBase
                 onKeyDown={this.handleEnter}
-                placeholder="Search…"
+                placeholder="Go to player…"
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,

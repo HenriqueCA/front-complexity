@@ -18,6 +18,7 @@ const styles = {
         width: '90%',
         height: '90%',
 
+
         padding: '0px'
     },
 

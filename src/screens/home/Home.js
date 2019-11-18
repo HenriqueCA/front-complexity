@@ -6,15 +6,15 @@ import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import HomeCardList from '../../components/HomeCardList/HomeCardList';
 import HomeRanking from '../../components/HomeRanking/HomeRanking';
-import { Grid, Paper, Container, Typography } from '@material-ui/core';
+import { Grid, Paper, Container } from '@material-ui/core';
 import HomeToolbar from './HomeToolbar';
 
 function Home() {
   return (
     <Container style={styles.container}>
       <Header/>
-      <HomeToolbar/>
       <Paper style={styles.paper}>
+      <HomeToolbar/>
         <Grid container direction="row">
 
           <Grid item xs={3}>

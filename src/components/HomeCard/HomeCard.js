@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './HomeCard.css';
-import { CardContent, Typography, Card, Button } from '@material-ui/core';
+import { Typography, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
 import { makeStyles, fade } from '@material-ui/core/styles';
@@ -20,6 +20,7 @@ const useStyles = makeStyles(theme => ({
       margin: theme.spacing(1),
       width: '100%',
       height: '100%',
+      justifyContent:'left',
       backgroundColor: fade('#D1D1D1', 0.5),
       '&:hover': {
         backgroundColor: fade('#D1D1D1', 0.9)
@@ -43,8 +44,8 @@ const HomeCard = ({title, url}) => {
                 </CardContent>
             </Card> */}
             <Button variant="outlined" className={classes.button}>
-                <img style={styles.img} src={url}/>
-                {title}
+                <img style={styles.img} src={url} alt='Imagem'/>
+                <Typography style={{overflow:'hidden'}}>{title}</Typography>
             </Button>
         </Link>
     );
