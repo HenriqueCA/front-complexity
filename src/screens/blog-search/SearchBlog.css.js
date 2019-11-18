@@ -1,6 +1,7 @@
 const styles ={
     listBlogs:{
-        padding:0
+        padding:0,
+        minHeight:'70vh'
     }
 }
 

@@ -3,6 +3,7 @@ const styles = {
     mainContainer: {
         padding:0,
         textAlign:'center',
+        minHeight:'70vh'
     },
 
     postButton: {
