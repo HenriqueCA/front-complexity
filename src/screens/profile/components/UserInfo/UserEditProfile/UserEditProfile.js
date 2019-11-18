@@ -3,9 +3,14 @@ import styles from './UserEditProfile.css';
 import { Typography, Container, Box, TextField, Button } from '@material-ui/core';
 import { userRoutes } from 'library/routes/backendRequest';
 import Scroll from 'components/Scroll/Scroll';
+import SnackbarUtil from '../../../../../components/SnackBar/SnackbarUtil';
 
+const INFOCHANGESUCCESS = 'Suas informações foram alteradas com sucesso!';
+const INFOCHANGEFAIL = 'Algo de errado aconteceu ao tentarmos alterar suas informações!';
 
 class UserEditProfile extends React.Component {
+
+    snackbarRef = React.createRef();
 
     constructor(props) {
         super(props);
@@ -65,19 +70,18 @@ class UserEditProfile extends React.Component {
         form.append('image', image);
         try {
             await userRoutes.uploadImage(form);
-            alert("Imagem Atualizada!");
+            this.snackbarRef.current.openSnackbar(INFOCHANGESUCCESS,'success');
         } catch (error) {
-            //TODO: Handle Error
+            this.snackbarRef.current.openSnackbar(INFOCHANGEFAIL,'error');
         }
-
     }
 
     requestChange = async (updates) => {
         try {
             await userRoutes.updateMyProfile(updates);
-            alert("Seus dados foram alterados!");
+            this.snackbarRef.current.openSnackbar(INFOCHANGESUCCESS,'success');
         } catch (error) {
-            // TODO: Handle Error.
+            this.snackbarRef.current.openSnackbar(INFOCHANGEFAIL,'error');
         }
     }
 
@@ -100,6 +104,7 @@ class UserEditProfile extends React.Component {
     render() {
         return (
             <Container style={styles.container}>
+                <SnackbarUtil ref={this.snackbarRef} />
                 <Scroll height='60vh'>
                     <Box display='flex' flexDirection='column'>
                         <Typography variant='h5' style={styles.title}>Dados Pessoais</Typography>

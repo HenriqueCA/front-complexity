@@ -74,7 +74,6 @@ class Header extends React.Component {
         }
         catch (error) {
             console.log(error);
-            //TODO: handle error.
         }
         localStorage.removeItem(TOKEN);
         localStorage.removeItem(NICKNAME);
