@@ -7,6 +7,9 @@ import SnackbarUtil from '../../../../../components/SnackBar/SnackbarUtil';
 
 const INFOCHANGESUCCESS = 'Suas informações foram alteradas com sucesso!';
 const INFOCHANGEFAIL = 'Algo de errado aconteceu ao tentarmos alterar suas informações!';
+const PASSWORDCHANGESUCCESS = 'Sua senha foi alterada com sucesso!';
+const PASSWORDCHANGEFAIL = 'Algo de errado aconteceu ao tentarmos alterar sua senha!';
+const DIFFERENTPASSWORDS = 'Sua senha está diferente!';
 
 class UserEditProfile extends React.Component {
 
@@ -85,17 +88,17 @@ class UserEditProfile extends React.Component {
         }
     }
 
-    changePassword = () => {
+    changePassword = async () => {
         const { password, confirmPassword, newPassword } = this.state;
         if (newPassword === confirmPassword) {
             try {
-                userRoutes.changePassword(password, newPassword);
-                alert("Sua senha foi alterada com sucesso.");
+                await userRoutes.changePassword(password, newPassword);
+                this.snackbarRef.current.openSnackbar(PASSWORDCHANGESUCCESS, 'success');
             } catch (error) {
-                //TODO: Handle Error.
+                this.snackbarRef.current.openSnackbar(PASSWORDCHANGEFAIL,'error');
             }
         } else {
-            alert("Senhas diferentes.");
+            this.snackbarRef.current.openSnackbar(DIFFERENTPASSWORDS, 'warn');
         }
 
     }

@@ -14,6 +14,7 @@ const styles = {
     warn: {
         backgroundColor:'yellow',
         justifyContent:'center',
+        color:'black',
     },
 }
 

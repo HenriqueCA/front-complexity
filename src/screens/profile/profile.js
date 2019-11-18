@@ -1,5 +1,4 @@
 import React from 'react';
-import mockUser from '../../mock/user';
 import Header from 'components/Header/Header';
 import Footer from 'components/Footer/Footer';
 import ProfileHeader from './components/ProfileHeader/ProfileHeader';
@@ -10,8 +9,13 @@ import styles from './profile.css';
 import UserInfo from './components/UserInfo/UserInfo';
 import userRoutes from '../../library/routes/userRoutes';
 import { NICKNAME } from '../../library/util';
+import SnackbarUtil from '../../components/SnackBar/SnackbarUtil';
+
+const PROFILENOTFOUND = 'Não encontramos o perfil do usuário que você está procurando...';
 
 class Profile extends React.Component {
+
+  snackbarRef = React.createRef();
 
   constructor(props) {
     super(props);
@@ -34,8 +38,7 @@ class Profile extends React.Component {
       }
       this.setState({ profile: response.data.profile });
     } catch (error) {
-      //TODO: handle error.
-
+      this.snackbarRef.current.openSnackbar(PROFILENOTFOUND, 'error');
     }
   }
 
@@ -45,6 +48,7 @@ class Profile extends React.Component {
 
     return (
       <>
+      <SnackbarUtil ref={this.snackbarRef} />
         <Header />
         <Container style={styles.profileContainer} >
           <Box display='flex'>
