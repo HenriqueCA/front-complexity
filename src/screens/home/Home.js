@@ -1,21 +1,37 @@
 import React from 'react';
-import './Home.css';
-import mock from '../../components/CardList/mock.js';
-
+import styles from './Home.css.js';
+import cardTitles from './cardTitles';
+import ranking from '../../components/HomeRanking/mock';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import CardList from '../../components/CardList/CardList';
-
-
+import HomeCardList from '../../components/HomeCardList/HomeCardList';
+import HomeRanking from '../../components/HomeRanking/HomeRanking';
+import { Grid, Paper, Container } from '@material-ui/core';
+import HomeToolbar from './HomeToolbar';
 
 function Home() {
   return (
-    <div className="Home">
-    <Header/>
-    <p1>Home Page</p1>
-    <CardList friendsList={mock}/>
-    <Footer/>
-    </div>
+    <Container style={styles.container}>
+      <Header/>
+      <Paper style={styles.paper}>
+      <HomeToolbar/>
+        <Grid container direction="row">
+
+          <Grid item xs={3}>
+            <HomeRanking 
+              ranking={ranking}
+            />
+          </Grid>
+
+          <Grid item xs={8}>
+            <HomeCardList 
+              cardTitles={cardTitles}
+            />
+          </Grid>        
+        </Grid>
+      </Paper>
+      <Footer/>
+    </Container>
   );
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import { Container, Box} from '@material-ui/core';
+import { Container, Box } from '@material-ui/core';
 import { blogRoutes } from 'library/routes/backendRequest';
 import BlogHeader from '../../components/Blog/BlogHeader';
 import BlogList from '../../components/Blog/BlogList';
@@ -17,6 +17,10 @@ class SearchBlog extends React.Component {
     }
 
     async componentDidMount() {
+        await this.search();
+    }
+
+    search = async () => {
         let url = window.location.href;
         url = new URL(url);
         let title = url.searchParams.get("title");
@@ -24,22 +28,20 @@ class SearchBlog extends React.Component {
         let body = url.searchParams.get("body");
         try {
             let response;
-            if(title){
+            if (title !== null) {
                 response = await blogRoutes.searchByTitle(title);
             }
 
-            else if(author){
+            else if (author !== null) {
                 response = await blogRoutes.searchByAuthor(author);
             }
-            else if(body){
+            else if (body !== null) {
                 response = await blogRoutes.searchByBody(body);
             }
-
-            if(response.status === 200){
-                this.setState({blogs: response.data.query});
-            }
+            this.setState({ blogs: response.data.query });
         } catch (error) {
-            //alert('Oops. Something went wrong');
+            console.log(error);
+            //TODO: Handle Error.
         }
     }
 
@@ -49,7 +51,7 @@ class SearchBlog extends React.Component {
         if (blogs) {
 
             blogs.forEach(element => {
-                content.push(<BlogList blog={element} />);
+                content.push(<BlogList blog={element.blog} />);
             });
         }
 
@@ -62,7 +64,7 @@ class SearchBlog extends React.Component {
         return (
             <>
                 <Header />
-                    <BlogHeader/>
+                <BlogHeader makeSearch={this.search} />
                 <Container style={styles.listBlogs}>
                     <Box display='flex' flexDirection='column'>
                         {this.listBlogs()}

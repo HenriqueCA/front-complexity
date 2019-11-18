@@ -3,7 +3,7 @@ import { TOKEN, baseURL } from '../util';
 
 
 const headers = {
-    'Authorization': localStorage.getItem(TOKEN),
+    Authorization: localStorage.getItem(TOKEN),
 };
 
 /**
@@ -27,11 +27,7 @@ const blogRoutes = {
      * @param {string} blogId o id do blog.
      */
     async getBlog(blogId) {
-        const response = await axios.get(this.blogRoute, {
-            params: {
-                blogId
-            }
-        }, headers);
+        const response = await axios.get(this.blogRoute + blogId, { headers });
         return response;
     },
 
@@ -45,7 +41,7 @@ const blogRoutes = {
             title,
             body
         }
-        const response = await axios.post(this.createBlogRoute, blog, headers);
+        const response = await axios.post(this.createBlogRoute, {blog}, { headers });
         return response;
     },
 
@@ -54,7 +50,7 @@ const blogRoutes = {
      * @param {string} blogId o id do blog.
      */
     async likeBlog(blogId) {
-        const response = await axios.post(this.blogRoute + blogId + this.likeBlogRoute, headers);
+        const response = await axios.post(this.blogRoute + blogId + this.likeBlogRoute, { headers });
         return response;
     },
 
@@ -63,7 +59,7 @@ const blogRoutes = {
      * @param {string} blogId o id do blog.
      */
     async dislikeBlog(blogId) {
-        const response = await axios.post(this.blogRoute + blogId + this.dislikeBlogRoute, headers);
+        const response = await axios.post(this.blogRoute + blogId + this.dislikeBlogRoute, { headers });
         return response;
     },
 
@@ -72,7 +68,7 @@ const blogRoutes = {
      * @param {string} blogId o id do blog.
      */
     async commentBlog(blogId, comment) {
-        const response = await axios.post(this.blogRoute + blogId + this.commentBlogRoute, {comment}, headers);
+        const response = await axios.post(this.blogRoute + blogId + this.commentBlogRoute, { comment }, { headers });
         return response;
     },
 
@@ -82,7 +78,7 @@ const blogRoutes = {
      * @param {string} commentId o id do comentário
      */
     async removeComment(blogId, commentId) {
-        const response = await axios.delete(this.blogRoute + blogId + this.commentBlogRoute + commentId, headers);
+        const response = await axios.delete(this.blogRoute + blogId + this.commentBlogRoute + commentId, { headers });
         return response;
     },
 
@@ -90,7 +86,7 @@ const blogRoutes = {
      * Faz uma requisição para retornar uma lista de blogs ordenada por tempo. O mais antigo vem primeiro.
      */
     async listByTime() {
-        const response = await axios.get(this.listByTimeRoute, headers);
+        const response = await axios.get(this.listByTimeRoute, { headers });
         return response;
     },
 
@@ -98,7 +94,7 @@ const blogRoutes = {
      * Faz uma requisição para retornar uma lista de blogs ordenada por likes. O que possui mais likes vem primeiro.
      */
     async listByLike() {
-        const response = await axios.get(this.listByLikeRoute, headers);
+        const response = await axios.get(this.listByLikeRoute, { headers });
         return response;
     },
 
@@ -107,16 +103,16 @@ const blogRoutes = {
      * @param {string} pattern padrão a ser procurado.
      */
     async searchByTitle(pattern) {
-        const response = await axios.get(this.searchByTitleRoute, { params: { pattern } }, headers);
+        const response = await axios.get(this.searchByTitleRoute + pattern, { headers });
         return response;
     },
 
     /**
      * Faz uma requisição para retornar um blog a partir de uma substring do autor do blog.
-     * @param {string} pattern padrão a ser procurado.
+     * @param {string} nick padrão a ser procurado.
      */
-    async searchByAuthor(pattern) {
-        const response = await axios.get(this.searchByAuthorRoute, { params: { pattern } }, headers);
+    async searchByAuthor(nick) {
+        const response = await axios.get(this.searchByAuthorRoute + nick, { headers });
         return response;
     },
 
@@ -125,7 +121,7 @@ const blogRoutes = {
      * @param {string} pattern padrão a ser procurado.
      */
     async searchByBody(pattern) {
-        const response = await axios.get(this.searchByBodyRoute, { params: { pattern } }, headers);
+        const response = await axios.get(this.searchByBodyRoute + pattern, { headers });
         return response;
     }
 }

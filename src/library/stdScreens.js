@@ -17,5 +17,6 @@ import Blog from '../screens/blog-page/Blog';
 import CreateBlog from '../screens/blog-create/CreateBlog';
 import Ranking from '../screens/ranking/Ranking';
 
+import Question from '../screens/question/Question';
 
-export default { Home, Forgot, Login, Signup, Profile, Blogs, SearchBlog, Blog, CreateBlog, Ranking}; 
+export default { Home, Forgot, Login, Signup, Profile, Blogs, SearchBlog, Blog, CreateBlog, Ranking, Question}; 
