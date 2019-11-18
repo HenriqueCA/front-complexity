@@ -5,9 +5,14 @@ import styles from './Forgot.css.js';
 import { Container, TextField, Button } from '@material-ui/core';
 import { userRoutes } from 'library/routes/backendRequest';
 import { Redirect } from 'react-router-dom';
+import SnackbarUtil from '../../components/SnackBar/SnackbarUtil';
 
+const FORGOTSUCCESS = 'Uma nova senha será enviada para seu email!';
+const FORGOTFAIL = 'Algo deu errado na sua requisição de nova senha...';
 
 class Forgot extends React.Component {
+
+    snackbarRef = React.createRef();
 
     constructor(props) {
         super(props);
@@ -38,10 +43,10 @@ class Forgot extends React.Component {
         const user = { player: { email } };
         try {
             await userRoutes.forgetPassword(user);
-            alert("Sua senha nova foi enviada para o seu email!");
-            this.setState({redirect:true});
+            this.snackbarRef.current.openSnackbar(FORGOTSUCCESS, 'success');
+            setTimeout(() => {this.setState({redirect:true})}, 3000);
         } catch (error) {
-            //TODO: Handle Error.
+            this.snackbarRef.current.openSnackbar(FORGOTFAIL, 'warn');
         }
     }
 
@@ -56,6 +61,7 @@ class Forgot extends React.Component {
         const { redirect } = this.state;
         return (
             <>
+            <SnackbarUtil ref={this.snackbarRef} />
             {redirect ? <Redirect to='/'/> : undefined}
                 <Header />
                 <Container style={styles.main} maxWidth="xs">

@@ -25,7 +25,7 @@ const rows = (players) =>  {
 
 const Ranking = () => {
     return (
-        <Container>
+        <Container style={styles.container}>
             <Header/>
                 <RankingTable rows={ rows(ranking) } headCells={ headCells }/>
             <Footer/>

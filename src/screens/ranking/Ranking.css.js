@@ -6,6 +6,9 @@ const styles = {
         backgroundColor: 'white',
         marginTop: '2%',
         textAlign: 'center'
+    },
+    container:{
+        padding:0
     }
 }
 
