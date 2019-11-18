@@ -1,3 +1,5 @@
+import { thirdColor } from "../../../../../resources/colors/appColors";
+
 const styles = {
     
     container: {
@@ -5,7 +7,8 @@ const styles = {
     },
 
     teamInfo: {
-        backgroundColor: 'lightgrey',
+        backgroundColor: thirdColor,
+        color:'white'
     },
 
     info:{

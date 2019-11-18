@@ -12,7 +12,7 @@ import HomeToolbar from './HomeToolbar';
 function Home() {
   return (
     <Container style={styles.container}>
-      <Header/>
+      <Header page={'HOME'}/>
       <Paper style={styles.paper}>
       <HomeToolbar/>
         <Grid container direction="row">

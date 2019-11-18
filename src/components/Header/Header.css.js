@@ -23,12 +23,18 @@ const styles = {
 
     headerLinks: {
         textDecoration: 'none',
+        fontWeight:'bold',
         color: headerColor.headerLinksColor,
     },
 
     headerLinksLogged: {
         color: headerColor.headerLinksLoggedColor,        
     },
+
+    title: {
+        padding:'1%',
+        color: headerColor.titleColor,
+    }
 
 }
 

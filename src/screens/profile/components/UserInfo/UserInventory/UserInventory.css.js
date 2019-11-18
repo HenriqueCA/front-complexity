@@ -6,7 +6,7 @@ const styles = {
 
     itemContainer: {
         textAlign: 'center',
-        cursor: 'pointer'
+        cursor: 'pointer',
     },
     imgContainer: {
         padding: 0,

@@ -1,44 +1,50 @@
+
+const primaryColor = '#2D3657';
+const secondaryColor = '#2F5663';
+const thirdColor = '#36346E';
 const headerColor = {
     background: 'white',
-    containerColor: 'grey',
-    containerCurrentColor: 'lightgrey',
-    linkColor: 'black',
+    containerColor: primaryColor,
+    containerCurrentColor: secondaryColor,
+    linkColor: 'white',
     linkCurrentColor: 'white',
-    headerLinksColor: 'blue',
-    headerLinksLoggedColor: 'blue',
+    headerLinksColor: primaryColor,
+    headerLinksLoggedColor: primaryColor,
+    titleColor: primaryColor,
 };
 
 const footerColor = {
-    background: 'white',
-    gitLinks: 'blue',
-    footerLinks: 'blue',
-
+    background: thirdColor,
+    gitLinks: '#549BB3',
+    footerLinks: '#549BB3',
 };
 
 const loginColor = {
-    input: 'grey',
-    button: 'blue',
+    input: secondaryColor,
+    button: primaryColor,
     text: 'white',
 }
 
 const signupColor = {
-    input: 'grey',
-    button: 'blue',
+    input: secondaryColor,
+    button: primaryColor,
     text: 'white',
 }
 
 
 const forgotColor = {
-    input: 'grey',
-    button: 'blue',
+    input: secondaryColor,
+    button: primaryColor,
     text: 'white',
 }
 
 
 const profileColor = {
-    friendsCardTitle: 'grey',
+    friendsCardTitle: thirdColor,
     friendsCardText: 'black',
-    background: 'white'
+    background: secondaryColor,
+    buttons: thirdColor,
+    statisticsBackground:primaryColor
 }
 
 const blogListColors = {
@@ -48,4 +54,10 @@ const blogListColors = {
     background: 'white',
 }
 
-export { headerColor, footerColor, loginColor, signupColor, forgotColor, blogListColors, profileColor };
+const homeColor = {
+    ranking: '#768ee3',
+    rankingLabel:thirdColor, 
+}
+
+
+export { headerColor, footerColor, loginColor, signupColor, forgotColor, blogListColors, profileColor, primaryColor, secondaryColor, thirdColor, homeColor };

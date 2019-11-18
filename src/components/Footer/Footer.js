@@ -91,10 +91,10 @@ class Footer extends React.Component {
                 <Grid container spacing={0} justify='space-evenly' align='center' style={styles.pagesContainer}>
                     {this.navigation()}
                     <Grid item>
-                        <Typography>
+                        <Typography style={{color:'#e6e6e6'}}>
                             ©Complexity - Online Judge Gamificado
                         </Typography>
-                        <Typography>Sem fins lucrativos</Typography>
+                        <Typography style={{color:'#e6e6e6'}}>Sem fins lucrativos</Typography>
                     </Grid>
                 </Grid>
                 <Box display='flex' flexDirection='row' justifyContent='space-between'>

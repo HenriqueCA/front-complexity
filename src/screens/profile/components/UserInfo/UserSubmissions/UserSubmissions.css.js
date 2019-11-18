@@ -1,3 +1,5 @@
+import { thirdColor } from "../../../../../resources/colors/appColors";
+
 const styles = {
 
     container: {
@@ -14,7 +16,8 @@ const styles = {
     },
 
     submissionInfo: {
-        backgroundColor: 'lightgrey',
+        backgroundColor: thirdColor,
+        color: 'white',
         paddingLeft: '2%',
         paddingRight: '2%'
     },

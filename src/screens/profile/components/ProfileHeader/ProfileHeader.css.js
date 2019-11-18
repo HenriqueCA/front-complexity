@@ -1,3 +1,5 @@
+import { profileColor }from 'resources/colors/appColors';
+
 const styles = {
 
     container: {
@@ -7,6 +9,11 @@ const styles = {
     infoContainer: {
         padding:'2%',
         flex:1
+    },
+
+    paperHeader: {
+        backgroundColor:profileColor.background,
+        color:'white'
     },
 
     leftInfo: {

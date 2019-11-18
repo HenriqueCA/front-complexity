@@ -1,8 +1,11 @@
+import { thirdColor, secondaryColor } from "../../resources/colors/appColors";
+
 const styles = {
 
     blogHeader: {
         padding: '0.5%',
-        marginBottom: '3%'
+        marginBottom: '3%',
+        backgroundColor:'white'
     },
 
     grid: { 
@@ -10,7 +13,12 @@ const styles = {
     },
 
     searchIcon: {
-        
+        color:'black'
+    },
+
+    createButton: {
+        color:'white',
+        backgroundColor:secondaryColor,
     }
 
 }

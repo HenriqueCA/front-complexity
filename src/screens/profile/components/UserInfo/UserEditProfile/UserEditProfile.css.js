@@ -1,17 +1,20 @@
 import { forgotColor } from 'resources/colors/appColors.js';
+import { primaryColor, secondaryColor, thirdColor } from '../../../../../resources/colors/appColors';
 const styles = {
 
     container: {
-        padding:0
+        padding:0,
     },
     
     title:{
-        alignSelf:'center'
+        alignSelf:'center',
+        color:'white',
     },
 
     accountTitle: {
         alignSelf:'center',
         marginTop:'2%',
+        color:'white'
     },
 
     button: {
@@ -24,6 +27,7 @@ const styles = {
 
     label: {
         alignSelf: 'center',
+        color:'white',
         marginRight: '1%',
         whiteSpace: 'nowrap'
     },

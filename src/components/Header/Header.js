@@ -100,6 +100,13 @@ class Header extends React.Component {
                         {e[0]}
                     </Link>
                 );
+                if (!localStorage.getItem(TOKEN) && e[0] === 'BLOG') {
+                    link = (
+                        <Link style={styles.link} to={undefined} onClick={() => {this.snackbarRef.current.openSnackbar("Você só pode acessar essa página logado!", 'warn')}}>
+                            {e[0]}
+                        </Link>
+                    )
+                }
             }
             elements.push(link);
         });
@@ -116,7 +123,7 @@ class Header extends React.Component {
                 {redirect ? <Redirect to='/' /> : undefined}
                 <Grid container alignItems='center' spacing={0}>
                     <Grid item xs={10}>
-                        <Typography variant='h3'>
+                        <Typography variant='h3' style={styles.title}>
                             Complexity
                         </Typography>
                     </Grid>
