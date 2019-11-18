@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../../components/Header/Header.js';
 import Footer from '../../components/Footer/Footer.js';
 import styles from './Forgot.css.js';
-import { Container, TextField, Button } from '@material-ui/core';
+import { Container, TextField, Button, Paper } from '@material-ui/core';
 import { userRoutes } from 'library/routes/backendRequest';
 import { Redirect } from 'react-router-dom';
 import SnackbarUtil from '../../components/SnackBar/SnackbarUtil';
@@ -44,7 +44,7 @@ class Forgot extends React.Component {
         try {
             await userRoutes.forgetPassword(user);
             this.snackbarRef.current.openSnackbar(FORGOTSUCCESS, 'success');
-            setTimeout(() => {this.setState({redirect:true})}, 3000);
+            setTimeout(() => { this.setState({ redirect: true }) }, 3000);
         } catch (error) {
             this.snackbarRef.current.openSnackbar(FORGOTFAIL, 'warn');
         }
@@ -61,35 +61,37 @@ class Forgot extends React.Component {
         const { redirect } = this.state;
         return (
             <>
-            <SnackbarUtil ref={this.snackbarRef} />
-            {redirect ? <Redirect to='/'/> : undefined}
+                <SnackbarUtil ref={this.snackbarRef} />
+                {redirect ? <Redirect to='/' /> : undefined}
                 <Header />
-                <Container style={styles.main} maxWidth="xs">
-                    <h1>Esqueci minha senha</h1>
-                    <TextField
-                        style={styles.input}
-                        variant="filled"
-                        margin="normal"
-                        required
-                        fullWidth
-                        label="Email"
-                        autoFocus
-                        onChange={this.handleChange}
-                        value={this.state.email}
-                        name='email'
-                        onBlur={this.validateEmail}
-                        error={!this.state.validEmail}
-                        helperText={this.state.validEmail ? "" : "Email inválido"}
-                    />
-                    <Button
-                        style={styles.button}
-                        variant='contained'
-                        size='medium'
-                        onClick={this.handleSubmit}
-                    >
-                        Enviar
+                <Paper style={{ marginTop: '2%', marginBottom: '2%' }}>
+                    <Container style={styles.main} maxWidth="xs">
+                        <h1>Esqueci minha senha</h1>
+                        <TextField
+                            style={styles.input}
+                            variant="filled"
+                            margin="normal"
+                            required
+                            fullWidth
+                            label="Email"
+                            autoFocus
+                            onChange={this.handleChange}
+                            value={this.state.email}
+                            name='email'
+                            onBlur={this.validateEmail}
+                            error={!this.state.validEmail}
+                            helperText={this.state.validEmail ? "" : "Email inválido"}
+                        />
+                        <Button
+                            style={styles.button}
+                            variant='contained'
+                            size='medium'
+                            onClick={this.handleSubmit}
+                        >
+                            Enviar
                     </Button>
-                </Container>
+                    </Container>
+                </Paper>
                 <Footer />
             </>
         )

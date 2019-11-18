@@ -30,7 +30,7 @@ class UserStatistics extends React.Component {
             if (problemsSolved || problemsTried) {
                 return <PercentageChart problemsSolved={problemsSolved} problemsTried={problemsTried} />
             } else {
-                return <Typography>Você não tem dados suficientes para serem mostrados !</Typography>
+                return <Typography style={{color:'white'}}>Você não tem dados suficientes para serem mostrados !</Typography>
             }
         }
         else if (tabValue === 1) {
@@ -54,7 +54,7 @@ class UserStatistics extends React.Component {
             if (problemsSolved || problemsTried) {
                 return <AccuracyChart problemsSolved={problemsSolved} totalOfSubmissions={totalOfSubmissions} />
             } else {
-                return <Typography>Você não tem dados suficientes para serem mostrados !</Typography>
+                return <Typography style={{color:'white'}}>Você não tem dados suficientes para serem mostrados !</Typography>
             }
         }
     }

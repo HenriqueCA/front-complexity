@@ -23,7 +23,7 @@ const CardList = ({friendsList}) => {
             <Box display='flex' flexDirection='column'>
             
                 <Box display='center' style={styles.title}>
-                    <Typography>
+                    <Typography style={{color:'white'}}>
                         Amigos
                     </Typography>
                 </Box>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import { TextField, Container, Button } from '@material-ui/core';
+import { TextField, Container, Button, Paper } from '@material-ui/core';
 import styles from './Signup.css.js';
 import { userRoutes } from 'library/routes/backendRequest';
 import { Redirect } from 'react-router-dom';
@@ -94,6 +94,7 @@ class Signup extends React.Component {
             <SnackbarUtil ref={this.snackbarRef}/>
                 {redirect ? <Redirect to='/'/> : undefined}
                 <Header />
+                <Paper style={{marginTop:'2%',marginBottom:'2%'}}>
                 <Container style={styles.main} maxWidth="xs">
                     <h1>
                         CADASTRE-SE
@@ -164,6 +165,7 @@ class Signup extends React.Component {
                         Cadastrar
                         </Button>
                 </Container>
+                </Paper>
                 <Footer />
             </>
         )

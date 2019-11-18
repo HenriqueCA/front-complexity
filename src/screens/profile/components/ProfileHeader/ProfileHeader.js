@@ -21,7 +21,7 @@ class ProfileHeader extends React.Component {
         const { uData } = this.props;
         return (
             <Container style={styles.container}>
-                <Paper>
+                <Paper style={styles.paperHeader}>
                     <Box display='flex' style={styles.infoContainer}>
                         <Box display='flex' flexDirection='column' style={styles.leftInfo}>
                             <Typography variant='h4' style={styles.nick}>

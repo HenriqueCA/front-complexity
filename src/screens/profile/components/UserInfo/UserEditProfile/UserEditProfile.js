@@ -155,7 +155,7 @@ class UserEditProfile extends React.Component {
                         </Box>
 
                         <img src={this.state.imagePreview} style={styles.imagePreview} alt='img-preview' />
-                        <Button variant='contained' component='label' style={styles.title}>
+                        <Button variant='contained' component='label' style={{alignSelf:'center'}}>
                             Alterar imagem <input type='file' style={{ display: 'none' }} onChange={this.handleImage} />
                         </Button>
 

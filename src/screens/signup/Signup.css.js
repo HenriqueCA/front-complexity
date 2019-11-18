@@ -3,7 +3,10 @@ import {signupColor} from 'resources/colors/appColors.js'
 const styles = {
     main : {
         textAlign:'center',
-        height:'80vh'
+        height:'80vh',
+        display:'flex',
+        flexDirection:'column',
+        alignItems:'center'
     },
 
     input : {
