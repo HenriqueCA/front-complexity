@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
 const HomeCard = ({ title, url }) => {
     const classes = useStyles();
     const snackbarRef = React.createRef();
-    const linkTo = ['Questões', 'Contests', 'Loja', 'Sobre', 'Criar Questão'].includes(title) ? undefined : map[title];
+    const linkTo = ['Contests', 'Loja', 'Sobre', 'Criar Questão'].includes(title) ? undefined : map[title];
 
     return (
         <>

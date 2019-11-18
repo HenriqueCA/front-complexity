@@ -45,6 +45,7 @@ class Footer extends React.Component {
             [['Home', '/'], []],
             [['Blog', '/blog'], []],
             [['Contests', '/contests'], []],
+            [['Questões','/problems'],[]],
             [['Loja', '/loja'], []],
             [['Ranking', '/ranking'], []],
             [['Sobre', '/sobre'], []],
@@ -54,7 +55,7 @@ class Footer extends React.Component {
 
         for (let [key, value] of mapPages) {
             let divPage = [];
-            const linkTo = ['Questões','Sobre','Loja','Contests'].includes(key[0]) ? undefined : key[1];
+            const linkTo = ['Sobre','Loja','Contests'].includes(key[0]) ? undefined : key[1];
             const mainPage = (
                 <Grid item>
                     <Link style={styles.footerLinks} to={linkTo} onClick={() => {this.snackbarRef.current.openSnackbar(PAGENOTFINISHED,'info')}}>
