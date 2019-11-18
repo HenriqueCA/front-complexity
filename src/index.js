@@ -20,6 +20,7 @@ ReactDOM.render(
             <Route path="/blog/page" exact={true} component={stdScr.Blog} />
             <Route path="/blog/create" exact={true} component={stdScr.CreateBlog} />
             <Route path="/ranking" exact={true} component={stdScr.Ranking} />
+            <Route path="/a" component={stdScr.NotFound} />
         </Switch>
     </BrowserRouter>, document.getElementById('root')
 );
