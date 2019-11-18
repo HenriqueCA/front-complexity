@@ -1,10 +1,10 @@
 import React from 'react';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import { Container, Typography, Button, Grid, Paper } from '@material-ui/core';
+import { Container} from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
-import { Description, Submit, Submissions, Ranking } from '../question/components/QuestionComponents';
-import problema from '../question/mockQuestion';
+import ListQuestions from './components/ListQuestions';
+import styles from './Questions.css';
 
 
 class Questions extends React.Component {
@@ -17,10 +17,12 @@ class Questions extends React.Component {
     render() {
 
         return (
-            <>
+            <Container>
                 <Header/>
-                <Footer />
-            </>
+                    <ListQuestions/>
+                <Footer/>
+            </Container>
+        
         )
     }
 
