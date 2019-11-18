@@ -1,3 +1,5 @@
+import { profileColor } from "../../../../../resources/colors/appColors";
+
 const styles = {
 
     container: {
@@ -6,7 +8,8 @@ const styles = {
     },
 
     tabs: {
-        backgroundColor:'lightblue',
+        backgroundColor:profileColor.statisticsBackground,
+        color:'white',
     },
 }
 

@@ -1,3 +1,5 @@
+import {homeColor} from 'resources/colors/appColors.js';
+
 const styles = {
 
     font: {
@@ -17,7 +19,8 @@ const styles = {
     sizePaper : {
         width: '60%',
         marginLeft: '10%',
-        margin: '5%'
+        margin: '5%',
+        backgroundColor: homeColor.ranking
     },
 
     padding: {
@@ -33,12 +36,13 @@ const styles = {
     },
 
     headPadding: {
-        padding: '3%'
+        padding: '3%',
+        backgroundColor: homeColor.rankingLabel
     },
 
     ranking: {
         paddingLeft: '10%',
-        fontSize: '2.5vh'
+        fontSize: '2.5vh',
     }
 }
 

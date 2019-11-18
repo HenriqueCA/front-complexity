@@ -83,7 +83,7 @@ class Header extends React.Component {
 
     navigation = () => {
         const { page } = this.props;
-        const pages = [['HOME', '/'], ['BLOG', '/blog'], ['CONTESTS', '/contests'], ['QUESTÕES', '/questoes'], ['LOJA', '/loja'], ['RANKING', '/ranking'], ['SOBRE', '/sobre']];
+        const pages = [['HOME', '/'], ['BLOG', '/blog'], ['CONTESTS', '/contests'], ['QUESTÕES', '/problems'], ['LOJA', '/loja'], ['RANKING', '/ranking'], ['SOBRE', '/sobre']];
         let elements = [];
         pages.forEach(e => {
             let link;
@@ -94,12 +94,19 @@ class Header extends React.Component {
                     </Link>
                 );
             } else {
-                const linkTo = ['QUESTÕES', 'CONTESTS', 'LOJA', 'SOBRE',].includes(e[0]) ? undefined : e[1];
+                const linkTo = ['CONTESTS', 'LOJA', 'SOBRE',].includes(e[0]) ? undefined : e[1];
                 link = (
                     <Link style={styles.link} to={linkTo} onClick={() => {this.snackbarRef.current.openSnackbar(PAGENOTFINISHED,'info')}}>
                         {e[0]}
                     </Link>
                 );
+                if (!localStorage.getItem(TOKEN) && e[0] === 'BLOG') {
+                    link = (
+                        <Link style={styles.link} to={undefined} onClick={() => {this.snackbarRef.current.openSnackbar("Você só pode acessar essa página logado!", 'warn')}}>
+                            {e[0]}
+                        </Link>
+                    )
+                }
             }
             elements.push(link);
         });
@@ -116,7 +123,7 @@ class Header extends React.Component {
                 {redirect ? <Redirect to='/' /> : undefined}
                 <Grid container alignItems='center' spacing={0}>
                     <Grid item xs={10}>
-                        <Typography variant='h3'>
+                        <Typography variant='h3' style={styles.title}>
                             Complexity
                         </Typography>
                     </Grid>

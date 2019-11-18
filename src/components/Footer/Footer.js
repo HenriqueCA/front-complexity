@@ -45,6 +45,7 @@ class Footer extends React.Component {
             [['Home', '/'], []],
             [['Blog', '/blog'], []],
             [['Contests', '/contests'], []],
+            [['Questões','/problems'],[]],
             [['Loja', '/loja'], []],
             [['Ranking', '/ranking'], []],
             [['Sobre', '/sobre'], []],
@@ -54,7 +55,7 @@ class Footer extends React.Component {
 
         for (let [key, value] of mapPages) {
             let divPage = [];
-            const linkTo = ['Questões','Sobre','Loja','Contests'].includes(key[0]) ? undefined : key[1];
+            const linkTo = ['Sobre','Loja','Contests'].includes(key[0]) ? undefined : key[1];
             const mainPage = (
                 <Grid item>
                     <Link style={styles.footerLinks} to={linkTo} onClick={() => {this.snackbarRef.current.openSnackbar(PAGENOTFINISHED,'info')}}>
@@ -91,10 +92,10 @@ class Footer extends React.Component {
                 <Grid container spacing={0} justify='space-evenly' align='center' style={styles.pagesContainer}>
                     {this.navigation()}
                     <Grid item>
-                        <Typography>
+                        <Typography style={{color:'#e6e6e6'}}>
                             ©Complexity - Online Judge Gamificado
                         </Typography>
-                        <Typography>Sem fins lucrativos</Typography>
+                        <Typography style={{color:'#e6e6e6'}}>Sem fins lucrativos</Typography>
                     </Grid>
                 </Grid>
                 <Box display='flex' flexDirection='row' justifyContent='space-between'>

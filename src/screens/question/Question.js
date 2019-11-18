@@ -5,7 +5,6 @@ import { Container, Typography, Button, Grid, Paper, Box } from '@material-ui/co
 import { Redirect, Link } from 'react-router-dom';
 import { Description, Submit, Submissions, Ranking } from './components/QuestionComponents';
 import { problemRoutes } from 'library/routes/backendRequest';
-import problema from './mockQuestion';
 
 
 class Question extends React.Component {

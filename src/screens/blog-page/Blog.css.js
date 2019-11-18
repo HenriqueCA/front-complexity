@@ -1,3 +1,4 @@
+import { secondaryColor, thirdColor } from "../../resources/colors/appColors";
 
 const styles ={
 
@@ -6,7 +7,7 @@ const styles ={
     },
 
     initBlogContainer: {
-        marginBottom: '2%'
+        marginBottom: '2%',
     },
 
     blogContainer: {
@@ -54,12 +55,13 @@ const styles ={
         textDecoration: 'none',
         color:'black',
     },
+
     createCommentContainer: {
         marginBottom:'2%',
     },
 
     commentButton:{
-        backgroundColor:'lightgrey'
+        backgroundColor:'#6573a3'
     }
 
 

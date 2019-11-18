@@ -124,7 +124,7 @@ class BlogHeader extends React.Component {
 
                         <Grid item xs={4}>
                             <Link to='/blog/create'>
-                                <Button variant='contained'>
+                                <Button variant='contained' style={styles.createButton}>
                                     Crie um post
                                 </Button>
                             </Link>

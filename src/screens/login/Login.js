@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import { TextField, Container, Button, Link } from '@material-ui/core';
+import { TextField, Container, Button, Link, Paper } from '@material-ui/core';
 import styles from './Login.css.js';
 import { userRoutes } from 'library/routes/backendRequest';
 import { TOKEN, NICKNAME } from 'library/util';
@@ -59,10 +59,10 @@ class Login extends React.Component {
             const response = await userRoutes.login(user);
             localStorage.setItem(TOKEN, "Bearer " + response.data.token);
             localStorage.setItem(NICKNAME, response.data.nick);
-            this.snackbarRef.current.openSnackbar(LOGINSUCCESS,'success');
+            this.snackbarRef.current.openSnackbar(LOGINSUCCESS, 'success');
             setTimeout(() => window.location.href = '/', 3000);
         } catch (error) {
-            this.snackbarRef.current.openSnackbar(LOGINFAILED,'error');
+            this.snackbarRef.current.openSnackbar(LOGINFAILED, 'error');
         }
     }
 
@@ -73,42 +73,44 @@ class Login extends React.Component {
                 <SnackbarUtil ref={this.snackbarRef} />
                 {redirect ? <Redirect to='/' /> : undefined}
                 <Header />
-                <Container style={styles.main} maxWidth="xs">
-                    <h1>
-                        Login
+                <Paper style={{marginTop:'2%', marginBottom:'2%'}}>
+                    <Container style={styles.main} maxWidth="xs">
+                        <h1>
+                            Login
                         </h1>
-                    <TextField
-                        style={styles.input}
-                        variant="filled"
-                        margin="normal"
-                        fullWidth
-                        label="Email/Nickname"
-                        autoFocus
-                        onChange={this.handleChange}
-                        value={this.state.email}
-                        name='email'
-                    />
-                    <TextField
-                        style={styles.input}
-                        variant="filled"
-                        margin="normal"
-                        fullWidth
-                        label="Senha"
-                        onChange={this.handleChange}
-                        value={this.state.password}
-                        name='password'
-                        type='password'
-                    />
-                    <Link style={styles.link} href="">Esqueceu sua senha?</Link>
-                    <Button
-                        style={styles.button}
-                        variant='contained'
-                        size='medium'
-                        onClick={this.handleSubmit}
-                    >
-                        Entrar
+                        <TextField
+                            style={styles.input}
+                            variant="filled"
+                            margin="normal"
+                            fullWidth
+                            label="Email/Nickname"
+                            autoFocus
+                            onChange={this.handleChange}
+                            value={this.state.email}
+                            name='email'
+                        />
+                        <TextField
+                            style={styles.input}
+                            variant="filled"
+                            margin="normal"
+                            fullWidth
+                            label="Senha"
+                            onChange={this.handleChange}
+                            value={this.state.password}
+                            name='password'
+                            type='password'
+                        />
+                        <Link style={styles.link} href="/forgot-password">Esqueceu sua senha?</Link>
+                        <Button
+                            style={styles.button}
+                            variant='contained'
+                            size='medium'
+                            onClick={this.handleSubmit}
+                        >
+                            Entrar
                         </Button>
-                </Container>
+                    </Container>
+                </Paper>
                 <Footer />
             </>
         )

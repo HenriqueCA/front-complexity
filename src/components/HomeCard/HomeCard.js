@@ -4,6 +4,7 @@ import { Typography, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { makeStyles, fade } from '@material-ui/core/styles';
 import SnackbarUtil from '../../components/SnackBar/SnackbarUtil';
+import {primaryColor} from 'resources/colors/appColors';
 
 const PAGENOTFINISHED = 'Infelizmente essa página ainda está em construção :(';
 
@@ -23,9 +24,9 @@ const useStyles = makeStyles(theme => ({
         width: '100%',
         height: '100%',
         justifyContent: 'left',
-        backgroundColor: fade('#D1D1D1', 0.5),
+        backgroundColor: fade(primaryColor, 0.5),
         '&:hover': {
-            backgroundColor: fade('#D1D1D1', 0.9)
+            backgroundColor: fade(primaryColor, 0.9)
         }
     },
     input: {
@@ -36,7 +37,7 @@ const useStyles = makeStyles(theme => ({
 const HomeCard = ({ title, url }) => {
     const classes = useStyles();
     const snackbarRef = React.createRef();
-    const linkTo = ['Questões', 'Contests', 'Loja', 'Sobre', 'Criar Questão'].includes(title) ? undefined : map[title];
+    const linkTo = ['Contests', 'Loja', 'Sobre', 'Criar Questão'].includes(title) ? undefined : map[title];
 
     return (
         <>

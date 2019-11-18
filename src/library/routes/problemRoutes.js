@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {TOKEN, baseURL} from '../util';
+import { baseURL} from '../util';
 
 
 /**
@@ -12,6 +12,11 @@ const problemRoutes = {
     async getProblem(id) {
         const response = await axios.get(this.problemRoute + id);
         return response; 
+    },
+
+    async getProblems(params){
+        const response = await axios.get(this.problemRoute, {params});
+        return response;
     }
 
 }
