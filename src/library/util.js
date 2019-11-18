@@ -1,5 +1,5 @@
 
-const baseURL = 'localhost:3000';
+const baseURL = 'http://35.199.77.234:3030';
 
 const TOKEN = 'complexity_token';
 

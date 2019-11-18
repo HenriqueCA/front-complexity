@@ -1,39 +1,52 @@
 import React from 'react';
 import styles from './Header.css.js';
-import { Container, Grid, Box, Typography } from '@material-ui/core';
+import { Container, Grid, Box, Typography, Button } from '@material-ui/core';
 import { TOKEN, NICKNAME } from 'library/util';
 import { userRoutes } from 'library/routes/backendRequest';
 import { Redirect, Link } from 'react-router-dom';
+import SnackbarUtil from '../SnackBar/SnackbarUtil.js';
+
+
+const PAGENOTFINISHED = 'Infelizmente essa página ainda está em construção :(';
 
 class Header extends React.Component {
+    
+    snackbarRef = React.createRef();
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            redirect: false
+        }
+    }
 
     options = () => {
         const logged = localStorage.getItem(TOKEN);
         const nickname = localStorage.getItem(NICKNAME);
         if (logged) {
-            return (
-                <Grid container direction='column' xs={2} align='center'>
+            let item = (<Grid container direction='column' xs={2} align='center'>
+                <Grid item>
+                    <Typography variant='h4'>
+                        {nickname}
+                    </Typography>
+                </Grid>
+                <Grid container spacing={0} justify='space-evenly'>
                     <Grid item>
-                        <Typography variant='h4'>
-                            {nickname}
-                        </Typography>
+                        <Link style={styles.headerLinksLogged} to={`/profile/?player=${nickname}`}>
+                            Perfil
+                    </Link>
                     </Grid>
-                    <Grid container spacing={0} justify='space-evenly'>
-                        <Grid item>
-                            <Link style={styles.headerLinksLogged} to='/profile'>
-                                Perfil
-                            </Link>
-                        </Grid>
-                        <Grid item>
-                            <Link style={styles.headerLinksLogged} onPress={this.logout()}>
-                                Sair
-                            </Link>
-                        </Grid>
+                    <Grid item>
+                        <Link style={styles.headerLinksLogged} onClick={() => this.logout()}>
+                            Sair
+                    </Link>
                     </Grid>
                 </Grid>
-            )
+            </Grid>);
+            return item;
         } else {
-            return (
+
+            let item = (
                 [
                     (
                         <Grid item align='center' xs={1}>
@@ -51,20 +64,26 @@ class Header extends React.Component {
                     )
                 ]
             )
+            return item;
         }
     }
 
     logout = async () => {
-        await userRoutes.logout();
+        try {
+            await userRoutes.logout();
+        }
+        catch (error) {
+            console.log(error);
+        }
         localStorage.removeItem(TOKEN);
         localStorage.removeItem(NICKNAME);
-        return <Redirect to='/' />;
+        this.setState({ redirect: true });
     }
 
 
     navigation = () => {
         const { page } = this.props;
-        const pages = [['HOME', '/'], ['BLOG', '/blog'], ['CONTESTS', '/contests'], ['QUESTÕES', '/questoes'], ['LOJA', '/loja'], ['RANKING', '/ranking'], ['SOBRE', '/sobre']];
+        const pages = [['HOME', '/'], ['BLOG', '/blog'], ['CONTESTS', '/contests'], ['QUESTÕES', '/problems'], ['LOJA', '/loja'], ['RANKING', '/ranking'], ['SOBRE', '/sobre']];
         let elements = [];
         pages.forEach(e => {
             let link;
@@ -75,8 +94,9 @@ class Header extends React.Component {
                     </Link>
                 );
             } else {
+                const linkTo = ['CONTESTS', 'LOJA', 'SOBRE',].includes(e[0]) ? undefined : e[1];
                 link = (
-                    <Link style={styles.link} to={e[1]}>
+                    <Link style={styles.link} to={linkTo} onClick={() => {this.snackbarRef.current.openSnackbar(PAGENOTFINISHED,'info')}}>
                         {e[0]}
                     </Link>
                 );
@@ -86,10 +106,14 @@ class Header extends React.Component {
 
         return elements;
     }
+    
 
     render() {
+        const { redirect } = this.state;
         return (
             <Container style={styles.header}>
+                <SnackbarUtil ref={this.snackbarRef}/>
+                {redirect ? <Redirect to='/' /> : undefined}
                 <Grid container alignItems='center' spacing={0}>
                     <Grid item xs={10}>
                         <Typography variant='h3'>

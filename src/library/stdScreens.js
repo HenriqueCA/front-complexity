@@ -11,10 +11,14 @@ import Forgot from '../screens/forgot_password/Forgot';
 import Login from '../screens/login/Login';
 import Signup from '../screens/signup/Signup';
 
+import Blogs from '../screens/blog-init/Blogs';
+import SearchBlog from '../screens/blog-search/SearchBlog';
+import Blog from '../screens/blog-page/Blog';
+import CreateBlog from '../screens/blog-create/CreateBlog';
+import Ranking from '../screens/ranking/Ranking';
 
 import Question from '../screens/question/Question';
-
 import Questions from '../screens/questions/Questions';
 
 
-export default { Home, Forgot, Login, Signup, Profile, Question, Questions }; 
+export default { Home, Forgot, Login, Signup, Profile, Blogs, SearchBlog, Blog, CreateBlog, Ranking, Question, Questions}; 
