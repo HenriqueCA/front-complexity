@@ -69,11 +69,11 @@ class Login extends React.Component {
     render() {
         const { redirect } = this.state;
         return (
-            <>
+            <Container style={{ padding: 0 }}>
                 <SnackbarUtil ref={this.snackbarRef} />
                 {redirect ? <Redirect to='/' /> : undefined}
                 <Header />
-                <Paper style={{marginTop:'2%', marginBottom:'2%'}}>
+                <Paper style={{ marginTop: '2%', marginBottom: '2%' }}>
                     <Container style={styles.main} maxWidth="xs">
                         <h1>
                             Login
@@ -112,7 +112,7 @@ class Login extends React.Component {
                     </Container>
                 </Paper>
                 <Footer />
-            </>
+            </Container>
         )
     }
 

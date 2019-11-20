@@ -7,6 +7,7 @@ const styles = makeStyles(theme => ({
     },
     paper: {
       width: '100%',
+      minHeight:'78vh',
       marginBottom: theme.spacing(2),
     },
     table: {

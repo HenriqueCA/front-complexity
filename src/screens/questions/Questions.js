@@ -90,10 +90,10 @@ class Questions extends React.Component {
         const { title, tags, nivel } = this.state;
         let param = {};
         if (title !== '') {
-            param.title = title;
+            param.pattern = title;
         }
         if (tags.length !== 0) {
-            param.tags = tags;
+            param.tags = JSON.stringify(tags);
         }
         if (nivel !== 0) {
             param.level = nivel;
@@ -108,7 +108,6 @@ class Questions extends React.Component {
             this.setState({ problems: response.data.results })
 
         } catch (error) {
-            console.log(error);
         }
     }
 

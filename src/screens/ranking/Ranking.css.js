@@ -8,7 +8,7 @@ const styles = {
         textAlign: 'center'
     },
     container:{
-        padding:0
+        padding:0,
     }
 }
 
