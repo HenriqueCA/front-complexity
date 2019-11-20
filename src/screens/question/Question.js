@@ -6,7 +6,6 @@ import { Redirect, Link } from 'react-router-dom';
 import { Description, Submit, Submissions, Ranking } from './components/QuestionComponents';
 import { problemRoutes } from 'library/routes/backendRequest';
 
-
 class Question extends React.Component {
 
     constructor(props) {
@@ -26,45 +25,7 @@ class Question extends React.Component {
             this.setState({ problem: response.data.problem });
         } catch (error) {
             console.log(error);
-            //Todo: Handle Error.
-
         }
-        // let problem = {
-        //     "tags": [
-        //         "grafos",
-        //         "initiate"
-        //     ],
-        //     "_id": "5dc76d4f9e40e73997e34780",
-        //     "title": "bem louco",
-        //     "level": 2,
-        //     "description": "dddddd fgggslskskdkdldlda",
-        //     "author": "Anonymous",
-        //     "photo": "sxhxhxhj",
-        //     "samples": [
-        //         {
-        //             "_id": "5dc76d4f9e40e73997e34781",
-        //             "input": "6",
-        //             "output": "7"
-        //         }
-        //     ],
-        //     "test_cases": [
-        //         {
-        //             "_id": "5dc76d4f9e40e73997e34783",
-        //             "input": "10",
-        //             "output": "11"
-        //         },
-        //         {
-        //             "_id": "5dc76d4f9e40e73997e34782",
-        //             "input": "55",
-        //             "output": "56"
-        //         }
-        //     ],
-        //     "createdAt": "2019-11-10T01:52:15.954Z",
-        //     "updatedAt": "2019-11-14T19:11:31.724Z",
-        //     "__v": 1
-        // }
-
-        // this.setState({ problem });
     }
 
     handleClick(button) {

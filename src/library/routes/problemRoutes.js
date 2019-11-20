@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { baseURL} from '../util';
+import { baseURL, TOKEN } from '../util';
+
+
+const headers = {
+    Authorization: localStorage.getItem(TOKEN),
+};
 
 
 /**
@@ -16,6 +21,11 @@ const problemRoutes = {
 
     async getProblems(params){
         const response = await axios.get(this.problemRoute, {params});
+        return response;
+    },
+
+    async submitProblem(id, formdata){
+        const response = await axios.post(this.problemRoute + id, formdata, {headers});
         return response;
     }
 

@@ -53,7 +53,7 @@ class Profile extends React.Component {
         <Container style={styles.profileContainer} >
           <Box display='flex'>
             <Box display='flex' flexDirection='column' alignItems='center' style={styles.avatarAndFriendsContainer}>
-              {player ? (<><ProfilePicture url={player.photo} /><CardList friendsList={player.friends} /> </>) : undefined}
+              {player ? (<><ProfilePicture url={player.photo || 'https://www.midlands4cities.ac.uk/wp-content/uploads/2019/04/student-profile-default.png'} /><CardList friendsList={player.friends} /> </>) : undefined}
             </Box>
             <Box display='flex' flexDirection='column' style={styles.infoContainer}>
               {player
