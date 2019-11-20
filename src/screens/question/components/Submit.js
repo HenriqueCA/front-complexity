@@ -44,6 +44,7 @@ class Submit extends React.Component {
             console.log(response);
             this.snackbarRef.current.openSnackbar('Sua solução foi submetida com sucesso!', 'success');
         } catch (error) {
+            console.log(error);
             this.snackbarRef.current.openSnackbar('Algo deu errado na submissão de sua solução...', 'error');
         }
     }

@@ -52,7 +52,7 @@ class Blog extends React.Component {
         const { blog } = this.state;
         if (blog) {
             const profile = blog.author.profile;
-            const author = <Link style={styles.profileLinks} to={`/profile/?player=${profile.name}`}><Typography variant='h5'>{profile.name}</Typography> </Link>;
+            const author = <Link style={styles.profileLinks} to={`/profile/?player=${profile.nick}`}><Typography variant='h5'>{profile.nick}</Typography> </Link>;
             const nationality = <Typography>{profile.nationality}</Typography>;
             const institution = <Typography>{profile.institution}</Typography>;
             const submissions = <Typography>Submissões: {profile.submissions}</Typography>;

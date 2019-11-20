@@ -34,6 +34,7 @@ class UserInfo extends React.Component {
             />;
         }
         else if (display === 'Submissões') {
+            // TODO: Refazer janela de submissões.
             let ms = this.props.userData.problemsSubmitted;
             return <UserSubmissions
                 submissions={ms}

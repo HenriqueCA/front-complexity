@@ -51,7 +51,7 @@ class UserStatistics extends React.Component {
             return <StrengthChart strengths={strengths} />
         }
         else if (tabValue === 3) {
-            if (problemsSolved || problemsTried) {
+            if (totalOfSubmissions) {
                 return <AccuracyChart problemsSolved={problemsSolved} totalOfSubmissions={totalOfSubmissions} />
             } else {
                 return <Typography style={{color:'white'}}>Você não tem dados suficientes para serem mostrados !</Typography>

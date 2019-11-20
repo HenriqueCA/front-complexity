@@ -31,7 +31,7 @@ class ProfileHeader extends React.Component {
                                 {uData.institution}
                             </Typography>
                             <Typography variant='body2' style={styles.country}>
-                                {uData.country}
+                                {uData.nationality}
                             </Typography>
                             <Typography style={styles.level}>
                                 Nível: {uData.level}

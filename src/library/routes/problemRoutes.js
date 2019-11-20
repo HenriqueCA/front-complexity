@@ -12,7 +12,7 @@ const headers = {
  */
 const problemRoutes = {
 
-    problemRoute: baseURL + '/problem/',
+    problemRoute: baseURL + '/problems/',
 
     async getProblem(id) {
         const response = await axios.get(this.problemRoute + id);
@@ -24,7 +24,8 @@ const problemRoutes = {
         return response;
     },
 
-    async submitProblem(id, formdata){
+    async submitProblem(id, formdata, language){
+        //ADD LAnguage to header
         const response = await axios.post(this.problemRoute + id, formdata, {headers});
         return response;
     }

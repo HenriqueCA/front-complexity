@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom/cjs/react-router-dom';
 import styles from 'components/Blog/BlogList.css.js';
 
 const BlogList = ({ blog }) => {
-    const author = blog.author.profile.name;
+    const author = blog.author.profile.nick;
     const numLikes = blog.numlikes;
     const numDislikes = blog.numdislikes;
     const numComments = blog.comments.length;
