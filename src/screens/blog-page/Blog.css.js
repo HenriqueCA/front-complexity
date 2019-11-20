@@ -3,7 +3,8 @@ import { secondaryColor, thirdColor } from "../../resources/colors/appColors";
 const styles ={
 
     mainContainer: {
-        padding: 0
+        padding: 0,
+        minHeight:'70vh',
     },
 
     initBlogContainer: {
